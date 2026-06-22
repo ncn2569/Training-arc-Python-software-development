@@ -1,0 +1,14 @@
+Heading: # đến ###### (giảm dần)
+Bold/italic/strikethrough: **bold**, *italic* hoặc _italic_, ~~gạch ngang~~
+List: ordered (1.), unordered (- hoặc *), nested list (thụt lề)
+Link: [text](url), Image: ![alt](url)
+Blockquote: > tạo ra block
+Code: backtick đơn `code` (inline), backtick ba   (code block, có thể gắn ngôn ngữ để highlight syntax: `python `)
+Horizontal rule: --- gạch ngang
+
+
+Table: | col1 | col2 | (| :--- | :---: | ---: |)
+Task list: - [ ] chưa xong, - [x] xong (xàm vl)
+Footnote: [^1] ... [^1]: nội dung
+
+
