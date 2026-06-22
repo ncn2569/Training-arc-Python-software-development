@@ -1,0 +1,37 @@
+*** feature branching
+*** trunk based development
+*** markdown
+*** python virtual environment
+
+*** pip install -e 
+*** python3 -m 
+*** __init__.py && python module (*)
+-- > (https://medium.com/@sachinsoni600517/how-python-search-for-imported-module-package-76cf0da5f690) (*)
+-- > https://realpython.com/python-import/ (*)
+*** && python env variable && __name__ == "__main__" 
+*** setup.py && pyproj.toml && wheel && sdist && bdist (*)
+*** typing hint && type checking
+*** @staticmethod & @classmethod (*) class life cycle 
+definition (https://www.geeksforgeeks.org/method-resolution-order-in-python-inheritance)
+*** OOP, abstract class, abstract method docstring (*)
+*** @property  
+*** class var (*)
+-->https://pynative.com/python-class-variables/
+
+*** magic method 
+recursive tail call
+*** recursive 
+*** closure 
+*** decorator (*)
+*** context manager (*)
+*** generator && iterator && iterable (map reduce filter) yield
+*** compose functional (*)
+
+*** flow control (continue, pass, break, try except else finally, if elif else)
+
+*** multi processing && multi threading && executor & GIL 
+*** asyncio && async await (*) && event loop
+*** flask, fast API, sqlalchemy, mongodb, docker, jwt, cookie, file io (file-like object, io objects) , requests, httpx (*)
+*** design pattern: creational pattern, behavioral pattern, structural pattern (refactoringguru)
+*** MVC, Clean architecture, REST API, HTTP (*)
+ 
