@@ -1,0 +1,35 @@
+Phát triển tính năng trên nhánh phụ, không tác động lên nhánh chính -> Phát triển xong thì merge vào main/Bí thì mở pull request nhờ trợ giúp
+Mục tiêu tối thượng -> không ảnh hưởng đến nhánh main quá nhiều, tránh cho nhánh main bị conflict hoặc bị lỗi.
+
+FEATURE BRANCHING
+*Start with the main branch
+All feature branches are created off the latest code state of a project. This guide assumes this is maintained and updated in the main branch.
+
+git checkout main  # di chuyển vị trí đứng đến nhánh main
+git fetch origin  # lấy thông tin của nhánh đang đứng hiện tại (cập nhật + thay đổi) nhưng chưa merge
+git reset --hard origin/main # ép nhánh main local theo nhánh main của trên sever
+-> bắt đầu 1 feature mới không bị conflict với nhánh main.
+
+*git merge -> merge 2 nhánh lại với nhau, nếu conflict thì xử lý. A,B,C->A,B-D song song,C-E song song,F
+                                                                D,E
+dùng khi đã hoàn thiện tính năng
+*git rebase -> đặt lịch sử mình commit lên đầu lịch sửa nhánh rebase (git rebase main, git rebase --continue(đến khi hết conflict) / không được commit trong lúc rebase, dễ xung đột)
+A,B,C->A,B,C,D',E'
+D,E
+Dùng khi muốn xử lý lỗi ở local trước, không rebase trên nhánh chung, chỉ rebase nhánh 
+
+Merge: giữ lịch sử thật, an toàn cho shared branch. 
+Rebase: lịch sử sạch/linear, dùng cho branch cá nhân chưa share, hoặc trước khi mở PR để dọn commit
+
+Merge: ours = nhánh hiện tại, theirs = nhánh đang merge vào.
+Rebase: ours = nhánh đích (main, nhánh bạn đang rebase lên), theirs = commit của chính bạn đang được replay lại.
+
+*git pull = git fetch + git merge
+
+Fastforward merge & merge commit --no-ff
+
+Fastforward merge -> khi hoàn thiện feature trong lúc nhánh main chưa có sự thay đổi nào -> lịch sử merge tự động tuyến tính không rẽ nhánh
+merge commit --no-ff -> nhánh main đã có thay đổi (hoặc kể cả là chưa) -> khi gộp tạo ra commit gộp, mặc dù dư thừa nhưng giữ lại được lịch sử commit nhánh feature.
+
+Squash Merge
+Merge các commit lại thành 1 commit để sạch
