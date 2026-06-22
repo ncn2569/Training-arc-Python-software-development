@@ -1,0 +1,23 @@
+Trunk based -> khác với feature branching trunk based yêu cầu toàn bộ thành viên làm trên 1 nhánh, push và merge code liên tục 
+ưu điểm quý đảm bảo xử lý lỗi nhanh nhất có thể -> có lỗi xử lý ngay -> không khiến cho mọi việc dồn đến phút cuối rồi mới fix
+
+Technical side:
+
+Nguyên tắc -> main lúc nào cũng phải deploy được
+
+#FEATURE FLAGS : key concept của trunk based -> tắt cờ thì k còn dùng tính năng nữa -> chặn bug trên production nhanh chóng.
+
+Biết cách giấu code chưa xong đi (có thể dùng if/else) rồi sau khi xong thì xóa if/else đó 
+Không được tự ý vọc sửa chữa DB như bên nhánh riêng được, làm gì cũng phải để ý
+Cơ chế expand and contracts (phone->number: tạo 1 cột mới y như cột cũ -> clone data qua -> điều hướng thông tin vào cả 2 cột -> 
+                                            chuyển code sang chỉ đọc từ cột mới->xóa cột cũ)
+kiến trúc: Interface/abstraction layer bao bọc tính năng cũ -> hoàn thiện tính năng mới dựa trên layer bao bọc tính năng cũ 
+            hoàn thiện dần tính năng mới -> migrate qua tính năng mới -> xóa tính năng cũ
+Tốc độ build/test phải nhanh khoảng thì mới không bị nghẽn
+Bộ test phải xịn để bắt được lỗi nghiêm trọng
+PR nên ngắn thôi để dễ review và review phải là priority đầu tiên không nên ngâm PR quá lâu vì mục tiêu của hình thức này là 
+đảm bảo code lên main càng sớm càng tốt.
+
+
+Nguyên tắc cốt lõi deploy khác release -> feature flag off (trong db, config file hoặc env) thì tính năng đó sẽ không hiện lên trên UI cho user nữa cũng là 
+một cách hay để ngừng lỗi mà không phụ thuộc vào CI pipeline. Không cần revert đỡ phải push lại rồi chạy full pipeline lại

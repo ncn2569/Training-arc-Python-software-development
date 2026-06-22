@@ -1,4 +1,4 @@
-*** feature branching
+*** feature branching (Done)
 *** trunk based development
 *** markdown
 *** python virtual environment
