@@ -1,0 +1,1 @@
+pip install -e . -> cơ chế live link, tạo 1 file con trỏ để mỗi lần chạy thư viện thì sẽ chạy ở thư viện gốc.

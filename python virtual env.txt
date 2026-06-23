@@ -1,0 +1,6 @@
+Cô lập môi trường -> mỗi môi trường dùng một thư viện riêng
+
+python -m venv .venv -> tạo venv
+.venv\Scripts\activate -> kích hoạt venv
+
+-> cô lập môi trường để không bị xung đột thư viện đối với các project tránh việc mỗi project yêu cầu 1 thư viện khác nhau

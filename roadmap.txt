@@ -34,4 +34,4 @@ recursive tail call
 *** flask, fast API, sqlalchemy, mongodb, docker, jwt, cookie, file io (file-like object, io objects) , requests, httpx (*)
 *** design pattern: creational pattern, behavioral pattern, structural pattern (refactoringguru)
 *** MVC, Clean architecture, REST API, HTTP (*)
- 
+
