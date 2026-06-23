@@ -1,0 +1,11 @@
+python -m
+cơ chế để python tìm trực tiếp module để chạy không còn chạy thông qua đường dẫn trực tiếp mỗi khi chạy bằng lệnh nữa
+
+-> giúp cho việc import gọn hơn và có thể chạy được ở bất kỳ tầng nào
+
+python -m a.b.c -> yêu cầu python tìm trong cả venv và site package nên nào có thư mục a thì vào đó gọi c lên chạy 
+
+khi chạy kiểu truyền thống python a/b/c.py thì folder chứa c được xem là tầng folder gốc nên khi dùng . để import 
+thì các folder khác sẽ không thể thấy được thứ được import qua dấu . nữa
+
+
