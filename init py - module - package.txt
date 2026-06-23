@@ -1,0 +1,16 @@
+module là 1 file đơn lẻ 1.py 2.py ...
+package là 1 folder lớn chứa nhiều module 
+
+__init__.py là mặt tiền của package -> bạn có thay đổi gì bên trong cấu trúc trong của package thì kệ bạn
+miễn sao khi người dùng cần hàm của bạn thì chỉ cần import thư mục chứa hàm đó là được mà không cần improt a.b.c
+code trong __init__.py có cơ chế cache để tránh 1 import nhiều lần thì phải chạy lại từ đầu.
+
+và __init__.py sẽ luôn được chạy trước khi gọi 
+
+
+from a import . -> import tuyệt đối, tìm từ gốc dự án hoặc thư mục venv trở xuống (nơi đang đứng)
+from .a import . -> import tương đối 1 cấp, tìm ngay tầng folder hiện tại (nơi đang đứng)
+from ..a import . -> import tương đối 2 cấp, nhảy ra ngoài 1 cấp và tìm ở cấp đó trở xuống
+...
+....
+tương tự
