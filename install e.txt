@@ -1,1 +1,10 @@
-pip install -e . -> cơ chế live link, tạo 1 file con trỏ để mỗi lần chạy thư viện thì sẽ chạy ở thư viện gốc.
+pip install -e . -> cơ chế live link, tạo 1 file con trỏ để mỗi lần chạy thư viện thì sẽ chạy ở thư viện gốc chứa hàm gọi đó.
+
+nếu không có cờ -e thì sẽ phải install lại mỗi lúc thay đổi code của file được gọi.
+
+. nghĩa là thư mục hiện tại nơi chứa cấu hình cài đặt của dự án
+
+nghĩa là nếu khác tầng folder thì không thể nhìn thấy nhau. để nhìn thấy được phải pip install . hoặc pip install -e . 
+
+1 cái là copy code 1 cái là linked, -> bản chất là đăng kí thư viện hoặc package vào venv hoặc site package để các file nhìn thấy được 
+
