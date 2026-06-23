@@ -8,3 +8,5 @@ nghĩa là nếu khác tầng folder thì không thể nhìn thấy nhau. để 
 
 1 cái là copy code 1 cái là linked, -> bản chất là đăng kí thư viện hoặc package vào venv hoặc site package để các file nhìn thấy được 
 
+cách duy nhất và tốt nhất khi làm việc với các thư mục khác tầng nhau nhưng vẫn muốn nó thấy được nhau. 
+Giải pháp tốt hơn các cách chấp vá sys.path

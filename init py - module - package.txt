@@ -1,11 +1,17 @@
 module là 1 file đơn lẻ 1.py 2.py ...
-package là 1 folder lớn chứa nhiều module 
+package là 1 module lớn chứa nhiều sub module (thường tiêu biểu là thư mục chứa nhiều file .py con) và có thêm attribute __path__
 
+__init__.py là để xử lý khi muốn xử lý package như 1 module đơn lẻ, thường thì init sẽ import các nội dung chính bên trong. 
+khi import package thì sẽ tự động import các thư viện mình chọn trong init khiến cho mình làm chủ được content nào
+muốn người ta dùng content nào không.
++
 __init__.py là mặt tiền của package -> bạn có thay đổi gì bên trong cấu trúc trong của package thì kệ bạn
 miễn sao khi người dùng cần hàm của bạn thì chỉ cần import thư mục chứa hàm đó là được mà không cần improt a.b.c
 code trong __init__.py có cơ chế cache để tránh 1 import nhiều lần thì phải chạy lại từ đầu.
 
-và __init__.py sẽ luôn được chạy trước khi gọi 
+và __init__.py sẽ luôn được chạy trước khi gọi,
+phải có init thì folder mới được xét là regular package và có thể import module từ folder được hoặc chạy python -m được,
+tuy nhiên nếu không có init thì nó sẽ được xét là namespace package.
 
 
 from a import . -> import tuyệt đối, tìm từ gốc dự án hoặc thư mục venv trở xuống (nơi đang đứng)
@@ -14,3 +20,32 @@ from ..a import . -> import tương đối 2 cấp, nhảy ra ngoài 1 cấp và
 ...
 ....
 tương tự
+
+
+
+Trình tự tìm kiếm khi python search module hay package nào đó
+
+Current Directory (tầng thư mục hiện tại / nếu bật venv thì khi python.exe được chạy nó sẽ mò trong thư mục của venv trước) → Python Path environment variables (thường là none) 
+→ Standard Library (default library khi cài python) → Site-Packages (packages được tải bởi pip, nếu bật venv thì site packages này của venv)
+
+
+set temporary env Path
+
+1# set PYTHONPATH=C:\path\to\your\module;%PYTHONPATH%
+->mỗi terminal
+
+2# sys.path.append("path\to\your\module")
+->mỗi lần chạy
+
+
+mỗi khi import 1 module thì module đó đóng vai là 1 namespace định danh để biết được khi access các attribute của module đó
+
+có thể dùng alias hoặc import trực tiếp attribute
+>>> import math as m
+>>> m.pi
+3.141592653589793
+>>> from math import pi as PI
+>>> PI
+3.141592653589793
+
+

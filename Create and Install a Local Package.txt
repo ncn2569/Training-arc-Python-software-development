@@ -1,0 +1,33 @@
+ngoài việc khi pip install các package ngoài thì mọi script sẽ thấy được thì có thể pip install các package local của mình để 
+việc sắp xếp tổ chức và import file trở nên hiệu quả và gọn gàng nhất có thể 
+
+
+quy tắc :
+A script is meant to be run.
+A library is meant to be imported.
+
+
+Creating a local package doesn’t involve much overhead. 
+First, create minimal setup.cfg and setup.py files in the outer structure directory:
+
+# setup.cfg
+
+[metadata]
+name = local_structure
+version = 0.1.0
+
+[options]
+packages = structure
+
+
+Để tạo một package, Python cần biết: Tên package là gì? Phiên bản mấy? 
+Thư mục nào chứa mã nguồn? Nó có cần cài thêm thư viện bên thứ ba nào không? 
+setup.py và setup.cfg chính là nơi cung cấp các thông tin này (gọi là Metadata).
+
+# setup.py
+
+import setuptools
+
+setuptools.setup() # == pip install -> tự phân giải các section trong setip.cfg để như [metadata] [options] 
+để cài đặt package vào trong python env hiện tại
+
