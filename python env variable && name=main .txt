@@ -1,0 +1,23 @@
+kiến thức tiêu biểu
+os.environ -> environment variables của hệ điều hành
+-> trả về dictionary với cặp key value 
+hdong giống dict thông thường nên get set đều được
+
+#test
+import os
+print(os.environ.get("HOME"))          # đọc 1 biến có sẵn, an toàn nếu không tồn tại
+os.environ["MY_VAR"] = "hello"          # set 1 biến mới (chỉ tồn tại trong process này)
+print(os.environ["MY_VAR"])
+
+khi biến môi trường nhiều người ta thường dùng cách này -> xử lý env từ file riêng biệt
+from dotenv import load_dotenv
+load_dotenv()
+import os
+token=os.environ.get("API")
+
+thay đổi từ python env chỉ là tạm thời đối với process đó không ghi đè system environment variables
+
+khi import có thể lỡ chạy hàm trong file đó không cần thiết -> để tránh 
+điều đó thì if __name__=="__main__" -> chỉ chạy khi nó được gọi chạy trực tiếp còn nếu chỉ là import thì không chạy hàm dư thừa.
+
+cơ chế thì khi import thì thường __name__ khác main nên tránh đc lỗi này, nếu đc gọi bằng flag -m thì sẽ tính là top lv enviroment -> name =main
