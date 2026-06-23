@@ -1,0 +1,145 @@
+OOP 1 cách tổ chức chương trình xoay quanh đối tượng -> lấy đối tượng làm trung tâm. (Đối tượng = thuộc tính + hành vi)
+
+Class và object nói một cách chính xác nhất sẽ là bản thiết kế và sản phẩm của bản thiết kế đó,
+Bản thiết kế chỉ có 1 nhưng sẽ có nhiều sản phâm cụ thể từ bản thiết kế đó
+(funfact thực ra class cũng là 1 object đối với python )
+
+thay vì lập trình thủ tục thông thường 1 hàm này gọi hàm kia lung tung không kiểm soát (tổ chức không tốt thì khó đọc và maintain),
+khi scale lên sẽ là 1 đống code rối mù người ta sinh ra OOP 
+-> đối tượng sẽ gồm thuộc tính và hành vi Hay còn gọi là attribute và method.
+
+các cách giải quyết 
+-> đóng gói các object lại giúp gom các thuộc tính hoặc bảo mật các thuộc tính quan trọng
+-> tiết kiệm code không cần copy paste các thông tin trùng lặp có thể thừa kế được từ lớp cha nữa 
+-> dễ mở rộng, khi cần mở rộng thì tạo 1 class mới kế thừa interface chung là xong 
+
+Tứ trụ của OOP:
+1.Tính đóng gói
+-Gom thuộc tính và phương thức liên quan lại vào trong 1 (khu vực) class.
+-Điều khiển access của các sự truy cập các component bên trong của class đó, 
+người bên ngoài không cần biết bên trong là cái gì hiện thực ra sao, tất cả những gì cần biết là 
+có interface gì dùng ra sao trả về cái gì là được
+
+Demo:
+class A:
+    def __init__(self,value):
+        self.__value=value
+    def changevalue(self):
+        self.__value=0
+
+2.Tính thừa kế
+cách để tăng độ linh động của class defintion khi lớp con có thể sử dụng lại thuộc tính hoặc phương thức của lớp cha
+để kế thừa và đồng thời có thể tự mở rộng thêm thuộc tính hoặc phương thức của mình.
+
+-> keyword là tính tái sử dụng và mối quan hệ is-a
+
+class Animal:
+    def __init__(self,legs,eyes):
+        self.legs=legs
+        self.eyes=eyes
+    def mate(self):
+        print("mating")
+class Dog(Animal):
+    def __init__(self,legs,eyes,tail):
+        super().__init__(legs,eyes) -> gọi hàm khởi tạo của lớp cha
+        self.tail=tail
+    def sniff(self):
+        print("sniffing")
+    def mate(self)
+        super().mate()
+        print("mate từ tầng của loài chó")
+
+Đa kế thừa, cùng lúc kế thừa nhiều class khác nhau
+class A
+class B(A)
+class C(A)
+class D(B,C)
+super()->khởi tạo ra 1 đối tượng để dò tìm và ủy quyền gọi quyền gọi phương thức dựa trên danh sách thứ tự ưu tiên MRO
+->super() tìm đối tượng tiếp theo trong chuỗi MRO để ủy quyền phương thức
+
+3.Tính đa hình
+biểu diễn 1 interface cho nhiều loại kiểu dữ liệu khác nhau.
+
+Ví dụ: int, float, double là các kiểu dữ liệu khác nhau nhưng vẫn cộng trừ nhân chia được với nhau
+
+trong OOP, bằng cách để cho class chịu trách nhiệm cho code và data của nó thì tính đa hình có thể đạt được, 
+mà khi được gọi thì nó sẽ xử lý tương theo bất kỳ objects nào.
+nghĩa là các class tương tác với 1 hàm theo những cách khác nhau 
+
+ghi đè phương thức -> method overriding
+nạp chồng phương thức -> method overloading
+ad-hoc polymorphism / duck typing -> 
+
+operator overloading
+class DiemSo:
+    def __init__(self, diem):
+        self.diem = diem
+
+    # Định nghĩa lại toán tử cộng (+) bằng magic method __add__
+    def __add__(self, other):
+        return DiemSo(self.diem + other.diem)
+
+# --- CHẠY ---
+toan = DiemSo(8)
+van = DiemSo(7)
+
+# Bản chất phép cộng dưới đây là: toan.__add__(van)
+tong_diem = toan + van 
+
+print(tong_diem.diem) # Output: 15
+
+Đa hình dựa trên kế thừa
+class A:
+    def temp(self):
+        pass
+class B(A):
+    def temp(self):
+        print("B")
+class C(A):
+    def temp(self):
+        print("C")
+
+b=B()
+c=C()
+def template(obj):
+    obj.temp()
+template(b)
+template(c)
+
+Đa hình không cần kế thừa (Duck typing)
+class A:
+    def temp(self):
+        print("A")
+class B:
+    def temp(self):
+        print("B")
+
+b=B()
+a=A()
+def template(obj):
+    obj.temp()
+template(b)
+template(a)
+
+
+4.Tính trừu tượng
+Giấu đi sự phức tạp của các hàm, chỉ đưa ra interface -> chỉ cần quan tâm interface và input output của nó
+không cần quan tâm cách nó được hiện thực-> giảm sự phức tạp và cho phép thiết kế hiệu quả hơn.
+Chuẩn thiết kế chung cho các class không quan tâm cách hiện thực của tụi function chỉ cần biết là phải có function đó là được,
+giảm thiểu đi sự phức tạp, chỉ cần làm việc với cách dùng không phải với cách hiện thực của hàm.
+
+có thể hiện thực 2 cách
+
+from abc import ABC, abstractmethod #cách để python tạo abstract class và abstract method (ABD: abstract base class)
+
+class computer(ABC):
+    @abstractmethod
+    def cpu(self):
+        pass
+    -> mọi class con kế thừa computer đều phải overwrite hàm này
+class HP(computer):
+    def cpu(self):
+        print("intel")
+class DELL(computer):
+    def cpu(self):
+        print("amd")
