@@ -1,0 +1,95 @@
+3 loại class instance, class, static
+instance -> đi với con trỏ this hoặc self, gọi qua obj.method -> method mà obj của class đó gọi được
+class -> decorator @classmethod - đi với con trỏ cls-> gọi qua Class.method()
+static -> decorator @staticmethod -> như hàm thường chỉ là nhận namespace của class
+
+
+khi nào dùng
+dùng instance khi cần đụng chạm vào thuộc tính mỗi obj
+dùng class khi cần đụng chạm vào thuộc tính cả class
+dùng instance khi không cần đụng chạm vào thuộc tính của cả 2 
+
+
+Life cycle of object
+1. __new__(cls, ...)   ← TẠO instance (cấp bộ nhớ, trả về object thô)
+2. __init__(self, ...) ← KHỞI TẠO state cho instance vừa tạo (gán attribute)
+3. ... object sống, được dùng ...
+4. __del__(self)       ← dọn dẹp khi object bị garbage collect (không đảm bảo thời điểm chính xác)
+
+
+
+Bản chất của @staticmethod
+class Mystaticmethod:
+    def __init__(self,f):
+        self.f=f
+    def __get__(self,obj,objtype=None):
+        return self.f -> không bind gì hết
+
+class Myclassmethod:
+    def __init__(self,f):
+        self.f=f
+    def __get__(self,obj,objtype=None):
+        if objtype is None:
+            objtype=type(obj)
+        def bound(*args, **kwargs):
+            return self.f(objtype, *args, **kwargs)   # luôn nhồi class vào đầu
+        return bound
+
+class Demo:
+    @MyStaticMethod
+    def smethod():
+        print("static tự viết tay — không nhận gì cả")
+
+    @MyClassMethod
+    def cmethod(cls):
+        print(f"classmethod tự viết tay — cls = {cls}")
+
+Demo.smethod()     
+Demo.cmethod()      
+
+
+Tác dụng của @classmethod
+Đây là lý do thật sự @classmethod tồn tại, không chỉ là "cú pháp khác cho vui": class method nhận class object đang gọi nó làm cls 
+— nghĩa là 1 factory method định nghĩa ở class cha có thể tự động tạo ra đúng kiểu subclass khi được gọi từ subclass đó. 
+Đó chính là toàn bộ lý do @classmethod tồn tại — giữ được tính đa hình qua kế thừa.
+class Animal:
+    @classmethod
+    def create(cls):
+        print(f"Tạo instance kiểu: {cls.__name__}")
+        return cls()
+
+class Dog(Animal):
+    pass
+
+class Cat(Animal):
+    pass
+
+Animal.create()   # Tạo instance kiểu: Animal
+d = Dog.create()  # Tạo instance kiểu: Dog   <- cls tự động là Dog!
+print(type(d))    # <class '__main__.Dog'>
+
+static không làm được
+class Animal2:
+    @staticmethod
+    def create():
+        return Animal2()      # PHẢI hardcode tên class — không biết ai đang gọi
+
+class Dog2(Animal2):
+    pass
+
+d2 = Dog2.create()
+print(type(d2))   # <class '__main__.Animal2'>  <- SAI! Muốn Dog2 nhưng ra Animal2
+
+→ Với @staticmethod, static method không tham gia vào inheritance-aware behavior — vì nó không nhận class reference, 
+không thể biết được ai thực sự đang gọi nó. Đây chính xác là lý do dùng @staticmethod để làm factory/constructor 
+là anti-pattern: nó "đóng băng" tên class ngay lúc viết code, phá tính đa hình của OOP.
+
+cls là class object, không phải instance — truy cập instance attribute qua cls sẽ raise AttributeError lúc runtime.
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    @classmethod
+    def broken(cls):
+        return cls.name    

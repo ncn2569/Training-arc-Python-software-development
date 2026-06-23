@@ -1,0 +1,58 @@
+MRO diamond problem
+class A:
+    def fun(self):
+        print("In class A")
+
+class B(A):
+    def fun(self):
+        print("In class B")
+
+class C(A):
+    def fun(self):
+        print("In class C")
+
+class D(B, C):
+    pass
+
+A->Ao
+B->B+Ao->BAo 
+C->C+Ao->CAo 
+D->D+BAo+CAo+BC->DBCAo
+
+
+decorator -> high order function 
+
+# Đây chính là Decorator
+def do_thoi_gian(func):
+    def wrapper():
+        print("--- Bắt đầu đo thời gian ---")
+        t1 = time.time()
+        
+        func() # Chạy hàm gốc được truyền vào
+        
+        t2 = time.time()
+        print(f"--- Thời gian chạy: {t2 - t1:.4f} giây ---")
+    return wrapper # Trả về hàm đã được bọc tinh năng
+
+def chay_script_ai():
+    print("Đang tải model Llama-3 và thực hiện Retrieval-Augmented Generation...")
+    time.sleep(1.5) # Giả lập thời gian chạy
+
+# Bọc hàm chay_script_ai bằng do_thoi_gian
+chay_script_ai_da_boc = do_thoi_gian(chay_script_ai)
+
+# Chạy hàm mới
+chay_script_ai_da_boc()
+
+hoặc 
+
+@do_thoi_gian
+def chay_script_ai():
+    print("Đang tải model Llama-3 và thực hiện Retrieval-Augmented Generation...")
+    time.sleep(1.5)
+
+# Bây giờ chỉ cần gọi bình thường, tính năng đo thời gian tự động kích hoạt
+chay_script_ai()
+
+
+

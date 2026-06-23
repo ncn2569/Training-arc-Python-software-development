@@ -14,7 +14,7 @@
 *** @staticmethod & @classmethod (*) class life cycle 
 definition (https://www.geeksforgeeks.org/method-resolution-order-in-python-inheritance)
 *** OOP, abstract class, abstract method docstring (*)
-*** @property  
+*** @property 
 *** class var (*)
 -->https://pynative.com/python-class-variables/
 
