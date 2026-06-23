@@ -1,0 +1,44 @@
+cách cũ
+setup.py -> dùng thông qua setuptools -> khá phụ thuộc và vô dụng nếu project yêu cầu khác hoặc k có sẵn setuptools
+cách mới hơn tí
+pyproject.toml -> thay thế cho setup.py và setup.cfg -> tách biệt giữa build và metadata
+
+ví dụ:
+# định dạng để build
+[build-system]
+# Định nghĩa công cụ cần thiết ĐỂ XÂY DỰNG gói
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+#những metadata của project 
+[project]
+name = "hcmut_rag_bot"
+version = "1.0.0"
+description = "Dự án chatbot RAG cho trường HCMUT"
+dependencies = [
+    "pydantic>=2.0",
+    "openai"
+]
+
+
+khi build thì python sẽ tạo ra 2 loại file phân phối ở thư mục dist/ -> sdist (source distribution) và bdist (build distribution)
+
+sdist chứa toàn bộ mã nguồn gốc của project (.tar.gz)
+bdist chứa định dạng gói được biên dịch sẵn để người dùng chạy k cần biên dịch lại (thường là .whl)
+
+wheel định dạng phổ biến và chính thức nhất của bdist đuôi .whl file ZIP được định dạng theo chuẩn đặc biệt
+
+giải mã tên: cryptography-42.0.0-cp310-cp310-manylinux_2_28_x86_64.whl
+cp310 -> python 3.10
+manylinux_2_28_x86_64->linux x86_64
+nếu gói thuần python k có C++ -> py3-none-any.whl
+
+tác dụng của 2 cái này:
+để khi code xong ở máy bạn -> phân phối sang máy người dùng trơn tru nhất
+tác dụng của bdist:
+đối với thư viện thuần python -> bản chất của bdist là file zip của các file .py -> người dùng install thì giải nén ra rồi đặt vào
+site-packages dùng ngay
+đối với thư viện có c++ thì có thêm file nhị phân đã compile sẵn
+tác dụng của sdist:
+backup khi môi trường chạy khác với yêu cầu và định dạng sẵn có của bdist-> pip tự chuyển sang sdist
+->> mdich cuối cùng pip install về là dùng được luôn
