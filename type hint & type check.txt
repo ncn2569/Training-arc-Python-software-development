@@ -1,0 +1,27 @@
+type hint
+-> giúp cho code tường minh và dễ đọc hơn cho người code và người review
+tuy nhiên thì gợi ý kiểu không quá cứng nhắc, nó chỉ suggest kiểu nên được sử dụng nhưng cuối cùng python
+cũng sẽ xét kiểu lúc runtime
+
+type checking -> 2 kiểu chính static và dynamic
+
+type checking khi kết hợp với type hint sẽ giúp ngăn chặn khi sử dụng kiểu dữ liệu khác với gợi ý từ coder
+static check -> quét qua 1 lần trước khi chạy
+dynamic check -> báo lỗi ở runtime khi chạy
+
+pip install mypy -> thư viện kiểu tra tĩnh
+dynamic check thì thường kết hợp với pydantic để báo lỗi khi không đúng kiểu dữ liệu 
+From Pydantic import BaseModel
+# Pydantic sẽ tự động ép kiểu hoặc báo lỗi ngay lập tức nếu truyền sai dữ liệu
+class NguoiDung(BaseModel):
+    id: int
+    ten: str
+    email: str | None = None
+
+# Đúng kiểu -> Chạy mượt mà
+u1 = NguoiDung(id=1, ten="Nguyen") 
+
+# Sai kiểu -> Pydantic ném ra lỗi ValidationError lập tức lúc runtime
+u2 = NguoiDung(id="abc", ten="Nguyen")
+
+
