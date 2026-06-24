@@ -1,0 +1,2 @@
+__ -> name mangling đổi tên biến để tránh xung đột tên biến
+_ -> báo hiệu cho lập trình viên biến là không nên dùng cái này làm api

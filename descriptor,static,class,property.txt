@@ -1,0 +1,4 @@
+Descriptor là 1 object để python điều khiển cách truy xuất các attribute bằng cách định nghĩa các phương thức đặc biệt như:
+__get__(self,instance,owner),__set__(self,instance,value),__delete__(self,instance)
+
+nếu 1 class định nghĩa bất kỳ phương thức nào trong này thì nó là 1 Descriptor

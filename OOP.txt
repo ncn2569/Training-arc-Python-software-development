@@ -16,9 +16,10 @@ các cách giải quyết
 Tứ trụ của OOP:
 1.Tính đóng gói
 -Gom thuộc tính và phương thức liên quan lại vào trong 1 (khu vực) class.
--Điều khiển access của các sự truy cập các component bên trong của class đó, 
-người bên ngoài không cần biết bên trong là cái gì hiện thực ra sao, tất cả những gì cần biết là 
-có interface gì dùng ra sao trả về cái gì là được
+-Điều khiển access của các sự truy cập các component bên trong của class đó, không nhất thiết là không được chỉnh sửa
+chỉ nên tương tác qua những gì mà nó show ra không cần quan tâm cách hiện thực bên trong
+
+“We are all consenting adults here.”
 
 Demo:
 class A:
@@ -63,14 +64,14 @@ biểu diễn 1 interface cho nhiều loại kiểu dữ liệu khác nhau.
 Ví dụ: int, float, double là các kiểu dữ liệu khác nhau nhưng vẫn cộng trừ nhân chia được với nhau
 
 trong OOP, bằng cách để cho class chịu trách nhiệm cho code và data của nó thì tính đa hình có thể đạt được, 
-mà khi được gọi thì nó sẽ xử lý tương theo bất kỳ objects nào.
+mà khi được gọi thì nó sẽ xử lý tương ứng theo bất kỳ objects nào.
 nghĩa là các class tương tác với 1 hàm theo những cách khác nhau 
 
 ghi đè phương thức -> method overriding
 nạp chồng phương thức -> method overloading
-ad-hoc polymorphism / duck typing -> 
-
+ad-hoc polymorphism / duck typing 
 operator overloading
+
 class DiemSo:
     def __init__(self, diem):
         self.diem = diem
