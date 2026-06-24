@@ -1,4 +1,69 @@
-Descriptor là 1 object để python điều khiển cách truy xuất các attribute bằng cách định nghĩa các phương thức đặc biệt như:
-__get__(self,instance,owner),__set__(self,instance,value),__delete__(self,instance)
+private và protected không phải bản chất của OOP mà là công cụ hỗ trợ đóng gói 
+và bảo vệ thiết kế class -> private khác với bảo mật dữ liệu mà nó là bảo vệ thiết kế code 
+-> private và protected để chỉ ra được phần nào là công khai 
+phần nào là dùng trong nội bộ chứ bản chất nó không ràng buộc sự truy cập
 
+_a -> tín hiệu cho người code không nên dùng hoặc phụ thuộc vào phương thức này, chỉ nên dùng nội bộ
+__a -> name mangling để tránh lặp code khi kế thừa, tránh class con ghi đè class cha khi trùng tên
+__a__ -> magic method để python biết đối với class đó thì các cú pháp quen thuộc hoạt động ra sao
+ví dụ:
+class A:
+    def __init__(self,name):
+        self._name=name
+    def __str__(self):
+        return f"Name = {self._name}"
+các magic method được python định nghĩa:
+__init__;__new__;__str__;__repr__;__len__;__getitem__;__setitem__;__name__;__dict__;__add__;__eq__;....
+
+
+Descriptor là 1 object để python điều khiển cách truy xuất các attribute bằng cách định nghĩa các 
+phương thức đặc biệt như:
+__get__(self,instance,owner),__set__(self,instance,value),__delete__(self,instance)
 nếu 1 class định nghĩa bất kỳ phương thức nào trong này thì nó là 1 Descriptor
+
+Descriptor là trung gian của việc access attribute nó cho phép custom hành vi khi mà
+attribute được đọc, viết và xóa. Có nghĩa là nếu ncn.x thì x có thể truy cập nhưng nếu x là
+Descriptor thì nó sẽ chạy code của x trước khi thực hiện tác vụ.
+Descriptor phải được định nghĩa làm class attribute không phải instance attribute.
+
+ví dụ:
+class Descriptor:
+    def __get__(self,instance,owner):
+        return instance._value
+    def __set__(self,instance,value):
+        if (value<0):
+            raise ValueError("must >= 0")
+        instance._value=value
+    def __delete__(self,instance):
+        delete instance
+
+__dict__: trong python mọi class hoặc instance đều có một dictionary ngầm định, để quản lý các thuộc Tính
+khi tạo một thuộc tính -> python sẽ lưu tên và giá trị thuộc tính đó thành một cặp key-value bên trong __dict__
+
+cách mà python lookup attribute: 
+Data Descriptor (cả get và set hoặc del)-> Instance dictionary->Non-Data Descriptor (chỉ get)
+ -> Class Attribute -> __getattr__() -> Attribute Error
+
+Decorator -> là mọi thứ callable, có thể là 1 hàm bậc cao hoặc 1 class có __call__
+
+@A
+def a():
+    pass
+#a=A(a)
+
+@property 
+
+Bản chất là decorator với format : property(fget,fset,fdel,doc)
+@property
+    def value(self):
+        return self._value
+# tương đương value=property(fget=value)
+cách mà property bảo mật -> khi lookup có thêm lớp datadescriptor làm chốt chặn không cho chỉnh sửa dữ liệu của instance
+khi mà chưa có setter để chỉnh sửa value đó của instance.
+
+f string -> chuỗi string thông minh tự động biến exp trong {} thành string tự động ép kiểu 
+thay vì string thông thường phải ép kiểu thủ công
+
+Getter/Setter, Hay tính đóng gói , bản chất là không cho người bên ngoài đọc hay thay đổi các giá trị hoặc thuộc tính quan trọng
+mà phải thông qua get set được cung cấp.
+
