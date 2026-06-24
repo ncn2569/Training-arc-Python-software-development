@@ -1,0 +1,18 @@
+Python: pass by objects reference
+khi 1 biến được truyền vào hàm của python thì nó là truyền tham chiếu đến cái object không phải truyền copy giá trị của biến 
+cũng không phải truyền tham chiếu của biến mà là truyền tham chiếu đến cái object của biến
+
+nghĩa là hành vi của hành động bên trong hàm này sẽ thay đổi dựa trên việc object của biến đó là mutable hay là immutable
+
+đối với python mutable là: list, dict, set, immutable: là các giá trị như int,str,float,tuple
+
+nếu object trong hàm là mutable và được chỉnh sửa inplace thì object đó sẽ thay đổi còn nếu là sửa outplace(reassignment) hoặc được gán lại thì 
+biến trong hàm sẽ tạo 1 object mới 
+ví dụ:
+a=[1,2,3,4]
+b=a
+b.append([5,6,7]) -> a=b=[1,2,3,4,5,6,7]
+nhưng nếu nó là b=b+a thì b = [1,2,3,4,5,6,7], a= [1,2,3,4]
+
+nguyên nhân là vì các list,dict hay set hay chỉnh sửa nhiều và được truyền nhiều nên ưu tiên truyền bằng tham số 
+còn các biến nguyên thủy thì sẽ cho nó immutable tránh chỉnh sửa dữ liệu ngoài ý muốn.
