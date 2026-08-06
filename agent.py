@@ -3,7 +3,7 @@ nghiên cứu thêm streaming + logging + PRESERVE THINKING.
 
 persistent memory + context bloating
 
-ngắt quảng khi gọi tools liên tiếp cách giả quyết. 
+ngắt quảng khi gọi tools liên tiếp cách giả quyết.
 """
 
 import json
@@ -25,36 +25,73 @@ from prompt import (
     SYSTEM_PROMPT,
     TOOL_DECLARATION,
 )
+from tools.edit import str_replace_editor
+from tools.read import read_file
 from tools.shell import run_shell
+from tools.write import write_file
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_BASE = os.getenv("API_BASE")
 MODEL = os.getenv("MODEL")
 
+TOOLS = {
+    "run_terminal": {
+        "handler": run_shell,
+    },
+    "read_file": {
+        "handler": read_file,
+    },
+    "str_replace_editor": {
+        "handler": str_replace_editor,
+    },
+    "write_file": {
+        "handler": write_file,
+    },
+}
+
 
 def brief_args(name, args):
     """Rút gọn args để in log cho gọn"""
     if name == "run_terminal":
         cmd = args.get("command", "").strip()
-
-        # 1. Nếu là lệnh tạo/ghi file bằng Heredoc (cat << 'EOF' > filename)
+        # Nếu là lệnh Heredoc cũ (nếu có)
         if "cat <<" in cmd and ">" in cmd:
             lines = cmd.splitlines()
-            first_line = lines[0]  # Dòng đầu: cat << 'EOF' > src/main.py
-
+            first_line = lines[0]
             target_file = (
                 first_line.split(">")[-1].strip().replace("'", "").replace('"', "")
             )
-            line_count = len(lines) - 2
-            return f"[Create File] {target_file} ({line_count} lines)"
-
-        # 2. Nếu là lệnh Terminal đơn dòng thông thường (python, git, ls, mkdir...)
+            line_count = max(0, len(lines) - 2)
+            return f"[Heredoc] {target_file} ({line_count} lines)"
         clean_cmd = " ".join(cmd.split())
-
         if len(clean_cmd) > 65:
-            return f" {clean_cmd[:62]}..."
-        return f"{clean_cmd}"
+            return f"{clean_cmd[:62]}..."
+        return clean_cmd
+    elif name == "write_file":
+        path = args.get("path", "")
+        content = args.get("content", "")
+        line_count = len(content.splitlines())
+        return f"path='{path}' ({line_count} lines)"
+    elif name == "read_file":
+        path = args.get("path", "")
+        r = args.get("range")
+        extra = []
+        if r:
+            extra.append(f"range={r}")
+        extra_str = f" ({', '.join(extra)})" if extra else ""
+        return f"path='{path}'{extra_str}"
+    elif name == "str_replace_editor":
+        path = args.get("path", "")
+        old_str = args.get("old_string", "").replace("\n", "\\n")
+        new_str = args.get("new_string", "").replace("\n", "\\n")
+        if len(old_str) > 20:
+            old_str = f"{old_str[:17]}..."
+        if len(new_str) > 20:
+            new_str = f"{new_str[:17]}..."
+        replace_all = args.get("replace_all", False)
+        all_flag = ", replace_all=True" if replace_all else ""
+        return f"path='{path}', '{old_str}' -> '{new_str}'{all_flag}"
     else:
         return str(args)[:50]
 
@@ -66,25 +103,22 @@ def save_message(context: list[dict], msg: dict) -> None:
     append_turn(entry)
 
 
-TOOLS = {
-    "run_terminal": {
-        "type": "cli",
-        "handler": run_shell,
-    },
-}
-
-
-def execute_tool(name: str, args: dict):
+def execute_tool(name: str, args: dict) -> dict:
+    """
+    Thực thi tool
+    """
     tool = TOOLS.get(name, None)
     if not tool or "handler" not in tool:
         return {"success": False, "error": f"KHONG CO TOOL: {name}"}
     return tool["handler"](**args)
 
 
-def agents_loop(context: list[dict]):
+def run_agent(context: list[dict]):
+    """
+    Agent loop chuẩn ReAct
+    """
     loop_count = 0
     while True:
-
         token_count = count_tokens(context)
         if token_count > THRESHOLD:
             print(f"\n Context vượt ngưỡng ({token_count} > {THRESHOLD} tokens)")
@@ -103,7 +137,7 @@ def agents_loop(context: list[dict]):
             api_key=API_KEY,
             api_base=API_BASE,
             tools=TOOL_DECLARATION,
-            timeout=120,
+            # timeout=120,
             stream=True,
         )
         loop_count += 1
@@ -165,9 +199,9 @@ def agents_loop(context: list[dict]):
                 context,
                 {
                     "role": "assistant",
+                    "tool_calls": tool_calls,
                     "reasoning_content": full_reasoning or None,
                     "content": full_text or None,
-                    "tool_calls": tool_calls,
                 },
             )
             # print(f"[DEBUGGING] {len(tool_calls)}")
@@ -231,7 +265,6 @@ if __name__ == "__main__":
 
     # append_turn(context)
     while True:
-
         try:
             prompt = input("Bạn: ").strip()
 
@@ -244,14 +277,12 @@ if __name__ == "__main__":
 
         if prompt.lower() in {"exit", ""}:
             # exit bình thường
-            print(
-                f" Context đã lưu ({len(context)} messages). Tạm biệt master Nguyen!"
-            )
+            print(f" Context đã lưu ({len(context)} messages). Tạm biệt master Nguyen!")
             break
 
         save_message(context, {"role": "user", "content": prompt})
 
         try:
-            agents_loop(context)
+            run_agent(context)
         except Exception as e:
             print(f"\n[ERROR] {str(e)}")

@@ -1,4 +1,4 @@
-TOOL_DECLARATION= [
+TOOL_DECLARATION = [
     {
         "type": "function",
         "function": {
@@ -7,26 +7,113 @@ TOOL_DECLARATION= [
                 "Thực thi bất kỳ câu lệnh Terminal/Bash nào bên trong thư mục workspace "
                 "thông qua môi trường Git Bash. Bạn có đầy đủ quyền sử dụng các lệnh POSIX/Linux "
                 "như cat, ls, grep, find, mkdir -p, touch, echo, python, pip, git, node, npm, docker..."
-            ),            
+            ),
             "parameters": {
                 "type": "object",
                 "properties": {
-                "command": {
-                    "type": "string",
-                    "description": (
-                        "Câu lệnh Bash hoàn chỉnh cần thực thi. "
+                    "command": {
+                        "type": "string",
+                        "description": (
+                            "Câu lệnh Bash hoàn chỉnh cần thực thi. "
                             "Ví dụ: 'ls -la', 'python main.py', hoặc 'cat << \\'EOF\\' > app.py\\nprint(1)\\nEOF'"
-                    )
-                }
-            },
-            "required": ["command"]
+                        ),
+                    }
+                },
+                "required": ["command"],
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "write_file",
+            "description": (
+                "Tạo mới hoặc ghi đè (overwrite) toàn bộ nội dung một file. "
+                "Tự động tạo thư mục cha nếu chưa tồn tại. "
+                "Dùng tool này khi cần tạo file mới hoặc thay toàn bộ nội dung file."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "Đường dẫn file cần ghi, tương đối từ workspace. VD: 'main.py', 'src/utils.py'",
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Toàn bộ nội dung sẽ ghi vào file.",
+                    }
+                },
+                "required": ["path","content"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_file",
+            "description": (
+                "Đọc nội dung file với đánh số dòng, hỗ trợ đọc theo khoảng dòng (range) "
+                "và giới hạn số dòng (limit). Dùng để xem code hiện tại trước khi sửa."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "Đường dẫn file cần đọc. VD: 'main.py'",
+                    },
+                    "range": {
+                        "type": "array",
+                        "items": {"type": "integer"},
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "description": "[start_line, end_line] — đọc từ dòng start đến dòng end (1-based). Bỏ qua nếu muốn đọc toàn bộ file.",
+                    }
+                },
+                "required": ["path"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "str_replace_editor",
+            "description": (
+                "Thay thế chuỗi chính xác (exact match) trong file. "
+                "Tìm old_string và thay bằng new_string. "
+                "Nếu old_string xuất hiện nhiều lần và replace_all=False sẽ báo lỗi ambiguous."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "Đường dẫn file cần sửa.",
+                    },
+                    "old_string": {
+                        "type": "string",
+                        "description": "Chuỗi cũ cần thay thế (phải khớp chính xác, bao gồm space/tab/newline).",
+                    },
+                    "new_string": {
+                        "type": "string",
+                        "description": "Chuỗi mới sẽ thay vào vị trí của old_string.",                    
+                    },
+                    "replace_all": {
+                        "type": "boolean",
+                        "description": "Nếu True, thay tất cả occurrences. Mặc định False.",
+                    },
+
+                },
+                "required": ["path","old_string","new_string"],
+            },
+        },
+    },
+
 ]
 
 
-### xem thêm để bổ sung, hiện tại toàn là AI gen -- 
+### xem thêm để bổ sung, hiện tại toàn là AI gen --
 
 SYSTEM_PROMPT = """
 Bạn là Nguyen's AI Agent — trợ lý lập trình kĩ sư tự chủ (Autonomous Terminal AI Engineer) trung thành của master Nguyen.
@@ -34,7 +121,7 @@ Bạn là Nguyen's AI Agent — trợ lý lập trình kĩ sư tự chủ (Auton
 - **Vai trò**: Bạn là một Senior AI Engineer có năng lực tự chủ hoàn toàn trong việc đọc, ghi, kiểm thử và xây dựng phần mềm qua Terminal.
 - **Môi trường mặc định**: **Git Bash (POSIX/Linux Syntax)** chạy trực tiếp bên trong thư mục `workspace/`.
 - **Nhiệm vụ**: Thực hiện chính xác, triệt để mọi yêu cầu lập trình từ master Nguyen.
-- **Công cụ duy nhất**: Tool `run_terminal`. Bạn có toàn quyền dùng mọi công cụ CLI có sẵn (`python`, `pip`, `git`, `cat`, `ls`, `grep`, `mkdir -p`, `echo`, `curl`, `jq`, `node`, `npm`...).
+- **Công cụ**: `run_terminal`, `write_file`, `read_file`, `str_replace_editor`.
 ---
 ## WORKFLOW — ReAct (Thought → Action → Observation)
 Mỗi khi nhận yêu cầu, bạn PHẢI tuân theo chu trình ReAct nghiêm ngặt:
@@ -42,31 +129,30 @@ Mỗi khi nhận yêu cầu, bạn PHẢI tuân theo chu trình ReAct nghiêm ng
    - Phân tích yêu cầu của master Nguyen: Cần tạo/sửa những file nào? Cần kiến trúc ra sao?
    - Liệt kê danh sách các bước triển khai theo thứ tự logic.
    - Kiểm tra các rủi ro (lỗi cú pháp, sai đường dẫn, thiếu thư viện).
+   - Nếu bạn thấy mình đang suy nghĩ lặp lại, hãy DỪNG NGAY và đưa ra quyết định.
 2. **Action (Hành động)**:
-   - Gọi tool `run_terminal` với duy nhất **MỘT** câu lệnh Bash tại một thời điểm.
-   - **Đọc file**: Dùng `cat path/to/file` hoặc `head`/`grep` để xem nội dung trước khi sửa. ĐỪNG BẠO ĐOÁN NỘI DUNG.
-   - **Tạo/Ghi file đa dòng**: BẮT BUỘC dùng cú pháp Heredoc `cat << 'EOF' > path/to/file` để tránh bị lỗi nháy kép hay ký tự đặc biệt.
-   - **Tạo thư mục**: Dùng `mkdir -p path/to/dir` trước khi tạo file trong thư mục con.
+   - Gọi đúng tool phù hợp với từng thao tác. Chỉ gọi **MỘT** tool tại một thời điểm.
+   - **Đọc file**: Dùng tool `read_file` để xem nội dung file có đánh số dòng trước khi sửa. ĐỪNG BAO GIỜ ĐOÁN NỘI DUNG FILE.
+   - **Tạo/Ghi đè file**: Dùng tool `write_file(path, content)` để tạo mới hoặc ghi đè toàn bộ file.
+   - **Sửa file (từng đoạn)**: Dùng tool `str_replace_editor(path, old_string, new_string)` để thay thế chính xác một đoạn code. Chỉ dùng khi cần sửa một phần nhỏ.
+   - **Chạy lệnh Terminal**: Dùng `run_terminal` cho mọi tác vụ CLI như `mkdir`, `git`, `python`, `pip`, `ls`...
+   - **Tạo thư mục**: Dùng `run_terminal` với lệnh `mkdir -p path/to/dir` trước khi tạo file trong thư mục con.
 3. **Observation (Quan sát)**:
-   - Đọc kỹ kết quả trả về (`stdout` và `stderr`).
-   - Nếu `exit_code != 0` hoặc bị lỗi: Phân tích nguyên nhân từ `stderr` và đưa ra phương án sửa lỗi ngay lập tức.
-   - Nếu `exit_code == 0`: Tiến hành bước tiếp theo.
+   - Đọc kỹ kết quả trả về từ tool.
+   - Nếu tool trả về `"success": false` hoặc bị lỗi: Phân tích nguyên nhân từ `error` và đưa ra phương án sửa lỗi ngay.
+   - Nếu `"success": true`: Tiến hành bước tiếp theo.
 Lặp lại chu trình **Thought → Action → Observation** cho đến khi hoàn thành 100% mục tiêu.
 ---
-## QUY TẮC THAO TÁC FILE TRÊN BASH (MANDATORY RULES)
-### 1. Quy tắc tạo file đa dòng (Heredoc Pattern)
-Để ghi code sạch sẽ, KHÔNG dùng `echo` với nháy kép cho file dài. BẮT BUỘC dùng Heredoc:
+## QUY TẮC THAO TÁC FILE (MANDATORY RULES)
+### 1. Quy tắc đọc trước khi sửa
+- Dùng `read_file` để xem code hiện tại trước khi sửa. ĐỪNG BAO GIỜ ĐOÁN NỘI DUNG FILE.
 
-```bash
-mkdir -p src/utils
-cat << 'EOF' > src/utils/helper.py
-import os
-def hello():
-    print("Hello Master Nguyen!")
-EOF
+### 2. Quy tắc tạo/ghi file
+- Dùng `write_file(path, content)` để tạo mới hoặc ghi đè toàn bộ file.
+- Dùng `str_replace_editor(path, old_string, new_string)` để sửa từng đoạn nhỏ (exact match).
 
-### 2. Quy tắc kiểm thử (Verification Rule)
-- Sau khi viết/sửa code xong, BẮT BUỘC phải chạy thử bằng lệnh `python path/to/file.py` hoặc chạy unit test để xác nhận code chạy thành công (exit_code == 0) và không crash trước khi báo hoàn thành cho master Nguyen.
+### 3. Quy tắc kiểm thử (Verification Rule)
+- Sau khi viết/sửa code xong, BẮT BUỘC phải chạy thử bằng `run_terminal` với lệnh `python path/to/file.py` hoặc chạy unit test để xác nhận code chạy thành công và không crash trước khi báo hoàn thành cho master Nguyen.
 ---
 ## RÀNG BUỘC VÀ PHẠM VI HOẠT ĐỘNG (STRICT CONSTRAINTS & BOUNDARIES)
 ### 1. Phạm vi Workspace (Scope Boundary)
@@ -91,9 +177,8 @@ Khi đã hoàn thành xong nhiệm vụ, câu trả lời cuối cùng cho maste
 2. ** Kết quả kiểm thử**: Log `stdout` chụp từ kết quả chạy thử sản phẩm.
 3. ** Lỗi & Cách khắc phục**: Liệt kê các sự cố gặp phải trong quá trình làm (nếu có) và cách bạn đã giải quyết nó.
 
-##QUY TẮC CHẠY SERVER/BACKGROUND PROCESS:
+## QUY TẮC CHẠY SERVER/BACKGROUND PROCESS:
 - TUYỆT ĐỐI KHÔNG chạy trực tiếp các lệnh server làm treo terminal như `uvicorn main:app` hay `python -m http.server 8000`.
-- Nếu muốn chạy ngầm Web Server, BẮT BUỘC dùng cú pháp nohup và dấu & ở cuối:
-  VD: `nohup python -m uvicorn main:app --port 8000 > server.log 2>&1 &`
-
+- Nếu muốn chạy ngầm Web Server trên Git Bash, BẮT BUỘC dùng cú pháp ngắt luồng (thêm `< /dev/null &`):
+  VD: `nohup python -m uvicorn main:app --port 8000 > server.log 2>&1 < /dev/null &`
 """

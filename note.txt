@@ -1,0 +1,147 @@
+tên file : snake_case.py -> agentt_loop.py
+package: lowercase -> tools, memory,..
+function: snake_case -> load_context, run_agent
+method: snake_case -> execute_tool, ...
+variable: snake_case -> tool_resul, message_count
+constant: UPPER_CASE -> MAX_RETRY, DEFAULT_TIMEOUT,..
+class: PascalCase-> ContextManager, ToolExecutor,...
+Exception: PascalCase+Error-> ToolError, ParserError,..
+Module private: _leading_underscore -> _parse_json
+name mangling: __double_leading -> __cache
+magic method: __double_both__ -> __init__, __str__
+
+
+Comments:
+Comment giải thích tại sao, không phải đang làm gì.
+# Retry once because the API occasionally returns malformed JSON.
+retry_count += 1
+
+Docstring:
+def execute_tool(tool_name: str) -> str:
+    """Execute a CLI tool and return its output."""
+
+def execute_tool(...):
+    """
+    Execute a CLI tool.
+
+    Returns
+    -------
+    str
+        Standard output from the tool.
+    """
+
+Beautiful is better than ugly.
+
+Explicit is better than implicit.
+
+Simple is better than complex.
+
+Complex is better than complicated.
+
+Readability counts.
+
+
+
+Logging() -> học sau
+
+Project Structure
+
+Python hiện đại thường
+
+agent/
+│
+├── pyproject.toml
+├── README.md
+├── .gitignore
+│
+├── src/
+│   └── agent/
+│       ├── __init__.py
+│       ├── main.py
+│       ├── context_manager.py
+│       ├── tool_executor.py
+│       └── memory.py
+│
+└── tests/
+
+
+Nếu mình là senior review project của bạn, mình sẽ mong đợi:
+
+Theo PEP 8.
+Có type hints.
+Dùng pathlib thay vì nối chuỗi đường dẫn.
+Có logging thay vì print.
+Có test cho các module quan trọng.
+Tổ chức module rõ ràng (context, memory, llm, tools, agent...).
+Dùng formatter và linter (ruff, black hoặc ruff format).
+Có pyproject.toml.
+Có README hướng dẫn chạy.
+
+
+
+
+Danh từ cho class, động từ cho function
+tên phản ánh trách nhiệm
+
+ContextLoader
+=> chỉ load.
+
+ContextManager
+=> quản lý context.
+
+Đừng đặt
+ContextHelper
+vì đọc không biết nó giúp cái gì.
+
+
+không lặp lại ngữ cảnh
+agent/
+    memory.py
+
+Trong memory.py
+class Memory:
+là đủ.
+
+Không cần
+class MemoryManager
+nếu nó đúng là đại diện cho memory.
+
+Hay
+class AgentMemory
+cũng thừa vì đang ở package agent.
+
+
+Nguyên tắc chung là:
+
+Tên file, thư mục và class nên kể cùng một câu chuyện.
+
+Ví dụ:
+
+agent/
+├── context_manager.py
+├── tool_executor.py
+├── memory_store.py
+
+Bên trong:
+
+# context_manager.py
+class ContextManager:
+    ...
+# tool_executor.py
+class ToolExecutor:
+    ...
+# memory_store.py
+class MemoryStore:
+    ...
+
+Nhìn là đoán được ngay:
+
+context_manager.py  → ContextManager
+tool_executor.py    → ToolExecutor
+memory_store.py     → MemoryStore
+
+Không cần mở file.
+
+
+Một quy tắc mình rất thích
+Đừng bắt người đọc phải mở file để biết nó làm gì.

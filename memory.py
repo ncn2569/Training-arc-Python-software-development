@@ -202,6 +202,7 @@ def _flush_orphans(result: list[dict], pending: dict) -> None:
     """
     for orphan_id, tc in pending.items():
         orphan_name = tc.get("function", {}).get("name", "")
+        cmd = tc.get("function", {}).get("arguments", "")
         error_msg = {
             "role": "tool",
             "tool_call_id": orphan_id,
@@ -209,11 +210,11 @@ def _flush_orphans(result: list[dict], pending: dict) -> None:
             "content": json.dumps(
                 {
                     "success": False,
+                    "crash_command": cmd,
                     "error": (
                         "AGENT_CRASHED_DURING_TOOL_EXECUTION: Agent bị crash "
-                        "hoặc restart trước khi tool hoàn thành. Vui lòng thử lại "
-                        "hoặc chọn hướng giải quyết khác."
-                        "Nếu lệnh được gọi trước đó không idempotent thì bạn hãy nhớ kiểm tra trước khi thực hiện lại lệnh."
+                        "NẾU LỆNH NÀY AN TOÀN (KHÔNG CÓ SIDE-EFFECT: ls, whoami,...) THÌ BẠN CÓ THỂ RETRY"
+                        "NẾU LỆNH NÀY NGUY HIỂM (CÓ SIDE-EFFECT: rm, del, rmdir,....) THÌ HÃY KIỂM TRA TRẠNG THÁI TRƯỚC KHI CHẠY LẠI."
                     ),
                 },
                 ensure_ascii=False,
