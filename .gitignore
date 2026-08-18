@@ -7,3 +7,6 @@ __pycache__
 node_modules/
 **/node_modules
 *.log
+sessions/
+test.py
+workspace/

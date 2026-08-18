@@ -145,3 +145,26 @@ Không cần mở file.
 
 Một quy tắc mình rất thích
 Đừng bắt người đọc phải mở file để biết nó làm gì.
+
+
+
+# quy tắc thiết kế tools:
+1. Agent đang cố accomplish intent gì?
+
+2. Tool này là primitive hay workflow?
+
+3. Tool này compose với tool nào?
+
+4. Input có phải artifact/reference hay raw data?
+
+5. Output có giúp agent quyết định action tiếp theo không?
+
+6. Output có provenance không?
+
+7. Có progressive disclosure không?
+
+8. Nếu fail, agent có tự recover được không?
+
+9. Có thể retry / repeat safely không?
+
+10. Tool có làm context phình to không?
