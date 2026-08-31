@@ -53,15 +53,14 @@ TOOL_DECLARATION = [
         "function": {
             "name": "read_file",
             "description": (
-                # "Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit) HOẶC đọc file ảnh "
-                # "trả về data_url để model phân tích trực quan. "
-                # "Dùng để xem code hiện tại trước khi sửa, hoặc đọc ảnh "
+                # "Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit) "
+                # "Dùng để xem code hiện tại trước khi sửa hoặc"
                 # "để phân tích/chuyển đổi."
                 "Tool đọc file vạn năng, tự quyết định theo đuôi file:\n"
                 "- Ảnh thuần (.png/.jpg/.jpeg/.gif/.webp) -> trả data_url để phân tích trực quan.\n"
-                "- File .html hoặc .mmd (mermaid) -> trả về data_url của đoạn ảnh được render để xem giao diện/sơ đồ.\n"
-                "  Muốn đọc source code của file .html thì truyền range=[start, end].\n"
-                "- Các file text khác -> đọc có đánh số dòng, hỗ trợ range/limit.\n"
+                # "- File .html hoặc .mmd (mermaid) -> trả về data_url của đoạn ảnh được render để xem giao diện/sơ đồ.\n"
+                # "  Muốn đọc source code của file .html thì truyền range=[start, end].\n"
+                "- Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit)\n"
                 "Dùng để xem code trước khi sửa, đọc ảnh/sơ đồ để phân tích hoặc chuyển đổi."
             ),
             "parameters": {
@@ -117,6 +116,27 @@ TOOL_DECLARATION = [
                     },
                 },
                 "required": ["path", "old_string", "new_string"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "load_skill",
+            "description": (
+                "Nạp toàn bộ hướng dẫn của một Agent Skill vào context để thực thi đúng quy trình. "
+                "Gọi khi nhiệm vụ liên quan tới một skill trong danh sách AGENT SKILLS ở system prompt "
+                "(vd: render file .html/.mmd thành ảnh PNG). Truyền đúng `name` của skill."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Tên skill cần nạp, khớp chính xác với mục trong AGENT SKILLS. VD: 'render-to-image'",
+                    },
+                },
+                "required": ["name"],
             },
         },
     },
@@ -195,7 +215,7 @@ Bạn là Nguyen's AI Agent — trợ lý lập trình kĩ sư tự chủ (Auton
 - **Vai trò**: Bạn là một Senior AI Engineer có năng lực tự chủ hoàn toàn trong việc đọc, ghi, kiểm thử và xây dựng phần mềm qua Terminal.
 - **Môi trường mặc định**: **Git Bash (POSIX/Linux Syntax)** chạy trực tiếp bên trong thư mục `workspace/`.
 - **Nhiệm vụ**: Thực hiện chính xác, triệt để mọi yêu cầu lập trình từ master Nguyen.
-- **Công cụ**:  `write_file`, `read_file`, `str_replace_editor`, `grep_search`,`run_terminal`.
+- **Công cụ**:  `write_file`, `read_file`, `str_replace_editor`, `grep_search`,`run_terminal`, `load_skill`.
 ---
 ## WORKFLOW — ReAct (Thought → Action → Observation)
 Mỗi khi nhận yêu cầu, bạn PHẢI tuân theo chu trình ReAct nghiêm ngặt:
@@ -212,6 +232,7 @@ Mỗi khi nhận yêu cầu, bạn PHẢI tuân theo chu trình ReAct nghiêm ng
    - **Chạy lệnh Terminal**: Dùng `run_terminal` cho mọi tác vụ CLI như `mkdir`, `git`, `python`, `pip`, `ls`...
    - **Tạo thư mục**: Dùng `run_terminal` với lệnh `mkdir -p path/to/dir` trước khi tạo file trong thư mục con.
    - **Tìm kiếm code**: Dùng `grep_search(pattern, path, glob)` để tìm class, function, biến, import... trước khi quyết định đọc/sửa file. Luôn dùng grep_search trước để xác định đúng file cần thao tác, không đoán mò.
+   - **Nạp Agent Skill**: Khi nhiệm vụ khớp với một skill trong danh sách AGENT SKILLS (cuối system prompt), gọi `load_skill(name)` để nạp hướng dẫn chi tiết rồi làm đúng theo nó.
 3. **Observation (Quan sát)**:
    - Đọc kỹ kết quả trả về từ tool.
    - Nếu tool trả về `"success": false` hoặc bị lỗi: Phân tích nguyên nhân từ `error` và đưa ra phương án sửa lỗi ngay.
