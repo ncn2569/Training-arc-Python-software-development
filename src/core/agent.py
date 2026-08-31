@@ -22,8 +22,10 @@ WORKS rồi, nhưng còn vài vấn đề:
     kiếm 1 cách trực quan hơn để theo dõi thông tin, hiện tại đang hơi rối.
     ....
 
-Docker - uv package manager python - linux - .env - remote ssh - VM - Bun
+Docker - uv package manager python - linux - .env  - Bun
 
+
+Done (- remote ssh - VM)
 
 READ FILE vạn năng tùy vào đuôi của file. -> READ IMAGE nếu đuôi là html + READ FILE nếu không phải.
 start line end line optional nếu trường hợp muốn đọc code của 1 file html. 
@@ -41,6 +43,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from dotenv import load_dotenv
 from litellm import completion
 
+from agent_skills.loader import load_skill as _load_skill
 from context.memory import (
     THRESHOLD,
     append_turn,
@@ -77,6 +80,7 @@ TOOLS = {
         "handler": write_file,
     },
     "grep_search": {"handler": grep_search},
+    "load_skill": {"handler": _load_skill},
 
     # "render_file": {
     #     "handler": render_file
@@ -97,10 +101,9 @@ def brief_args(name, args):
             )
             line_count = max(0, len(lines) - 2)
             return f"[Heredoc] {target_file} ({line_count} lines)"
-        clean_cmd = " ".join(cmd.split())
-        if len(clean_cmd) > 65:
-            return f"{clean_cmd[:62]}..."
-        return clean_cmd
+        # Log ĐẦY ĐỦ lệnh (không cắt cụt) để theo dõi lệnh chạy agent skills,
+        # ví dụ: python D:/Inter-K/src/agent_skills/builtin/scripts/render.py <in> <out>
+        return " ".join(cmd.split())
     elif name == "write_file":
         path = args.get("path", "")
         content = args.get("content", "")

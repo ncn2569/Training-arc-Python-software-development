@@ -1,19 +1,19 @@
-import base64
+import base64  # [TẮT] đọc ảnh của read_file
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from io import BytesIO
-
-from PIL import Image
+from io import BytesIO  # [TẮT] đọc ảnh của read_file
+from PIL import Image  # [TẮT] đọc ảnh của read_file
 
 from context.memory import count_tokens_by_string
 from tools.path import resolve_path
-from tools.render import render_file
+# from tools.render import render_file  # [TẮT] render/đọc ảnh của read_file
 
 MAX_TOKEN_PER_READ_LIMIT = 25000
 
+# [TẮT] đọc ảnh của read_file — các hằng số dưới đây chỉ dùng cho đọc ảnh, comment lại
 IMAGE_SUFFIX = {".jpg", ".png", ".jpeg", ".gif", ".webp"}
 
 RENDER_SUFFIX = {".html", ".mmd"}
@@ -41,6 +41,7 @@ IMAGE_MAX_HEIGHT = 2000
 IMAGE_SIZE_LIMIT = 500 * 1024
 
 
+# [TẮT] đọc ảnh của read_file — 2 hàm dưới đây chỉ phục vụ đọc ảnh
 def _read_image(file_path: Path) -> dict:
     """
     Đọc ảnh trả về image_url: data:mime_type;base64,image_string
@@ -150,8 +151,8 @@ def read_file(
             return _read_image(file_path)
 
 
-        if file_path.suffix.lower() in RENDER_SUFFIX and range is None:
-            return render_file(file_path)
+        # if file_path.suffix.lower() in RENDER_SUFFIX and range is None:
+        #     return render_file(file_path)
 
 
         file_content = file_path.read_text(encoding="utf-8")
@@ -260,6 +261,7 @@ def read_file(
 
 if __name__ == "__main__":
     # # print(read_file("sqlite3.c"))
-
-    path = resolve_path("super_heavy_picture.jpg")
-    print(_read_image(path))
+    # [TẮT] đọc ảnh của read_file
+    # path = resolve_path("super_heavy_picture.jpg")
+    # print(_read_image(path))
+    pass
