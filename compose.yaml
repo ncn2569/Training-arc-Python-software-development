@@ -1,7 +1,20 @@
 services:
-  app:
-    build: .
+  browserless:
+    image: browserless/chrome:latest
     ports:
       - "3000:3000"
-    volumes:
-      - ./sessions:/app/sessions
+    environment:
+      # Allow local testing without a Browserless token.
+      TOKEN: ""
+      # Large full-page screenshots can take longer than the 60-second default.
+      CONNECTION_TIMEOUT: "300000"
+    restart: unless-stopped
+
+  mermaid-ink:
+    image: ghcr.io/jihchi/mermaid.ink:v16.0.0
+    # Mermaid Ink launches Chromium, which needs this capability with Docker Desktop.
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "3001:3000"
+    restart: unless-stopped

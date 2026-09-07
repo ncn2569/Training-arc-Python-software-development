@@ -23,7 +23,7 @@ def run_shell(command: str) -> dict:
             encoding="utf-8",
             errors="replace",
             cwd=WORKSPACE,
-            timeout=120,
+            timeout=300,
             env=env,
         )
         return {

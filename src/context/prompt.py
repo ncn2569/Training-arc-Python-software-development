@@ -53,15 +53,9 @@ TOOL_DECLARATION = [
         "function": {
             "name": "read_file",
             "description": (
-                # "Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit) "
-                # "Dùng để xem code hiện tại trước khi sửa hoặc"
-                # "để phân tích/chuyển đổi."
-                "Tool đọc file vạn năng, tự quyết định theo đuôi file:\n"
-                "- Ảnh thuần (.png/.jpg/.jpeg/.gif/.webp) -> trả data_url để phân tích trực quan.\n"
-                # "- File .html hoặc .mmd (mermaid) -> trả về data_url của đoạn ảnh được render để xem giao diện/sơ đồ.\n"
-                # "  Muốn đọc source code của file .html thì truyền range=[start, end].\n"
-                "- Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit)\n"
-                "Dùng để xem code trước khi sửa, đọc ảnh/sơ đồ để phân tích hoặc chuyển đổi."
+                "Đọc nội dung file text (có đánh số dòng, hỗ trợ range/limit). "
+                "Dùng để xem code hiện tại trước khi sửa hoặc để phân tích/chuyển đổi. "
+                "Có thể dùng để đọc ảnh."
             ),
             "parameters": {
                 "type": "object",
@@ -83,6 +77,25 @@ TOOL_DECLARATION = [
                     },
                 },
                 "required": ["path"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "crop_image_2",
+            "description": "Crop a local image using a 0-1000 relative coordinate scale. It only saves the crop; use read_file on output_path to view it.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "Source image path in workspace."},
+                    "x1": {"type": "integer", "minimum": 0, "maximum": 1000, "description": "Left edge on a 0-1000 scale."},
+                    "y1": {"type": "integer", "minimum": 0, "maximum": 1000, "description": "Top edge on a 0-1000 scale."},
+                    "x2": {"type": "integer", "minimum": 0, "maximum": 1000, "description": "Right edge on a 0-1000 scale, exclusive."},
+                    "y2": {"type": "integer", "minimum": 0, "maximum": 1000, "description": "Bottom edge on a 0-1000 scale, exclusive."},
+                    "output_path": {"type": "string", "description": "Optional PNG output path in workspace."},
+                },
+                "required": ["path", "x1", "y1", "x2", "y2"],
             },
         },
     },
@@ -119,6 +132,97 @@ TOOL_DECLARATION = [
             },
         },
     },
+    *(
+        [
+            {
+        "type": "function",
+        "function": {
+            "name": "read_image",
+            "description": (
+                "Đọc ảnh (.png/.jpg/.jpeg/.gif/.webp) để phân tích trực quan, đọc đúng kích thước gốc (không resize, không giới hạn size). "
+                "Không truyền tọa độ thì sẽ đọc toàn ảnh. Truyền đủ x1, y1, x2, y2 thì sẽ crop từ ảnh gốc vùng [x1, x2) x [y1, y2) "
+                "(tọa độ pixel, gốc ở góc trái trên, x2/y2 là cạnh phải/dưới). "
+                "Kết quả luôn kèm image_width/image_height của ảnh gốc để bạn tính tọa độ crop. "
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "Đường dẫn file ảnh cần đọc, tương đối từ workspace. VD: 'output/diagram.png'",
+                    },
+                    "x1": {
+                        "type": "integer",
+                        "description": "Left edge of the region, in pixels (the origin is the image's top-left corner)",
+                    },
+                    "y1": {
+                        "type": "integer",
+                        "description": "Top edge of the region, in pixels",
+                    },
+                    "x2": {
+                        "type": "integer",
+                        "description": "Right edge of the region, in pixels (must be greater than x1)",
+                    },
+                    "y2": {
+                        "type": "integer",
+                        "description": "Bottom edge of the region, in pixels (must be greater than y1)",
+                    },
+                },
+                "required": ["file_path"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_image_2",
+            "description": (
+                "Đọc ảnh bằng cách crop ảnh gốc theo scale 0-1000 "
+                "thay vì pixel: x1/x2 trong [0, 1000] đo chiều ngang, y1/y2 trong [0, 1000] đo chiều dọc, "
+                "0 = cạnh trái/trên, 1000 = cạnh phải/dưới. VD: góc phải trên 1/4 ảnh = x1=500, y1=0, x2=1000, y2=500. "
+                "BẮT BUỘC đủ 4 tọa độ (mình crop, không có chế độ xem toàn ảnh). "
+                "Kết quả kèm region_scale (box 0-1000) và region (box pixel thực tế sau đổi)."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "file_path": {
+                        "type": "string",
+                        "description": "Đường dẫn file ảnh cần đọc, tương đối từ workspace. VD: 'output/diagram.png'",
+                    },
+                    "x1": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000,
+                        "description": "Left edge of the region on a 0-1000 scale (0 = left edge, 1000 = right edge)",
+                    },
+                    "y1": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000,
+                        "description": "Top edge of the region on a 0-1000 scale (0 = top edge, 1000 = bottom edge)",
+                    },
+                    "x2": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000,
+                        "description": "Right edge of the region on a 0-1000 scale (must be greater than x1)",
+                    },
+                    "y2": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000,
+                        "description": "Bottom edge of the region on a 0-1000 scale (must be greater than y1)",
+                    },
+                },
+                "required": ["file_path", "x1", "y1", "x2", "y2"],
+            },
+        },
+    },
+        ]
+        if False
+        else []
+    ),
     {
         "type": "function",
         "function": {
@@ -207,9 +311,16 @@ TOOL_DECLARATION = [
     #         "required": ["path"],
     #     },
     # },
+    # 
+    # #, `read_image`, `read_image_2`
 
 ### xem thêm để bổ sung, hiện tại toàn là AI gen --
 SYSTEM_PROMPT = """
+## IMAGE CROP FLOW
+- For a large image, call `crop_image_2(path, x1, y1, x2, y2)` first. Coordinates use a 0-1000 scale: (0, 0) is top-left and (1000, 1000) is bottom-right.
+- `crop_image_2` only writes the crop and returns `output_path`; it does not provide visual content.
+- Call `read_file(output_path)` after a successful crop to inspect the cropped image. Do not use `crop_image`.
+
 Bạn là Nguyen's AI Agent — trợ lý lập trình kĩ sư tự chủ (Autonomous AI Agents Engineer) trung thành của master Nguyen.
 ## VAI TRÒ & MÔI TRƯỜNG (ROLE & ENVIRONMENT)
 - **Vai trò**: Bạn là một Senior AI Engineer có năng lực tự chủ hoàn toàn trong việc đọc, ghi, kiểm thử và xây dựng phần mềm qua Terminal.
@@ -226,7 +337,7 @@ Mỗi khi nhận yêu cầu, bạn PHẢI tuân theo chu trình ReAct nghiêm ng
    - Nếu bạn thấy mình đang suy nghĩ lặp lại, hãy DỪNG NGAY và đưa ra quyết định.
 2. **Action (Hành động)**:
    - Gọi đúng tool phù hợp với từng thao tác. Chỉ gọi **MỘT** tool tại một thời điểm.
-   - **Đọc file**: Dùng tool `read_file` để xem nội dung file có đánh số dòng trước khi sửa. ĐỪNG BAO GIỜ ĐOÁN NỘI DUNG FILE.
+   - **Đọc file**: Dùng tool `read_file` để xem nội dung file có đánh số dòng trước khi sửa hoặc nội dung của file ảnh. ĐỪNG BAO GIỜ ĐOÁN NỘI DUNG FILE.
    - **Tạo/Ghi đè file**: Dùng tool `write_file(path, content)` để tạo mới hoặc ghi đè toàn bộ file.
    - **Sửa file (từng đoạn)**: Dùng tool `str_replace_editor(path, old_string, new_string)` để thay thế chính xác một đoạn code. Chỉ dùng khi cần sửa một phần nhỏ.
    - **Chạy lệnh Terminal**: Dùng `run_terminal` cho mọi tác vụ CLI như `mkdir`, `git`, `python`, `pip`, `ls`...
@@ -299,16 +410,26 @@ Tự hỏi nhanh trước khi chọn tool:
 - "Tôi cần tạo file mới?" → `write_file` gọn hơn
 - "Tôi cần chạy script / cài package / git / thao tác phức tạp?" → `run_terminal` là lựa chọn đúng
 
-## ĐỌC FILE VẠN NĂNG (read_file)
-- `read_file(path)` tự quyết định theo đuôi file:
-  - Ảnh (.png/.jpg/.jpeg/.gif/.webp) -> trả ảnh trực quan để phân tích.
-  - `.html` / `.mmd` -> render thành ảnh PNG rồi TỰ ĐỘNG đưa vào context (không cần gọi thêm tool).
-  - Muốn đọc source code của file `.html` -> truyền `range=[start, end]` để đọc dạng text có số dòng.
-  - File text còn lại -> đọc như bình thường.
-- Dùng ảnh để: đọc SQL diagram chuyển thành DML, phân tích lỗi từ screenshot, xem giao diện web, đọc sơ đồ mermaid, v.v.
-- File `.html`/`.mmd` cần render PHẢI là file riêng nằm trong workspace. Nếu HTML/diagram nằm LẪN trong file khác (vd key `display` trong YAML), hãy TRÍCH XUẤT ra file riêng trước rồi mới đọc.
-
 """
+
+
+def get_tool_declaration() -> list[dict]:
+    """Hide legacy crop tools; cropping is provided by focus-image-region skill."""
+    from copy import deepcopy
+
+    declarations = deepcopy(TOOL_DECLARATION)
+    return [
+        declaration
+        for declaration in declarations
+        if declaration.get("function", {}).get("name") != "crop_image_2"
+    ]
+
+
+def get_system_prompt() -> str:
+    return SYSTEM_PROMPT.replace(
+        "## IMAGE CROP FLOW\n- For a large image, call `crop_image_2(path, x1, y1, x2, y2)` first. Coordinates use a 0-1000 scale: (0, 0) is top-left and (1000, 1000) is bottom-right.\n- `crop_image_2` only writes the crop and returns `output_path`; it does not provide visual content.\n- Call `read_file(output_path)` after a successful crop to inspect the cropped image. Do not use `crop_image`.\n\n",
+        "## IMAGE CROP FLOW\n- Load `focus-image-region` when a specific image area needs closer inspection.\n- Run its crop script, then call `read_file(output_path)` to inspect the saved crop.\n\n",
+    )
 # ## RENDER NỘI DUNG THÀNH ẢNH (render_file)
 # - `render_file(path)` render file `.html` hoặc `.mmd` thành ảnh PNG qua browserless,
 #   rồi TỰ ĐỘNG đưa ảnh vào context để đọc trực quan (không cần gọi `read_file` lại).
@@ -316,3 +437,21 @@ Tự hỏi nhanh trước khi chọn tool:
 # - File render PHẢI là file riêng nằm trong workspace, đuôi `.html` hoặc `.mmd`.
 #   Nếu HTML/diagram đang nằm LẪN trong file khác (vd key `display` bên trong file YAML),
 #   hãy TRÍCH XUẤT ra file riêng trước rồi mới render.
+
+# ## ĐỌC ẢNH CÓ CROP (read_image / read_image_2)
+# - Mọi ảnh (.png/.jpg/.jpeg/.gif/.webp) đều đọc bằng `read_image(file_path)` — KHÔNG đọc ảnh bằng `read_file`.
+# - Ảnh được trả về ĐÚNG KÍCH THƯỚC GỐC (không resize, không giới hạn size) — muốn chi tiết hơn thì crop.
+# - Hai tool crop cùng 1 vùng, khác nhau ở hệ tọa độ — chọn hệ nào tiện:
+#   - `read_image(file_path, x1, y1, x2, y2)` — tọa độ PIXEL (tuyệt đối), gốc ở góc trái trên,
+#     x2/y2 là cạnh phải/dưới KHÔNG chứa (box rộng x2-x1, cao y2-y1).
+#   - `read_image_2(file_path, x1, y1, x2, y2)` — tọa độ SCALE 0-1000 (tương đối): x1/x2 đo chiều ngang,
+#     y1/y2 đo chiều dọc, 0 = cạnh trái/trên, 1000 = cạnh phải/dưới. VD: 1/4 góc phải trên = 500, 0, 1000, 500.
+#     Bắt buộc đủ 4 tọa độ (không có chế độ xem toàn ảnh — xem toàn ảnh dùng `read_image`).
+# - Quy trình đọc ảnh 2 bước:
+#   1. `read_image(file_path)` -> xem TOÀN ảnh. Kết quả kèm `image_width`/`image_height` (kích thước ảnh gốc, pixel).
+#   2. Nếu cần nhìn sát 1 vùng (nét chữ nhỏ, 1 nhánh của sơ đồ, 1 bảng dữ liệu...), crop vùng đó bằng
+#      `read_image` (pixel) hoặc `read_image_2` (scale 0-1000).
+# - Ảnh render từ skill `render-to-image` có thể bị tách thành nhiều tile (`*.tile-NNN.png`) khi quá cao
+#   -> đọc từng tile, và vẫn có thể crop trong từng tile bằng x1/y1/x2/y2.
+# - Dùng ảnh để: đọc SQL diagram chuyển thành DML, phân tích lỗi từ screenshot, xem giao diện web, đọc sơ đồ mermaid, v.v.
+# - File `.html`/`.mmd` cần render PHẢI là file riêng nằm trong workspace. Nếu HTML/diagram nằm LẪN trong file khác (vd key `display` trong YAML), hãy TRÍCH XUẤT ra file riêng trước rồi mới render.

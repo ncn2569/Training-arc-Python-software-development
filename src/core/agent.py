@@ -30,6 +30,12 @@ Done (- remote ssh - VM)
 READ FILE vạn năng tùy vào đuôi của file. -> READ IMAGE nếu đuôi là html + READ FILE nếu không phải.
 start line end line optional nếu trường hợp muốn đọc code của 1 file html. 
 
+
+
+
+Tạo benchmark: RL + LLM 
+task : wall time : success rate 
+
 """
 
 import json
@@ -51,10 +57,13 @@ from context.memory import (
     count_tokens,
 )
 from context.prompt import (
-    TOOL_DECLARATION,
+    get_system_prompt,
+    get_tool_declaration,
 )
 from tools.edit import str_replace_editor
 from tools.grep import grep_search
+# from tools.image import read_image
+# from tools.image_2 import read_image_2
 from tools.read import read_file
 
 # from tools.render import render_file
@@ -65,6 +74,8 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_BASE = os.getenv("API_BASE")
 MODEL = os.getenv("MODEL")
+TOOL_DECLARATION = get_tool_declaration()
+SYSTEM_PROMPT = get_system_prompt()
 
 TOOLS = {
     "run_terminal": {
@@ -81,6 +92,8 @@ TOOLS = {
     },
     "grep_search": {"handler": grep_search},
     "load_skill": {"handler": _load_skill},
+    # "read_image": {"handler": read_image},
+    # "read_image_2": {"handler": read_image_2},
 
     # "render_file": {
     #     "handler": render_file
@@ -128,6 +141,12 @@ def brief_args(name, args):
         replace_all = args.get("replace_all", False)
         all_flag = ", replace_all=True" if replace_all else ""
         return f"path='{path}', '{old_str}' -> '{new_str}'{all_flag}"
+    # elif name in ("read_image", "read_image_2"):
+    #     path = args.get("file_path", "")
+    #     box = [args.get(k) for k in ("x1", "y1", "x2", "y2")]
+    #     crop = f" crop={box}" if any(v is not None for v in box) else ""
+    #     suffix = " scale=0-1000" if name == "read_image_2" else ""
+    #     return f"path='{path}'{crop}{suffix}"
     elif name == "grep_search":
         path = args.get("path", "")
         pat = args.get("pattern", "")
@@ -249,11 +268,15 @@ def run_agent(context: list[dict]):
                     "content": full_text or None,
                 },
             )
+            # Execute every tool first. Do not append image/user messages yet:
+            # every assistant tool_call must be immediately followed by its
+            # corresponding role=tool message before any other role appears.
+            tool_results = []
             for tc in tool_calls:
                 name = tc["function"]["name"]
-                args = json.loads(tc["function"]["arguments"])
 
                 try:
+                    args = json.loads(tc["function"]["arguments"])
                     result = execute_tool(name, args)
                     brief = brief_args(name, args)
                     status = "TRUE" if result.get("success") else "FALSE"
@@ -269,53 +292,60 @@ def run_agent(context: list[dict]):
                 except Exception as e:
                     result = {"success": False, "error": str(e)}
 
-                if result.get("type") == "image":
-                    
-                    save_message(
-                        context,
-                        {
-                            "role": "tool",
-                            "tool_call_id": tc["id"],
-                            "name": name,
-                            "content": json.dumps(
-                                {
-                                    "success": result.get("success"),
-                                    "path": result.get("path"),
-                                    "type": "image",
-                                    "mime_type": result.get("mime_type"),
-                                    "size_bytes": result.get("size_bytes"),
-                                    "is_compressed": result.get("is_compressed", "No info"),
-                                }
-                            ),
-                        },
-                    )
+                tool_results.append((tc, name, result))
 
-                    save_message(
-                        context,
-                        {
-                            "role": "user",
-                            "content": [
-                                {"type": "text", "text": f"[IMAGE CONTENT] from {name}"},
-                                {
-                                    "type": "image_url",
-                                    "image_url": {
-                                        "url": result.get("data_url",""),
-                                        "format": result.get("mime_type",""),
-                                    },
-                                },
-                            ],
-                        },
-                    )
+            # Append all tool responses contiguously. This ordering is required
+            # by DeepSeek/OpenAI-compatible APIs when multiple tools are called.
+            for tc, name, result in tool_results:
+                if result.get("type") == "image":
+                    tool_content = {
+                        "success": result.get("success"),
+                        "path": result.get("path"),
+                        "type": "image",
+                        "mime_type": result.get("mime_type"),
+                        "size_bytes": result.get("size_bytes"),
+                        "is_compressed": result.get("is_compressed", "No info"),
+                        "image_width": result.get("image_width"),
+                        "image_height": result.get("image_height"),
+                        "region": result.get("region"),
+                        "error": result.get("error"),
+                        "hint": result.get("hint"),
+                    }
                 else:
-                    save_message(
-                        context,
-                        {
-                            "role": "tool",
-                            "tool_call_id": tc["id"],
-                            "name": name,
-                            "content": json.dumps(result),
-                        },
-                    )
+                    tool_content = result
+
+                save_message(
+                    context,
+                    {
+                        "role": "tool",
+                        "tool_call_id": tc["id"],
+                        "name": name,
+                        "content": json.dumps(tool_content, ensure_ascii=False),
+                    },
+                )
+
+            # Only after every role=tool message has been appended may image
+            # content be sent as a user message for the next model request.
+            for tc, name, result in tool_results:
+                if result.get("type") != "image":
+                    continue
+
+                save_message(
+                    context,
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": f"[IMAGE CONTENT] from {name}"},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": result.get("data_url", ""),
+                                    "format": result.get("mime_type", ""),
+                                },
+                            },
+                        ],
+                    },
+                )
             print()
         else:
             print()

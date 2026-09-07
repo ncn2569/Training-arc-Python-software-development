@@ -1,128 +1,22 @@
-import base64  # [TẮT] đọc ảnh của read_file
+import base64
 import sys
+from io import BytesIO
 from pathlib import Path
+
+from PIL import Image, ImageOps, UnidentifiedImageError
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from io import BytesIO  # [TẮT] đọc ảnh của read_file
-from PIL import Image  # [TẮT] đọc ảnh của read_file
-
 from context.memory import count_tokens_by_string
 from tools.path import resolve_path
-# from tools.render import render_file  # [TẮT] render/đọc ảnh của read_file
 
 MAX_TOKEN_PER_READ_LIMIT = 25000
 
-# [TẮT] đọc ảnh của read_file — các hằng số dưới đây chỉ dùng cho đọc ảnh, comment lại
 IMAGE_SUFFIX = {".jpg", ".png", ".jpeg", ".gif", ".webp"}
+MIME_TYPE = {".jpg": "image/jpeg", ".png": "image/png", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp"}
+PILLOW_TYPE = {".jpg": "JPEG", ".png": "PNG", ".jpeg": "JPEG", ".gif": "GIF", ".webp": "WEBP"}
 
-RENDER_SUFFIX = {".html", ".mmd"}
-
-MIME_TYPE = {
-    ".jpg": "image/jpeg",
-    ".png": "image/png",
-    ".jpeg": "image/jpeg",
-    ".gif": "image/gif",
-    ".webp": "image/webp",
-}
-
-PILLOW_TYPE = {
-    ".jpg": "JPEG",
-    ".png": "PNG",
-    ".jpeg": "JPEG",
-    ".gif": "GIF",
-    ".webp": "WEBP",
-}
-
-IMAGE_MAX_WIDTH = 2000
-
-IMAGE_MAX_HEIGHT = 2000
-
-IMAGE_SIZE_LIMIT = 500 * 1024
-
-
-# [TẮT] đọc ảnh của read_file — 2 hàm dưới đây chỉ phục vụ đọc ảnh
-def _read_image(file_path: Path) -> dict:
-    """
-    Đọc ảnh trả về image_url: data:mime_type;base64,image_string
-    """
-    tail = file_path.suffix.lower()
-
-    compressed_flag = False
-    try:
-        raw_bytes = file_path.read_bytes()
-
-        processed_bytes, tail = _process_image(raw_bytes, tail)
-
-        mime_type = MIME_TYPE.get(tail)
-
-        if processed_bytes is None:
-            return {
-                "success": False,
-                "path": str(file_path),
-                "error": "Ảnh quá lớn",
-                "hint": "Hãy crop ảnh ra và chọn phần ảnh cần thiết để đọc thôi, không cần đọc hết.",
-            }
-
-        # print(f"DEBUGGING {len(processed_bytes)}  {len(raw_bytes)}")
-
-        if len(processed_bytes) != len(raw_bytes):
-            compressed_flag = True
-
-        image_string = base64.b64encode(processed_bytes).decode("utf-8")
-        return {
-            "success": True,
-            "path": str(file_path),
-            "type": "image",
-            "mime_type": mime_type,
-            "size_bytes": len(processed_bytes),
-            "is_compressed": compressed_flag,
-            "data_url": f"data:{mime_type};base64,{image_string}",
-        }
-    except Exception as e:
-        return {"success": False, "path": str(file_path), "error": str(e)}
-
-
-def _process_image(raw_bytes: bytes, tail: str) -> tuple[bytes, str]:
-    """
-    Hàm xử lý ảnh, resize về 1 nửa size, nếu vẫn vượt hơn size thì trả về None, tail.
-    """
-    img = Image.open(BytesIO(raw_bytes))
-
-    original_width, original_height = img.size
-    width, height = original_width, original_height
-
-    if width > IMAGE_MAX_WIDTH:
-        height = round((height * IMAGE_MAX_WIDTH) / width)
-        width = IMAGE_MAX_WIDTH
-
-    if height > IMAGE_MAX_HEIGHT:
-        width = round((width * IMAGE_MAX_HEIGHT) / height)
-        height = IMAGE_MAX_HEIGHT
-
-    if width != original_width or height != original_height:
-        img = img.resize((width, height), Image.Resampling.LANCZOS)
-
-    buffer = BytesIO()
-
-    pillow_type = PILLOW_TYPE.get(tail)
-
-    if pillow_type in {"JPEG", "PNG"}:
-        img.save(buffer, format=pillow_type, quality=85)
-    else:
-        img.save(buffer, format=pillow_type)
-
-    if len(buffer.getvalue()) > IMAGE_SIZE_LIMIT:
-        buffer.truncate(0)
-        buffer.seek(0)
-        pillow_type = "JPEG"
-        tail = ".jpg"
-        img = img.convert("RGB")
-        img.save(buffer, format=pillow_type, quality=50)
-        if len(buffer.getvalue()) > IMAGE_SIZE_LIMIT:
-            return None, tail
-
-    return buffer.getvalue(), tail
+# Ảnh giờ thuộc về tool `read_image` (tools/image.py) — đọc ảnh + crop vùng.
 
 
 def _format_line_number(content: str, start_line: int = 1) -> str:
@@ -136,6 +30,32 @@ def _format_line_number(content: str, start_line: int = 1) -> str:
     return "\n".join(numbered_lines)
 
 
+def _read_image(file_path: Path, requested_path: str) -> dict:
+    """Return complete image content for the unified read_file tool."""
+    try:
+        suffix = file_path.suffix.lower()
+        with Image.open(file_path) as opened:
+            image = ImageOps.exif_transpose(opened) or opened
+            width, height = image.size
+            if PILLOW_TYPE[suffix] == "JPEG" and image.mode not in {"RGB", "L"}:
+                image = image.convert("RGB")
+            buffer = BytesIO()
+            image.save(buffer, format=PILLOW_TYPE[suffix])
+
+        return {
+            "success": True,
+            "type": "image",
+            "path": requested_path,
+            "mime_type": MIME_TYPE[suffix],
+            "image_width": width,
+            "image_height": height,
+            "size_bytes": file_path.stat().st_size,
+            "data_url": f"data:{MIME_TYPE[suffix]};base64,{base64.b64encode(buffer.getvalue()).decode('ascii')}",
+        }
+    except UnidentifiedImageError:
+        return {"success": False, "path": requested_path, "error": "INVALID IMAGE"}
+
+
 def read_file(
     path: str, range: tuple[int, int] | None = None, limit: int | None = None
 ) -> dict:
@@ -147,8 +67,18 @@ def read_file(
         if not file_path.exists():
             return {"success": False, "path": path, "error": "FILE NOT FOUND"}
 
+        # Unified reader: image suffixes are delegated internally, not exposed as tools.
         if file_path.suffix.lower() in IMAGE_SUFFIX:
-            return _read_image(file_path)
+            return _read_image(file_path, path)
+
+        # Legacy direct-tool redirect kept disabled while testing unified read_file.
+        if False and file_path.suffix.lower() in IMAGE_SUFFIX:
+            # Ảnh đã tách sang tool `read_image` — chuyển hướng để agent dùng đúng tool.
+            return {
+                "success": False,
+                "path": path,
+                "error": "Đây là file ảnh. Hãy dùng tool `read_image(file_path)` để đọc ảnh (hỗ trợ crop vùng bằng x1, y1, x2, y2).",
+            }
 
 
         # if file_path.suffix.lower() in RENDER_SUFFIX and range is None:

@@ -5,7 +5,7 @@ from pathlib import Path
 
 from litellm import completion
 
-THRESHOLD = 1000000# int(256000 * 0.75)  # nguồn :))) hỏi nó
+THRESHOLD = 100000000000# int(256000 * 0.75)  # nguồn :))) hỏi nó
 
 # max_token=get_max_token(model="openai/kCode")
 # THRESHOLD = int(maxtoken*0.75)

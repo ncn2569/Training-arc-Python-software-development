@@ -62,20 +62,27 @@ def _iter_files(directory: Path) -> tuple[Path, ...]:
     )
 
 
+def _iter_skill_dirs(directory: Path) -> list[Path]:
+    """Quét đệ quy mọi thư mục con chứa SKILL.md (lấp qua các thư mục nhóm như builtin/)."""
+    found: list[Path] = []
+    for entry in sorted(directory.iterdir()):
+        if not entry.is_dir() or entry.name == "__pycache__":
+            continue
+        if (entry / "SKILL.md").is_file():
+            found.append(entry)
+        else:
+            found.extend(_iter_skill_dirs(entry))
+    return found
+
+
 def discover_skills(root: Path = SKILLS_ROOT) -> list[Skill]:
-    """Quét các thư mục con chứa SKILL.md, trả về danh sách skill đã parse."""
+    """Quét đệ quy mọi thư mục chứa SKILL.md, trả về danh sách skill đã parse."""
     skills: list[Skill] = []
     if not root.is_dir():
         return skills
 
-    for skill_dir in sorted(root.iterdir()):
-        if not skill_dir.is_dir():
-            continue
-        skill_md = skill_dir / "SKILL.md"
-        if not skill_md.is_file():
-            continue
-
-        text = skill_md.read_text(encoding="utf-8")
+    for skill_dir in _iter_skill_dirs(root):
+        text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
         meta, body = _parse_frontmatter(text)
 
         skills.append(
