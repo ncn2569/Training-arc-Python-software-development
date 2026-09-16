@@ -1,0 +1,33 @@
+id: feature_flag_rollout_repair
+prompt: |
+  Repair the existing Python feature-flag rollout evaluator. The public function
+  `is_enabled(flag, user, now_epoch)` decides whether a flag is enabled for a
+  user. A flag may be disabled, have an optional start/end epoch, allow specific
+  user IDs, restrict to allowed countries, and use a percentage rollout.
+
+  Precedence must be deterministic: disabled always returns false; a user in
+  `allow_users` returns true inside the time window; country restrictions apply
+  before percentage rollout; a percentage is enabled when the stable bucket for
+  `flag['key'] + ':' + user['id']` is less than the percentage. Missing or
+  malformed optional values must fail closed instead of crashing. Preserve the
+  public API and supplied tests. Read source/tests before editing and run tests
+  non-interactively. Do not install packages, start a server, use the network,
+  or weaken/modify tests to hide a failure.
+
+  Work only in the current workspace. In the final answer, name the precedence
+  rule you repaired and quote the actual test command/result.
+seed_dir: fixtures/feature_flag_rollout_repair
+timeout_seconds: 600
+max_turns: 60
+judge:
+  rubric: |
+    Verify from flags.py and independent execution of the supplied tests that
+    disabled flags fail closed, time windows are inclusive and safe for malformed
+    values, allow_users has the stated precedence, country restrictions are
+    applied before percentage rollout, and bucketing is stable/deterministic.
+    The public is_enabled API and supplied tests must remain intact. Do not
+    credit agent-authored tests alone.
+  pass_score: 0.85
+  artifacts:
+    - path: flags.py
+      mode: text

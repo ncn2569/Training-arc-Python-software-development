@@ -1,0 +1,2870 @@
+{
+  "active_version": "v005",
+  "stage": "complete",
+  "suites": {
+    "baseline": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-bf7cbbcf542744a3\\manifest.json",
+      "version": "v005",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "control-001": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-12cb59ee8310407a\\manifest.json",
+      "version": "v005",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9583333333333333,
+        "agent": {
+          "input_tokens": 371263,
+          "output_tokens": 63667,
+          "total_tokens": 434930,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 66,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 7.3988237000012305,
+          "turns": 42,
+          "wall_time": 561.2127524000007
+        },
+        "judge_total_tokens": 329003,
+        "reward": 0.7058588895471267,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "control-002": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-8f164b73b4fa4fff\\manifest.json",
+      "version": "v005",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.97,
+        "agent": {
+          "input_tokens": 253542,
+          "output_tokens": 45965,
+          "total_tokens": 299507,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 57,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 57.711897000001045,
+          "turns": 34,
+          "wall_time": 361.83314079999764
+        },
+        "judge_total_tokens": 233603,
+        "reward": 0.7427758688236545,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-001": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-8cd0a22f83b74e0a\\manifest.json",
+      "version": "candidate-r001",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 251864,
+          "output_tokens": 60608,
+          "total_tokens": 312472,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 51,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 35,
+          "wall_time": 460.39181749999807
+        },
+        "judge_total_tokens": 264815,
+        "reward": 0.7297236524291835,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-002": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-470a5527c014489f\\manifest.json",
+      "version": "candidate-r002",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 298991,
+          "output_tokens": 50163,
+          "total_tokens": 349154,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 68,
+          "tool_errors": 2,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 41,
+          "wall_time": 484.2497106999999
+        },
+        "judge_total_tokens": 293875,
+        "reward": 0.7223139960273328,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-003": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-777a5fca12554a9c\\manifest.json",
+      "version": "candidate-r003",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9833333333333333,
+        "agent": {
+          "input_tokens": 376891,
+          "output_tokens": 48902,
+          "total_tokens": 425793,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 63,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 44,
+          "wall_time": 482.66543009999805
+        },
+        "judge_total_tokens": 236865,
+        "reward": 0.7202867833354029,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-004": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-2934f2c59e6f4e4a\\manifest.json",
+      "version": "candidate-r004",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 560348,
+          "output_tokens": 59120,
+          "total_tokens": 619468,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 72,
+          "tool_errors": 3,
+          "tool_retries": 2,
+          "provider_failure_seconds": 6.323022599997785,
+          "turns": 50,
+          "wall_time": 552.9762751000017
+        },
+        "judge_total_tokens": 541905,
+        "reward": 0.7091680006437037,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-005": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-a22133bad5384f77\\manifest.json",
+      "version": "candidate-r005",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 280718,
+          "output_tokens": 43948,
+          "total_tokens": 324666,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 59,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 121.08138880000115,
+          "turns": 37,
+          "wall_time": 423.26537800000006
+        },
+        "judge_total_tokens": 264147,
+        "reward": 0.724052732567018,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-006": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-79d60cee60b84963\\manifest.json",
+      "version": "candidate-r006",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9833333333333333,
+        "agent": {
+          "input_tokens": 824682,
+          "output_tokens": 63817,
+          "total_tokens": 888499,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 83,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 60,
+          "wall_time": 687.5210272999975
+        },
+        "judge_total_tokens": 325051,
+        "reward": 0.7117906370557439,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-007": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-284a67d788fd44a2\\manifest.json",
+      "version": "candidate-r007",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 726252,
+          "output_tokens": 66498,
+          "total_tokens": 792750,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 77,
+          "tool_errors": 2,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 59,
+          "wall_time": 603.9496166999998
+        },
+        "judge_total_tokens": 302011,
+        "reward": 0.6891506919821865,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    },
+    "candidate-008": {
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-80328e61166049d3\\manifest.json",
+      "version": "candidate-r008",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 579725,
+          "output_tokens": 71573,
+          "total_tokens": 651298,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 92,
+          "tool_errors": 1,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 48,
+          "wall_time": 558.0169516999995
+        },
+        "judge_total_tokens": 443474,
+        "reward": 0.7086814973380628,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r001",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: Across trajectories the same failure mode recurs — a verification run that could not be trusted/included in the summary on its first execution, forcing an extra turn. In `feature_flag_rollout_repair`, the agent wrote `tests/extra_checks.py` and ran it directly; it died on `ModuleNotFoundError: No module named 'flags'` and only passed after a second run with `PYTHONPATH=.`. In `expense_dashboard`, the full harness output was piped through `tail -n 8`, which trimmed off the '32/32' summary line, so the agent had to re-run the harness with `head -n 1` to recover a result it already had. In `fullstack_todo`, the agent ran `pytest` on a target it had already established could not import (SQLAlchemy missing), burning a turn on a known-failing command. A related quality cost appears in `audit_log_normalizer` (judge nit: delivered test at repo root instead of the declared tests/ path) and `fullstack_todo` (extra scratch checkers left in the tree).\n2. Root cause: verification is executed without controlling its execution context or its output/placement, so the first run verifies plumbing rather than the product and the decisive result is not visible in the same run.\n3. Change: rewrite the VERIFICATION bullets (merge, not append) so the single harness is (a) placed/invoked where imports and entry points resolve on the first run, (b) run so its summary line survives any piping, and (c) located per the task-declared or repo-existing test convention; strengthen the existing 'known-fail command' and 'no repeat run' rules by tying them to this. Mirror in the `run_terminal` description.\n4. Expected effects: quality ~neutral-to-up (tests/harness land in expected locations); tokens/turns/tool-calls down by roughly one redundant run per task that currently mis-invokes or over-trims its harness; no change to honesty or assertions.\n5. Risks: if a task genuinely needs a second run (e.g., product fix after a real failure), the rule must not block it — wording targets only re-running the *same* check to recover masked output or to test harness plumbing; also a strict 'place tests where declared' could conflict when a task is silent on location, so 'mirror existing tests' is the fallback.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần. Đặt harness đúng quy ước repo (task chỉ định đường dẫn → dùng đúng; không thì mirror test hiện có) và ở nơi import/entry resolve **ngay lần chạy đầu** (cùng thư mục module, hoặc gọi sao cho path đúng) — lần chạy đầu phải kiểm sản phẩm, không phải sửa path/plumbing.\n- **Một lần chạy phải đủ**: đừng pipe cả output harness qua `tail`/`head` tới mức mất dòng summary; giữ dòng kết quả (N passed/failed) trong cùng lệnh để không phải chạy lại cùng harness chỉ để lấy lại output đã có. Chỉ chạy lại khi đã sửa thứ mà check phủ.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh, nhưng CHỪA dòng summary của harness (N passed/failed) để không phải chạy lại chỉ vì pipe cắt mất kết quả. Chạy harness ở ngữ cảnh import/entry resolve ngay lần đầu (cùng thư mục module hoặc path đúng), không để lần chạy đầu fail vì path. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 56800,
+          "output_tokens": 5769,
+          "total_tokens": 62569,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1764
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 251864,
+          "output_tokens": 60608,
+          "total_tokens": 312472,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 51,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 35,
+          "wall_time": 460.39181749999807
+        },
+        "judge_total_tokens": 264815,
+        "reward": 0.7297236524291835,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -38,3 +38,4 @@\n - Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n-- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n+- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần. Đặt harness đúng quy ước repo (task chỉ định đường dẫn → dùng đúng; không thì mirror test hiện có) và ở nơi import/entry resolve **ngay lần chạy đầu** (cùng thư mục module, hoặc gọi sao cho path đúng) — lần chạy đầu phải kiểm sản phẩm, không phải sửa path/plumbing.\n+- **Một lần chạy phải đủ**: đừng pipe cả output harness qua `tail`/`head` tới mức mất dòng summary; giữ dòng kết quả (N passed/failed) trong cùng lệnh để không phải chạy lại cùng harness chỉ để lấy lại output đã có. Chỉ chạy lại khi đã sửa thứ mà check phủ.\n - **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.",
+        "tool_description_changes": [
+          {
+            "tool": "run_terminal",
+            "field": "description",
+            "before": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+            "after": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh, nhưng CHỪA dòng summary của harness (N passed/failed) để không phải chạy lại chỉ vì pipe cắt mất kết quả. Chạy harness ở ngữ cảnh import/entry resolve ngay lần đầu (cùng thư mục module hoặc path đúng), không để lần chạy đầu fail vì path. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.95,
+          "delta": -0.01666666666666672,
+          "relative_change": -0.01724137931034488
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 312472.0,
+            "delta": -46096.0,
+            "relative_change": -0.1285558108922157
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 35.0,
+            "delta": -1.0,
+            "relative_change": -0.027777777777777776
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 460.39181749999807,
+            "delta": -3.9623959999989893,
+            "relative_change": -0.008533132433822557
+          }
+        }
+      },
+      "reward_gain": -0.0036096809041498146,
+      "reason": "reward 0.7333 -> 0.7297 (gain -0.0036)"
+    },
+    {
+      "round": 2,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r002",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: Two independent trajectories wasted exactly one turn because the *first* verification invocation could not be trusted as the decisive result. In `expense_dashboard`, the agent ran `node test.js | tail -n 8`, which trimmed off the `32/32 checks passed` summary, so it had to spend another turn on `node test.js | head -n 1` to recover a result it already had — and the system prompt itself teaches `giảm noise (... tail)` / `tail -n 20`, i.e. the prompt caused the truncation. In `feature_flag_rollout_repair`, the agent wrote `tests/extra_checks.py` and ran it directly; it died on `ModuleNotFoundError: No module named 'flags'` and only produced its result after a second run with `PYTHONPATH=.`. Both are \"trusted-on-second-run\" harnesses, not product failures. (Contrast: in the efficient `telemetry_window_repair`/`inventory_reservation_repair`/`audit_log_normalizer` runs the harness ran once with the summary intact and no path/env fixup, and was conclusive in a single turn.) A prior round-1 edit that bundled this with new *file-placement conventions* was rejected (quality −1.7%); this proposal deliberately drops any placement prescription and only fixes invocation/output context.\n2. Root cause: reusable behavioral mechanism — the verification command is composed for *low noise* rather than for *self-sufficient, self-visible first-run conclusiveness*: output is piped through `tail`/`head` that can eat the decisive summary line, and the harness is launched in a context where its imports/entry points do not resolve, so one costed turn is spent discovering plumbing instead of the product.\n3. Change: rewrite (not append) two existing spots, keeping length ~constant. In `## TOOL & TOKEN`, change `giảm noise (`-q`, `tail`)` to keep the decisive result line instead of trimming it away. In `## VERIFICATION`, merge the new clause into the existing `**Một harness tổng hợp**` bullet: the single harness must be conclusive on its first run — import/entry resolve in the current context without an extra path/env step, and the `N passed/failed` line survives in the same output; re-run only after changing what the check covers. Mirror only the output-visibility half in the `run_terminal` description. No new placement/testing-convention rules, no new bullets.\n4. Expected effects: quality neutral or slightly up (the agent reads a conclusive result and quotes it, rather than doubling a harness or a file location call); ~1 turn and ~1 tool call saved per task that currently trims away its summary or hits a first-run import error; small token/wall-time reduction from not re-emitting the same harness output.\n5. Risks/counterexamples: a legitimate second run after a real product failure must stay allowed — wording scopes re-runs to \"after changing what the check covers.\" If a task genuinely requires a separate harness whose path cannot be resolved from the cwd, the phrasing asks the invocation to be self-sufficient, not the file to be relocated, so it can still be satisfied (e.g. invoking through the existing test runner). Clean tasks with no harness (read-only repairs) are unaffected.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`) nhưng **chừa dòng kết quả quyết định** (`N passed/failed`) — đừng để `tail`/`head` cắt mất rồi phải chạy lại. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn, và nó phải **kết luận được ngay lần chạy đầu**: import/entry resolve trong ngữ cảnh hiện tại (không cần thêm path/env rồi chạy lại) và dòng kết quả còn nguyên trong output. Chỉ chạy lại sau khi đã sửa thứ nó phủ.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`) nhưng CHỪA dòng kết quả quyết định (`N passed/failed`) — đừng `tail`/`head` cắt mất rồi phải chạy lại. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 61474,
+          "output_tokens": 10781,
+          "total_tokens": 72255,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1685
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 298991,
+          "output_tokens": 50163,
+          "total_tokens": 349154,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 68,
+          "tool_errors": 2,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 41,
+          "wall_time": 484.2497106999999
+        },
+        "judge_total_tokens": 293875,
+        "reward": 0.7223139960273328,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -25,3 +25,3 @@\n - `str_replace_editor`: sửa nhỏ, exact match.\n-- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n+- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`) nhưng **chừa dòng kết quả quyết định** (`N passed/failed`) — đừng để `tail`/`head` cắt mất rồi phải chạy lại. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n \n@@ -38,3 +38,3 @@\n - Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n-- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n+- **Một harness tổng hợp** mỗi cây nguồn, và nó phải **kết luận được ngay lần chạy đầu**: import/entry resolve trong ngữ cảnh hiện tại (không cần thêm path/env rồi chạy lại) và dòng kết quả còn nguyên trong output. Chỉ chạy lại sau khi đã sửa thứ nó phủ.\n - **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.",
+        "tool_description_changes": [
+          {
+            "tool": "run_terminal",
+            "field": "description",
+            "before": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+            "after": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`) nhưng CHỪA dòng kết quả quyết định (`N passed/failed`) — đừng `tail`/`head` cắt mất rồi phải chạy lại. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.975,
+          "delta": 0.008333333333333304,
+          "relative_change": 0.008620689655172382
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 349154.0,
+            "delta": -9414.0,
+            "relative_change": -0.026254434305347938
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 41.0,
+            "delta": 5.0,
+            "relative_change": 0.1388888888888889
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 484.2497106999999,
+            "delta": 19.895497200002865,
+            "relative_change": 0.04284551883365863
+          }
+        }
+      },
+      "reward_gain": -0.011019337306000465,
+      "reason": "reward 0.7333 -> 0.7223 (gain -0.0110)"
+    },
+    {
+      "round": 3,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r003",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: Across the observed trajectories the dominant, quality-neutral cost is duplicated content: on content-heavy turns the agent drafts the whole artifact inside its reasoning and then emits the same artifact again as the tool argument. expense_dashboard turn 1 spends 10.5k output tokens and then writes one 19.6KB index.html; fullstack_todo turns 1-2 spend ~4.9k and ~13.4k output tokens while composing 22 files; audit_log_normalizer turn 1 spends 9.5k output tokens writing a 5KB module plus a 10KB test. Every such turn pays for the same draft twice, and where reasoning is replayed in context it is paid for again on each later turn. By contrast the genuine retry turns are only ~3 of 36 total, and the two prior edits aimed at them were both rejected (round 1 quality -1.7%, round 2 turns +13.9%). The existing guidance 'KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool' is present but demonstrably ignored in these runs.\n2. Change: rewrite only bullet 1 of the WORKFLOW (Thought) from a soft 'ngắn, quyết định' into a hard line cap plus an explicit no-duplication rule, and mirror one sentence in the write_file description; no new bullets and net length roughly unchanged (one sentence removed/replaced).\n3. Expected effects: output tokens decrease on content-heavy turns because the reasoning draft disappears, and where reasoning is part of context the following turns' input tokens also shrink; turns and tool calls unchanged; quality neutral because the model still composes the file in the tool argument (composition happens in the same forward pass either way). Small wall-time gain.\n4. Risks/counterexamples: if organizing a very large multi-file change really needs scratch reasoning, forcing it out of Thought could reduce coherence and add retries — the wording targets re-emitting already-composed code/content, not planning. If a provider strips reasoning from context, savings concentrate in output tokens only. Tasks with no file writes are unaffected.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (≤ ~3 dòng, chỉ chốt): file/cấu trúc/giá trị biên/rủi ro; không liệt kê nhiều phương án. KHÔNG soạn code, nội dung file hay test trong Thought — viết thẳng vào tham số tool ở Action, đừng viết trước rồi chép lại.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness). Nội dung đi thẳng vào `content` — không soạn trong Thought rồi chép lại.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 66490,
+          "output_tokens": 16896,
+          "total_tokens": 83386,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1560
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9833333333333333,
+        "agent": {
+          "input_tokens": 376891,
+          "output_tokens": 48902,
+          "total_tokens": 425793,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 63,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 44,
+          "wall_time": 482.66543009999805
+        },
+        "judge_total_tokens": 236865,
+        "reward": 0.7202867833354029,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -13,3 +13,3 @@\n ## WORKFLOW — ReAct\n-1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n+1. **Thought** (≤ ~3 dòng, chỉ chốt): file/cấu trúc/giá trị biên/rủi ro; không liệt kê nhiều phương án. KHÔNG soạn code, nội dung file hay test trong Thought — viết thẳng vào tham số tool ở Action, đừng viết trước rồi chép lại.\n    - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.",
+        "tool_description_changes": [
+          {
+            "tool": "write_file",
+            "field": "description",
+            "before": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+            "after": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness). Nội dung đi thẳng vào `content` — không soạn trong Thought rồi chép lại."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.9833333333333333,
+          "delta": 0.016666666666666607,
+          "relative_change": 0.017241379310344765
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 425793.0,
+            "delta": 67225.0,
+            "relative_change": 0.1874818723366279
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 44.0,
+            "delta": 8.0,
+            "relative_change": 0.2222222222222222
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 482.66543009999805,
+            "delta": 18.31121660000099,
+            "relative_change": 0.039433725521694024
+          }
+        }
+      },
+      "reward_gain": -0.013046549997930423,
+      "reason": "reward 0.7333 -> 0.7203 (gain -0.0130)"
+    },
+    {
+      "round": 4,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r004",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: Verification across these trajectories is anchored on ad-hoc scratch harnesses rather than the acceptance signal the repo/task already provides. `feature_flag_rollout_repair` wrote a new `tests/extra_checks.py` that died on `ModuleNotFoundError: No module named 'flags'` and only ran after a second invocation with `PYTHONPATH=.`; `fullstack_todo` added ~8.8KB of throwaway `check_schemas.py`/`check_static.py` to the tree; `audit_log_normalizer` placed its new test at the repo root instead of the declared `tests/`; and in `inventory_reservation_repair` the seeded defect was fixed by inspection with no red run of the supplied target, which the judge explicitly flagged (score 0.9: 'no pre-repair failing test run shown ... defect was identified by inspection'). Root cause: the agent treats verification as 'invent a checker' instead of 'run the existing acceptance target and observe it flip red→green', so it pays a turn for plumbing/path fixups and produces weaker evidence for repair tasks.\n2. Change: one coherent edit — (a) in the initial probe bullet, require running the repo/task-supplied test target once (`-q`) inside the probe command to capture the pre-fix baseline when dependencies allow; (b) rewrite the 'Một harness tổng hợp' bullet to prefer the existing/supplied test-check, adding an auxiliary harness only for behavior the existing target does not cover; (c) tie the mandatory post-edit run to 'the same target that was red'. Mirror one clause in the `run_terminal` description. No placement prescription, no output-piping changes, no new bullets.\n3. Expected effects: quality slightly up on repair tasks (judge-visible red→green on the supplied target, no invented parallel runner); turns/tool calls flat or down (baseline run is merged into the existing probe turn; fewer scratch harness files and fewer import/path fixups like the extra_checks re-run); tokens roughly neutral, likely down on build tasks that currently write+kdebug a scratch checker. No change to honesty, assertions, or bypass of tests.\n4. Risks/counterexamples: for from-scratch tasks with no supplied target the clause is inert (the newly written harness still counts); if the supplied target is known to require an uninstallable dependency, the existing 'một lần probe dependency đủ' rule takes precedence and the baseline run is skipped — wording scopes it to 'dependency bắt buộc đã biết là thiếu'; a repair may legitimately need extra edge checks the supplied target lacks, which the 'chỉ thêm khi nó chưa phủ' clause still permits.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. Nếu repo/task đã có test target → chạy luôn nó (`-q`) trong lệnh probe để chốt baseline trước khi sửa (bỏ qua nếu dependency bắt buộc đã biết là thiếu). **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). Ưu tiên chạy target test có sẵn của repo/task. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser. Sửa lỗi → chạy lại **đúng target đã đỏ** (đỏ trước, xanh sau; cùng target, KHÔNG nới assertion).\n- **Ưu tiên test/check có sẵn** của repo/task; chỉ thêm harness phụ cho hành vi nó chưa phủ. **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Ưu tiên chạy target test có sẵn của repo/task thay vì dựng harness song song. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 71034,
+          "output_tokens": 9536,
+          "total_tokens": 80570,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1708
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 560348,
+          "output_tokens": 59120,
+          "total_tokens": 619468,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 72,
+          "tool_errors": 3,
+          "tool_retries": 2,
+          "provider_failure_seconds": 6.323022599997785,
+          "turns": 50,
+          "wall_time": 552.9762751000017
+        },
+        "judge_total_tokens": 541905,
+        "reward": 0.7091680006437037,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -14,3 +14,3 @@\n 1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n-   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n+   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. Nếu repo/task đã có test target → chạy luôn nó (`-q`) trong lệnh probe để chốt baseline trước khi sửa (bỏ qua nếu dependency bắt buộc đã biết là thiếu). **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n 2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n@@ -25,3 +25,3 @@\n - `str_replace_editor`: sửa nhỏ, exact match.\n-- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n+- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). Ưu tiên chạy target test có sẵn của repo/task. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n \n@@ -37,4 +37,4 @@\n - Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n-- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n-- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n+- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser. Sửa lỗi → chạy lại **đúng target đã đỏ** (đỏ trước, xanh sau; cùng target, KHÔNG nới assertion).\n+- **Ưu tiên test/check có sẵn** của repo/task; chỉ thêm harness phụ cho hành vi nó chưa phủ. **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n - **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.",
+        "tool_description_changes": [
+          {
+            "tool": "run_terminal",
+            "field": "description",
+            "before": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+            "after": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Ưu tiên chạy target test có sẵn của repo/task thay vì dựng harness song song. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.975,
+          "delta": 0.008333333333333304,
+          "relative_change": 0.008620689655172382
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 619468.0,
+            "delta": 260900.0,
+            "relative_change": 0.7276165190424132
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 50.0,
+            "delta": 14.0,
+            "relative_change": 0.3888888888888889
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 552.9762751000017,
+            "delta": 88.6220616000046,
+            "relative_change": 0.19085012911163163
+          }
+        }
+      },
+      "reward_gain": -0.024165332689629615,
+      "reason": "reward 0.7333 -> 0.7092 (gain -0.0242)"
+    },
+    {
+      "round": 5,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r005",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: The costliest, most recurring self-inflicted waste is building a *parallel* verification harness when the repo/task already ships an acceptance test. In `feature_flag_rollout_repair` the agent overwrote `flags.py` and in the same turn added `tests/extra_checks.py`; the supplied `tests/test_flags.py` passed immediately in the next command (`3 passed`), yet the hand-written `extra_checks.py` died on `ModuleNotFoundError: No module named 'flags'` and cost an additional turn re-run with `PYTHONPATH=.` — a turn that bought nothing the supplied test had not already proven. In `fullstack_todo` the agent wrote `backend/check_schemas.py`, which had a forward-reference bug and needed a full rewrite turn, plus `backend/check_static.py` (6.9KB) — ~3 turns spent on scratch tooling, and a knowingly-failing `pytest` run on a missing dependency, in a task whose acceptance is the repo's own suite. By contrast the cheap, high-quality trajectories either ran the existing target directly (`telemetry_window_repair` 5 turns, `inventory_reservation_repair` 5 turns) or, having no supplied target, wrote a single necessary harness and ran it once (`audit_log_normalizer` 3 turns, 25 tests OK). The prompt currently only says 'một harness tổng hợp mỗi cây nguồn', which pushes toward authoring new harnesses rather than consuming the shipped test signal.\n2. Root cause: Verification is treated as 'invent a checker' rather than 'run the acceptance target that already exists'; ad-hoc harnesses are themselves code and therefore cost debugging, import/path fixups, and context, without adding a stronger signal than the repo's own test.\n3. Change: One merge/rewrite of the existing 'Một harness tổng hợp' bullet — no new bullets, probe changes, or tool-description edits. It now says to prefer the repo/task's existing test/check and to add only one minimal harness for behavior not already covered. This replaces the previous open-ended 'build a comprehensive harness' phrasing rather than appending to it.\n4. Expected effects: quality neutral-to-up (the acceptance signal is the repo's own test, run unmodified); turns/tool calls down by removing scratch-harness write/debug/re-run turns (feature_flag, fullstack_todo); tokens down since those turns no longer accumulate context. No change to honesty or assertion strength.\n5. Risks/counterexamples: for from-scratch tasks with no shipped target the clause is inert and a new harness is still written (audit_log_normalizer path unchanged). It could under-verify if 'existing target exists' is misread as 'existing target is sufficient' — hence the qualifier 'chỉ khi nó phủ hành vi vừa đổi' / 'cho hành vi chưa được phủ'. It must not forbid adding edge-case checks the shipped suite lacks, which the 'chưa được phủ' clause still permits.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Ưu tiên test/check sẵn có** của repo/task khi nó phủ hành vi vừa đổi; chỉ viết thêm **một harness tối thiểu** cho hành vi chưa được phủ.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 76154,
+          "output_tokens": 7808,
+          "total_tokens": 83962,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1584
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 280718,
+          "output_tokens": 43948,
+          "total_tokens": 324666,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 59,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 121.08138880000115,
+          "turns": 37,
+          "wall_time": 423.26537800000006
+        },
+        "judge_total_tokens": 264147,
+        "reward": 0.724052732567018,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -38,3 +38,3 @@\n - Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n-- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n+- **Ưu tiên test/check sẵn có** của repo/task khi nó phủ hành vi vừa đổi; chỉ viết thêm **một harness tối thiểu** cho hành vi chưa được phủ.\n - **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.",
+        "tool_description_changes": []
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.95,
+          "delta": -0.01666666666666672,
+          "relative_change": -0.01724137931034488
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 324666.0,
+            "delta": -33902.0,
+            "relative_change": -0.09454831440619353
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 37.0,
+            "delta": 1.0,
+            "relative_change": 0.027777777777777776
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 423.26537800000006,
+            "delta": -41.088835499997,
+            "relative_change": -0.08848597537275768
+          }
+        }
+      },
+      "reward_gain": -0.009280600766315317,
+      "reason": "reward 0.7333 -> 0.7241 (gain -0.0093)"
+    },
+    {
+      "round": 6,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r006",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: The clearest self-inflicted waste in the trajectories is a verification re-run that exists only because the decisive result line was stripped by the pipe that the prompt itself recommends. In `expense_dashboard`, turn 5 ran `node test.js | tail -n 8`; the 8 surviving lines were PASS rows plus `exit=0`, so the `=== verification: 32/32 checks passed ===` summary was cut off. The agent then spent turn 6 on `node test.js | head -n 1` purely to recover a number it had already produced — 1 extra turn and 1 extra tool call on a fully passing harness, with zero product change. The cause is directly authored by the current prompt: TOOL & TOKEN says reduce noise with (`-q`, `tail`) and the `run_terminal` description says (`-q`, `tail -n 20`). By contrast, the runs that trimmed nothing (`telemetry_window_repair`, `audit_log_normalizer`) consumed their one harness result in a single turn with no recovery run. The mechanism is technology-independent: any harness that prints an aggregate line (N passed/failed, PASS/FAIL summary, exit code separate from the count) can have that line eaten by `tail`/`head`, costing a full extra round-trip per affected task.\n2. Root cause: verification output is composed for low noise rather than for self-sufficient, first-run conclusiveness — the one line that decides pass/fail is treated as trimmable noise, so the agent cannot conclude from the run it already paid for and must re-invoke the same harness.\n3. Change: one merge/rewrite of the existing `run_terminal` bullet in TOOL & TOKEN (no new bullets), replacing the `tail` advice with 'giảm noise ... nhưng chừa dòng kết quả quyết định (`N passed/failed`) — đừng để `tail`/`head` cắt mất rồi phải chạy lại.', and mirroring the same single clause in the `run_terminal` tool description so the two surfaces agree. Net length is roughly constant; the displaced 'tail' recommendation is removed rather than duplicated.\n4. Expected effects: quality neutral-to-slightly-up (the agent reads a conclusive result and can quote it in the final summary); turns and tool calls down by ~1 on any task whose harness summary is currently trimmed away; tokens down slightly because the same harness output is not re-emitted and re-paid in context; small wall-time reduction. No change to honesty, assertion strength, or which checks are run.\n5. Risks/counterexamples: genuinely noisy logs still need filtering, so the wording targets only keeping the decisive line, not 'never pipe' — e.g. a summary-preserving filter still satisfies it. A chained `&&` command whose harness sits in the middle of the pipeline can still hide its own summary; the clause asks that the run be conclusive, not that the whole command be free of filters. Tasks whose checks print no aggregate line are unaffected, and a legitimate re-run after changing what the check covers remains explicitly allowed by the untouched 'Không chạy lại check y hệt' sentence.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, lọc log dài) nhưng **chừa dòng kết quả quyết định** (`N passed/failed`, dòng tổng kết) — đừng để `tail`/`head` cắt mất rồi phải chạy lại. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, lọc log dài) nhưng CHỪA dòng kết quả quyết định (`N passed/failed`, dòng tổng kết) — đừng `tail`/`head` cắt mất rồi phải chạy lại. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 80423,
+          "output_tokens": 9617,
+          "total_tokens": 90040,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1622
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9833333333333333,
+        "agent": {
+          "input_tokens": 824682,
+          "output_tokens": 63817,
+          "total_tokens": 888499,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 83,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 60,
+          "wall_time": 687.5210272999975
+        },
+        "judge_total_tokens": 325051,
+        "reward": 0.7117906370557439,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -25,3 +25,3 @@\n - `str_replace_editor`: sửa nhỏ, exact match.\n-- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n+- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, lọc log dài) nhưng **chừa dòng kết quả quyết định** (`N passed/failed`, dòng tổng kết) — đừng để `tail`/`head` cắt mất rồi phải chạy lại. **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n ",
+        "tool_description_changes": [
+          {
+            "tool": "run_terminal",
+            "field": "description",
+            "before": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+            "after": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, lọc log dài) nhưng CHỪA dòng kết quả quyết định (`N passed/failed`, dòng tổng kết) — đừng `tail`/`head` cắt mất rồi phải chạy lại. Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.9833333333333333,
+          "delta": 0.016666666666666607,
+          "relative_change": 0.017241379310344765
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 888499.0,
+            "delta": 529931.0,
+            "relative_change": 1.4779093505276544
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 60.0,
+            "delta": 24.0,
+            "relative_change": 0.6666666666666666
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 687.5210272999975,
+            "delta": 223.16681380000045,
+            "relative_change": 0.48059607797658516
+          }
+        }
+      },
+      "reward_gain": -0.021542696277589424,
+      "reason": "reward 0.7333 -> 0.7118 (gain -0.0215)"
+    },
+    {
+      "round": 7,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r007",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: In `fullstack_todo` the primary suite was blocked (sqlalchemy absent), and the agent spent turns 3–5 authoring two throwaway checkers (`check_schemas.py`, `check_static.py`, ~9 KB) — `check_schemas.py` had a definition-order bug and needed a full rewrite turn — then at turn 8 ran `python -m pytest -q tests/test_todos.py` on the very target it already knew could not import, yielding only `ModuleNotFoundError: No module named 'sqlalchemy'`. The existing bullet already says 'syntax/content check bounded' and 'KHÔNG chạy lệnh đã biết chắc fail', yet both were violated: 'bounded' is undefined, so it does not constrain the fallback, and the missing-dependency branch is stated abstractly rather than as a concrete command shape. By contrast the tasks whose dependencies were all present (`telemetry_window_repair` 5 turns, `inventory_reservation_repair` 5, `feature_flag_rollout_repair` 6) consumed their one supplied target without inventing a checker.\n2. Root cause: When a required dependency is missing and installation is forbidden, verification is treated as 'build a parallel checker'; that checker is itself code, so it costs write/debug/re-run turns (and its own bugs get diagnosed as product defects), while the blocked target is still re-invoked despite being known-failing because no concrete size/command bound is imposed.\n3. Change: merge/rewrite only the existing missing-dependency bullet — make 'bounded' concrete (one short command: compile + a few inline cases), explicitly disallow authoring new checker scripts as the fallback, and keep the existing ban on re-running a known-failing / blocked target. No new bullets; no tool-description edits; net length ~constant.\n4. Expected effects: quality neutral (the blocked suite cannot run either way; a compile + inline-case check still exercises the changed code, and tasks with all dependencies present are untouched); turns/tool calls down by ~1–2 on tasks whose primary suite is blocked by a missing dependency because scratch-checker write/debug/re-run turns disappear; tokens down by the size of those checker outputs and their debug cycles; small wall-time reduction.\n5. Risks/counterexamples: if the blocked suite hides behavior, a one-command fallback is weaker evidence than a purpose-built checker — so the wording keeps 'vài case inline' to allow substantive edge checks without a new file. Over-application of 'KHÔNG chạy target đã biết chắc fail' must stay scoped to dependencies actually missing (a target that would pass after a small product fix must still be run). From-scratch tasks with no shipped target still write their single needed harness, which this bullet does not touch.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n- **Dependency**: probe một lần là đủ. Thiếu dep + cấm cài → kiểm chứng bằng **một lệnh ngắn** (compile + vài case inline), không dựng nhiều script checker mới; **KHÔNG chạy lại target đã biết chắc fail**.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 84905,
+          "output_tokens": 16116,
+          "total_tokens": 101021,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1590
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.95,
+        "agent": {
+          "input_tokens": 726252,
+          "output_tokens": 66498,
+          "total_tokens": 792750,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 77,
+          "tool_errors": 2,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 59,
+          "wall_time": 603.9496166999998
+        },
+        "judge_total_tokens": 302011,
+        "reward": 0.6891506919821865,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -39,3 +39,3 @@\n - **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n-- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n+- **Dependency**: probe một lần là đủ. Thiếu dep + cấm cài → kiểm chứng bằng **một lệnh ngắn** (compile + vài case inline), không dựng nhiều script checker mới; **KHÔNG chạy lại target đã biết chắc fail**.\n - Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.",
+        "tool_description_changes": []
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.95,
+          "delta": -0.01666666666666672,
+          "relative_change": -0.01724137931034488
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 792750.0,
+            "delta": 434182.0,
+            "relative_change": 1.2108777135717632
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 59.0,
+            "delta": 23.0,
+            "relative_change": 0.6388888888888888
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 603.9496166999998,
+            "delta": 139.5954032000027,
+            "relative_change": 0.30062266937953297
+          }
+        }
+      },
+      "reward_gain": -0.0441826413511468,
+      "reason": "reward 0.7333 -> 0.6892 (gain -0.0442)"
+    },
+    {
+      "round": 8,
+      "parent": "v005",
+      "decision": "REJECTED",
+      "config": {
+        "version": "candidate-r008",
+        "parent": "v004",
+        "hypothesis": "1. Evidence: Across the trajectories the probe/verification command is routinely piped through `head`/`tail`, and in at least two tasks that pipe ate the one line that decided the step, forcing a full extra round-trip. In `fullstack_todo` turn 1 the dependency probe ended with `python -c \"import fastapi, sqlalchemy, pytest, httpx, pydantic; ...\" | tail -n 6`, so the 6 surviving lines showed only the `ModuleNotFoundError: sqlalchemy` traceback and the four libraries that WERE importable were cut away; turn 2 then ran a second probe (`for m in fastapi pytest httpx pydantic ...`) purely to recover facts it had already produced. In `expense_dashboard` turn 5 ran `node test.js | tail -n 8`, dropping the `=== verification: 32/32 checks passed ===` line, so turn 6 ran `node test.js | head -n 1` to recover the count. Both extra turns are pure plumbing, not product work, and the current prompt authors the behavior: TOOL & TOKEN says 'giảm noise (`-q`, `tail`)' and the `run_terminal` description says 'giảm noise (`-q`, `tail -n 20`)'. Efficient runs (audit_log_normalizer 3 turns, inventory_reservation_repair 5, telemetry_window_repair 5) piped pytest through a bounded tail whose output was already short enough that the summary survived untouched.\n2. Root cause: Verification/probe invocations are composed for lower noise rather than for a self-sufficient first-run verdict, so an aggregate line (`N passed/failed`) or a presence/absence fact gets treated as trimmable noise and must be regenerated by a second invocation of the same command. The mechanism is technology-independent: any check whose decisive signal is a summary line or a short dependency list can have it eaten by `head`/`tail`.\n3. Change: One rewrite of the `run_terminal` bullet in TOOL & TOKEN — remove the prompt's own `tail` recommendation and replace it with 'giảm noise bằng `-q`; không `tail`/`head` output kiểm thử/probe (dễ mất dòng `N passed/failed`)'. Mirror the same single clause in the `run_terminal` tool description so the two surfaces no longer contradict each other. No new bullets, no new rules on harnesses, dependencies, or file placement; the displaced `tail` advice is removed rather than duplicated.\n4. Expected effects: quality neutral-to-slightly-up (the full result line is visible and quotable in the final answer); turns and tool calls down by ~1 on any task whose probe or check currently trims away the decisive line (`fullstack_todo`, `expense_dashboard`); tokens roughly flat because a slightly longer first output replaces a second, near-identical run plus its context. No change to which checks are run, to assertions, or to honestly reported results.\n5. Risks/counterexamples: genuinely noisy logs still need filtering, and 'không `tail`/`head` output kiểm thử/probe' is scoped to that output, not to 'never pipe'; a short `grep`/`-q` filter that preserves the summary line is unaffected. If an agent over-applies this by dumping very large logs, tokens rise — mitigated by the untouched 'Tránh in log dài' sentence. Read-only or dependency-free tasks that print no aggregate line see no change; legitimate re-runs after changing what a check covers remain allowed by the untouched 'Không chạy lại check y hệt' sentence.",
+        "system_prompt": "## AGENT SKILLS & FLOW\n- `focus-image-region`: crop một vùng ảnh — nạp skill, chạy script crop, rồi `read_file(output_path)`.\n- `render-to-image`: render .html/.mmd → PNG. Nạp skill, chạy script, đọc kết quả.\nKhi nhiệm vụ khớp skill → `load_skill(name)` → làm đúng theo nó.\n\n---\nBạn là AI Agent của master Nguyen — Senior AI Engineer, tự chủ đọc/ghi/test/xây phần mềm qua Terminal.\n\n## MÔI TRƯỜNG\n- Git Bash (POSIX/Linux) trong `workspace/`. Dùng đường dẫn tương đối (`main.py`). **KHÔNG** thêm `workspace/` tiền tố.\n- Tools: `read_file`, `write_file`, `str_replace_editor`, `grep_search`, `run_terminal`, `load_skill`.\n\n## WORKFLOW — ReAct\n1. **Thought** (ngắn, quyết định): Chốt một thiết kế (file cần tạo, cấu trúc, giá trị biên, rủi ro). KHÔNG liệt kê nhiều phương án; KHÔNG phác code trong suy luận—chốt rồi viết thẳng vào tool.\n   - Probe ban đầu: một lệnh `run_terminal` gom `ls -la` + runtime/phiên bản thư viện sẽ dùng + test tool. **Không đọc/grep nội dung file chỉ để pass làm argument cho script/skill**—`wc -c`/`ls` xác nhận tồn tại là đủ; lỗi nội dung sẽ lộ qua stderr hoặc post-run verification.\n2. **Action**: Gọi tool. Gộp lệnh khám phá độc lập vào một `run_terminal`. Khi đã biết file cần tạo + test → **viết file sản phẩm và harness cùng lượt**.\n3. **Observation**: Lỗi → phân tích `error`/stderr trước khi gọi lại; KHÔNG lặp y nguyên lệnh đã fail.\n**Mỗi lượt là chi phí thật**: làm đủ việc trong ít lượt, tách thêm chỉ khi cần quan sát kết quả mới.\n\n## TOOL & TOKEN\n**Tool nào cho ít token nhất mà đạt mục đích.** `run_terminal` output = raw stdout/stderr → nhiều noise.\n- `read_file`: dùng `range`/`limit` khi chỉ cần một phần.\n- `grep_search`: `files_with_matches` trước rồi mới `content`; giới hạn `glob`.\n- `write_file`: tạo/ghi đè (tự tạo thư mục cha). Gọi nhiều `write_file` cùng lượt cho file độc lập.\n- `str_replace_editor`: sửa nhỏ, exact match.\n- `run_terminal`: gộp bằng `&&`/`;`, giảm noise bằng `-q`; **không `tail`/`head` output kiểm thử/probe** (dễ mất dòng `N passed/failed`/dependency rồi phải chạy lại). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n\n## FILE & CHỈNH SỬA\n- **Đọc trước khi sửa**: luôn `read_file`/`grep` code hiện tại. Đừng đoán.\n- Sửa nhỏ → `str_replace_editor`; tạo/ghi đè → `write_file`.\n- Trước khi viết test: chốt vài gạch đầu dòng (cơ chế cô lập, entry→core). Ghi đè toàn bộ nếu phải viết lại.\n- `sed`/global replace: kiểm tra vùng bị ảnh hưởng (grep/read) trước khi sửa tiếp.\n- `str_replace_editor` báo not-found/ambiguous → đọc lại vùng đó rồi thử; KHÔNG lặp mù.\n\n## VERIFICATION\n- Xác định **giá trị biên** (rỗng, 0, null) và hành vi mong đợi.\n- Hành động cập nhật nhiều trường → quy tắc ưu tiên rõ, tất định, idempotent. Test đường cập nhật kết hợp.\n- Sau viết/sửa → **BẮT BUỘC** chạy thử (`run_terminal`). Ưu tiên test không cần server/browser.\n- **Một harness tổng hợp** mỗi cây nguồn; mở rộng khi cần.\n- **Một lần probe dependency đủ**: đã biết thiếu + task cấm cài → syntax/content check bounded; KHÔNG chạy lệnh đã biết chắc fail.\n- Check fail → **định vị: sản phẩm hay harness**, sửa đúng bên đó. KHÔNG nới assertion.\n- Không báo pass nếu chưa chạy; trích log thật.\n\n## AN TOÀN\n### Workspace\nMọi thao tác trong `workspace/`. CẤM lệnh phá hoại ngoài phạm vi.\n### Non-interactive\nCẤM REPL tương tác (`python`/`node` trần, `nano`, `vim`, `less`). **Chạy FILE script hợp lệ**: `python main.py`, `pytest -q`, `bash run.sh`. `git commit -m \"msg\"`.\n### Server\nKHÔNG chạy server treo terminal. Nếu cần: `nohup ... > log 2>&1 </dev/null &`.\n\n## GIAO TIẾP\nGọi \"master Nguyen\". Tiếng Việt, ngắn gọn, thẳng vào vấn đề.\n\n## CUỐI CÙNG\n1. File tạo/chỉnh sửa.\n2. Kết quả kiểm thử: trích stdout thật.\n3. Lỗi & khắc phục (nếu có).\nKiểm kê file **một lần** ở bước cuối, gộp trong lệnh kiểm tra cuối.",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "run_terminal",
+              "description": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise bằng `-q`, **không `tail`/`head` output kiểm thử/probe** (dễ mất dòng `N passed/failed`/dependency rồi phải chạy lại). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "Câu lệnh Bash hoàn chỉnh, nối bằng && hoặc ;."
+                  }
+                },
+                "required": [
+                  "command"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "write_file",
+              "description": "Ghi đè toàn bộ file (tự tạo thư mục cha). Dùng cho file mới/toàn bộ; sửa nhỏ → str_replace_editor. Gọi nhiều write_file CÙNG lượt cho file độc lập (sản phẩm + harness).",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn tương đối từ workspace."
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "Toàn bộ nội dung file."
+                  }
+                },
+                "required": [
+                  "path",
+                  "content"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "read_file",
+              "description": "Đọc file text (có số dòng, hỗ trợ range/limit). Đọc cả ảnh. Dùng range/limit khi chỉ cần một phần.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "range": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "description": "[start, end] 1-based. Bỏ qua → đọc toàn bộ."
+                  },
+                  "limit": {
+                    "type": "string",
+                    "description": "Giới hạn số dòng."
+                  }
+                },
+                "required": [
+                  "path"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "str_replace_editor",
+              "description": "Thay exact-match chuỗi trong file. Ambiguous → thêm context vào old_string. Not-found → đọc lại vùng đó, không lặp mù. Chỉ cho chỉnh sửa nhỏ.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "description": "Đường dẫn file."
+                  },
+                  "old_string": {
+                    "type": "string",
+                    "description": "Chuỗi cũ (exact match)."
+                  },
+                  "new_string": {
+                    "type": "string",
+                    "description": "Chuỗi mới."
+                  },
+                  "replace_all": {
+                    "type": "boolean",
+                    "description": "True = thay tất cả. Mặc định False."
+                  }
+                },
+                "required": [
+                  "path",
+                  "old_string",
+                  "new_string"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "load_skill",
+              "description": "Nạp hướng dẫn một Skill. Gọi khi nhiệm vụ khớp skill ở AGENT SKILLS. Truyền đúng `name`.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Tên skill chính xác."
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "grep_search",
+              "description": "Grep trong file/thư mục. 3 chế độ: 'files_with_matches' (định vị file), 'content' (dòng+số dòng), 'count'. Dùng files_with_matches trước, giới hạn glob để giảm noise.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "pattern": {
+                    "type": "string",
+                    "description": "String literal hoặc regex."
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File/thư mục search."
+                  },
+                  "glob": {
+                    "type": "string",
+                    "description": "Lọc theo đuôi ('*.py'). Rỗng = tất cả."
+                  },
+                  "output_mode": {
+                    "type": "string",
+                    "enum": [
+                      "files_with_matches",
+                      "content",
+                      "count"
+                    ],
+                    "description": "files_with_matches | content | count."
+                  },
+                  "context": {
+                    "type": "integer",
+                    "description": "Số dòng context (-C)."
+                  }
+                },
+                "required": [
+                  "pattern",
+                  "path"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "tuner": {
+        "usage": {
+          "input_tokens": 84452,
+          "output_tokens": 13805,
+          "total_tokens": 98257,
+          "source": "provider"
+        },
+        "api_retries": 0,
+        "model": "deepseek/deepseek-v4-flash",
+        "models": [
+          "deepseek/deepseek-v4-flash"
+        ],
+        "prompt_rewrite_attempts": 0,
+        "baseline_system_prompt_tokens": 3048,
+        "system_prompt_tokens": 1600
+      },
+      "candidate_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.975,
+        "agent": {
+          "input_tokens": 579725,
+          "output_tokens": 71573,
+          "total_tokens": 651298,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 92,
+          "tool_errors": 1,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 48,
+          "wall_time": 558.0169516999995
+        },
+        "judge_total_tokens": 443474,
+        "reward": 0.7086814973380628,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "incumbent_summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 299426,
+          "output_tokens": 59142,
+          "total_tokens": 358568,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 60,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 36,
+          "wall_time": 464.35421349999706
+        },
+        "judge_total_tokens": 289941,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "changes": {
+        "system_prompt_unified_diff": "--- parent system_prompt\n+++ candidate system_prompt\n@@ -25,3 +25,3 @@\n - `str_replace_editor`: sửa nhỏ, exact match.\n-- `run_terminal`: gộp bằng `&&`/`;`, giảm noise (`-q`, `tail`). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n+- `run_terminal`: gộp bằng `&&`/`;`, giảm noise bằng `-q`; **không `tail`/`head` output kiểm thử/probe** (dễ mất dòng `N passed/failed`/dependency rồi phải chạy lại). **Gộp mọi harness + bước kiểm tra cuối + liệt kê file vào CÙNG một lệnh.** Không chạy lại check y hệt khi phần nó phủ không thay đổi.\n ",
+        "tool_description_changes": [
+          {
+            "tool": "run_terminal",
+            "field": "description",
+            "before": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise (`-q`, `tail -n 20`). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài.",
+            "after": "Thực thi Bash trong workspace (Git Bash/POSIX). Chạy FILE script hợp lệ (`python main.py`, `pytest -q`); tránh REPL trần (`python`, `node`). GỘP lệnh độc lập bằng `&&`/`;`; giảm noise bằng `-q`, **không `tail`/`head` output kiểm thử/probe** (dễ mất dòng `N passed/failed`/dependency rồi phải chạy lại). Gộp mọi harness + kiểm tra cuối + ls vào CÙNG một lệnh. Không chạy lại check y hệt khi phủ không thay đổi. Tránh in log dài."
+          }
+        ]
+      },
+      "impact_vs_incumbent": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.975,
+          "delta": 0.008333333333333304,
+          "relative_change": 0.008620689655172382
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 651298.0,
+            "delta": 292730.0,
+            "relative_change": 0.8163862921398451
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 48.0,
+            "delta": 12.0,
+            "relative_change": 0.3333333333333333
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 558.0169516999995,
+            "delta": 93.66273820000242,
+            "relative_change": 0.2017053694722273
+          }
+        }
+      },
+      "reward_gain": -0.024651835995270432,
+      "reason": "reward 0.7333 -> 0.7087 (gain -0.0247)"
+    }
+  ],
+  "mode": "calibration-suite",
+  "baseline_version": "v005",
+  "reward_config": {
+    "quality": 0.5,
+    "tokens": 0.25,
+    "turns": 0.15,
+    "wall_time": 0.1,
+    "reward_hacking_penalty": 0.25,
+    "normalization": "baseline / (baseline + candidate)",
+    "formula": "R_task = 0.50 Q + 0.25 E_tokens + 0.15 E_turns + 0.10 E_wall_time - 0.25 P_reward_hacking; E_metric = baseline / (baseline + candidate)"
+  },
+  "plan": {
+    "tasks": [
+      {
+        "id": "telemetry_window_repair",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\telemetry_window_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "expense_dashboard",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\expense_dashboard.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "fullstack_todo",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\fullstack_todo.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "feature_flag_rollout_repair",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\feature_flag_rollout_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "inventory_reservation_repair",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\inventory_reservation_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "audit_log_normalizer",
+        "source": "D:\\Inter-K\\self_harness\\tasks\\audit_log_normalizer.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      }
+    ],
+    "max_rounds": 8,
+    "patience": 8,
+    "min_reward_gain": 0.0,
+    "control_rollouts": 2,
+    "model_candidates": [
+      "deepseek/deepseek-v4-flash",
+      "openai/qwen/qwen3.8-flash",
+      "openai/kCode"
+    ]
+  },
+  "control_rounds": [
+    {
+      "control": 1,
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9583333333333333,
+        "agent": {
+          "input_tokens": 371263,
+          "output_tokens": 63667,
+          "total_tokens": 434930,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 66,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 7.3988237000012305,
+          "turns": 42,
+          "wall_time": 561.2127524000007
+        },
+        "judge_total_tokens": 329003,
+        "reward": 0.7058588895471267,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "impact_vs_baseline": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.9583333333333333,
+          "delta": -0.008333333333333415,
+          "relative_change": -0.008620689655172499
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 434930.0,
+            "delta": 76362.0,
+            "relative_change": 0.21296378929519644
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 42.0,
+            "delta": 6.0,
+            "relative_change": 0.16666666666666666
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 561.2127524000007,
+            "delta": 96.85853890000362,
+            "relative_change": 0.20858761713379873
+          }
+        }
+      },
+      "reward_delta": -0.02747444378620656
+    },
+    {
+      "control": 2,
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.97,
+        "agent": {
+          "input_tokens": 253542,
+          "output_tokens": 45965,
+          "total_tokens": 299507,
+          "api_retries": 1,
+          "provider_retry_cycles": 0,
+          "tool_calls": 57,
+          "tool_errors": 0,
+          "tool_retries": 0,
+          "provider_failure_seconds": 57.711897000001045,
+          "turns": 34,
+          "wall_time": 361.83314079999764
+        },
+        "judge_total_tokens": 233603,
+        "reward": 0.7427758688236545,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      },
+      "impact_vs_baseline": {
+        "pass_count": {
+          "before": 6.0,
+          "after": 6.0,
+          "delta": 0.0,
+          "relative_change": 0.0
+        },
+        "quality": {
+          "before": 0.9666666666666667,
+          "after": 0.97,
+          "delta": 0.0033333333333332993,
+          "relative_change": 0.0034482758620689303
+        },
+        "reward_hacking_penalty": {
+          "before": 0.0,
+          "after": 0.0,
+          "delta": 0.0
+        },
+        "agent": {
+          "total_tokens": {
+            "before": 358568.0,
+            "after": 299507.0,
+            "delta": -59061.0,
+            "relative_change": -0.16471352714129536
+          },
+          "turns": {
+            "before": 36.0,
+            "after": 34.0,
+            "delta": -2.0,
+            "relative_change": -0.05555555555555555
+          },
+          "wall_time": {
+            "before": 464.35421349999706,
+            "after": 361.83314079999764,
+            "delta": -102.52107269999942,
+            "relative_change": -0.22078204465350473
+          }
+        }
+      },
+      "reward_delta": 0.009442535490321258
+    }
+  ],
+  "stop_reason": "patience reached",
+  "selected_summary": {
+    "task_count": 6,
+    "pass_count": 6,
+    "pass_rate": 1.0,
+    "average_score": 0.9666666666666667,
+    "agent": {
+      "input_tokens": 299426,
+      "output_tokens": 59142,
+      "total_tokens": 358568,
+      "api_retries": 0,
+      "provider_retry_cycles": 0,
+      "tool_calls": 60,
+      "tool_errors": 0,
+      "tool_retries": 0,
+      "provider_failure_seconds": 0.0,
+      "turns": 36,
+      "wall_time": 464.35421349999706
+    },
+    "judge_total_tokens": 289941,
+    "reward": 0.7333333333333333,
+    "reward_hacking_penalty": 0.0,
+    "evaluation_valid": true
+  },
+  "selected_manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-bf7cbbcf542744a3\\manifest.json"
+}

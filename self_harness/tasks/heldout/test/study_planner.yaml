@@ -1,0 +1,23 @@
+id: test_study_planner
+seed_dir: fixtures/test_study_planner
+timeout_seconds: 600
+max_turns: 40
+prompt: |
+  Create a study-session planner in a self-contained index.html. Seed sessions
+  with subject, date, planned minutes and completed flag. Users can add, edit,
+  complete/uncomplete and delete sessions; filter by subject or completion.
+  Display planned and completed minutes and remaining-session counts that update
+  after every operation. Validate positive durations and required fields, and
+  safely persist edits with localStorage. Include all CSS and JS inside the HTML.
+  Work only in the workspace. No dependencies, package installation, servers,
+  screenshots, rendering, browser automation or interactive shells. Read source
+  or use bounded non-server checks before finishing and report actual checks.
+judge:
+  pass_score: 0.8
+  rubric: |
+    Source-only: verify realistic session data, add/edit/toggle/delete, validation,
+    subject/completion filters, consistent minute aggregates and remaining counts,
+    guarded persistence and self-contained HTML/CSS/JS. Controls without working
+    state logic do not fulfill requirements. Rendered appearance is out of scope.
+  artifacts:
+    - {path: index.html, mode: text}

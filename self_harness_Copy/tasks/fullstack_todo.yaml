@@ -1,0 +1,91 @@
+id: fullstack_todo
+prompt: |
+  Build a production-shaped full-stack Todo application inside the current
+  workspace. Create the complete source tree; do not merely describe it.
+
+  Required architecture:
+  - Frontend: React with Vite. Provide a usable todo list interface that can
+    create, toggle complete, edit text, delete items, filter All/Active/Done,
+    and show remaining count. It must call the backend API rather than keep a
+    separate mock-only todo list.
+  - Backend: FastAPI with SQLAlchemy and a SQLite database. Implement a Todo
+    model plus REST endpoints to list, create, update, and delete todos.
+    Validate request payloads with Pydantic and configure CORS for the Vite
+    development origin.
+  - Deployment: docker-compose.yml must define backend and frontend services,
+    build from their local Dockerfiles, expose sensible ports, and persist the
+    SQLite data with a named volume or an explicit bind mount.
+  - Tests: add pytest test cases for the API covering at least create, list,
+    update/toggle, and delete. Tests must use an isolated temporary SQLite
+    database rather than the deployment database.
+  - Documentation: add a concise README with normal local and Docker commands
+    that a human could run later.
+
+  Suggested file layout:
+  - backend/app/main.py, backend/app/models.py, backend/app/schemas.py,
+    backend/app/database.py, backend/requirements.txt, backend/Dockerfile,
+    backend/tests/test_todos.py
+  - frontend/package.json, frontend/vite.config.js, frontend/src/main.jsx,
+    frontend/src/App.jsx, frontend/Dockerfile
+  - docker-compose.yml and README.md
+
+  This is a source-code-only benchmark. Do not use screenshots, image reading,
+  browser rendering, browser automation, or visual verification. Verify only
+  by reading files or by a short non-server syntax/content check.
+
+  Do not start or leave running any server, Docker container, watcher, REPL,
+  interactive shell, or command that could keep the terminal occupied. In
+  particular, do not run docker compose up, docker compose run, uvicorn,
+  fastapi dev, flask, npm start, npm run dev, vite, webpack dev server,
+  python -m http.server, pytest without a bounded target, or a bare
+  python/node/bash/powershell shell. Do not install packages. Write the source
+  files and use only short, bounded file/syntax/content checks before the final
+  answer. State which checks you actually ran.
+seed_dir: fixtures/fullstack_todo
+timeout_seconds: 90000
+max_turns: 1000
+judge:
+  rubric: |
+    Assess source files only; do not require a running service, rendered page,
+    screenshot, image inspection, or proof that Docker was executed.
+
+    The repository must contain a coherent React/Vite client whose Todo UI
+    calls documented FastAPI endpoints and implements create, edit, complete,
+    delete, filter, and remaining-count behavior. The FastAPI service must
+    define a SQLAlchemy SQLite Todo model and validated REST list/create/update/
+    delete endpoints, with CORS configured for the client. Docker Compose must
+    build both local services, expose usable ports, and persist SQLite data.
+    Backend pytest source must cover API create, list, update/toggle, and
+    delete using an isolated test database. Dependency files, Dockerfiles, and
+    README commands must be internally consistent. Award no credit for claims
+    unsupported by the declared source artifacts.
+  pass_score: 0.8
+  artifacts:
+    - path: backend/app/main.py
+      mode: text
+    - path: backend/app/models.py
+      mode: text
+    - path: backend/app/schemas.py
+      mode: text
+    - path: backend/app/database.py
+      mode: text
+    - path: backend/requirements.txt
+      mode: text
+    - path: backend/Dockerfile
+      mode: text
+    - path: backend/tests/test_todos.py
+      mode: text
+    - path: frontend/package.json
+      mode: text
+    - path: frontend/vite.config.js
+      mode: text
+    - path: frontend/src/main.jsx
+      mode: text
+    - path: frontend/src/App.jsx
+      mode: text
+    - path: frontend/Dockerfile
+      mode: text
+    - path: docker-compose.yml
+      mode: text
+    - path: README.md
+      mode: text

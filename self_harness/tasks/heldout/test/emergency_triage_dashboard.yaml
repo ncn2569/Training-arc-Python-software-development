@@ -1,0 +1,25 @@
+id: test_emergency_triage_dashboard
+seed_dir: fixtures/test_emergency_triage_dashboard
+timeout_seconds: 600
+max_turns: 55
+prompt: |
+  Build a self-contained emergency-dispatch triage dashboard in index.html.
+  Seed at least six incidents with id, category, severity, received time and
+  status. Users must add an incident, assign/unassign a responder, resolve an
+  incident, and filter by status/severity. Show open critical count, unassigned
+  count and a severity breakdown that update consistently after every mutation.
+  Reject blank incident details and never allow a resolved incident to become
+  unassigned through a stale UI action. Persist state with guarded localStorage.
+  Include all CSS/JS in the HTML, no external assets/dependencies. Source-only:
+  do not run a server, browser, renderer, package install or interactive shell.
+  Use bounded source/syntax checks and report only checks actually run.
+judge:
+  pass_score: 0.82
+  rubric: |
+    Assess source only. Require realistic seeded incidents; validated add,
+    assign/unassign and resolve interactions; filters; derived counters and
+    severity data from one coherent state source; guarded persistence; and a
+    deterministic rule preventing stale transitions from corrupting resolved
+    state. Labels without state mutation logic do not count.
+  artifacts:
+    - {path: index.html, mode: text}

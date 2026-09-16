@@ -1,0 +1,22 @@
+id: test_clinic_booking_boundaries
+seed_dir: fixtures/test_clinic_booking_boundaries
+timeout_seconds: 600
+max_turns: 45
+prompt: |
+  Repair the seeded appointment booking module. Preserve the can_book API. An
+  appointment belongs to one provider and is the half-open interval [start,
+  end): adjacent appointments for the same provider are allowed, overlapping
+  ones are not, and appointments of different providers do not conflict. Reject
+  zero/negative intervals and malformed time values instead of silently
+  accepting them. Use the provided stdlib tests to observe the defect, make the
+  smallest coherent repair, and rerun the exact bounded test command. No package
+  installation, server, network or interactive shell.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Verify provider isolation, half-open overlap semantics, invalid interval
+    handling, and preservation of the public function. Require an honest
+    failure-to-repair-to-verification trajectory; tests must remain meaningful.
+  artifacts:
+    - {path: booking.py, mode: text}
+    - {path: tests/test_booking.py, mode: text}

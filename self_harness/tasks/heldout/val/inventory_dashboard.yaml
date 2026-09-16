@@ -1,0 +1,23 @@
+id: val_inventory_dashboard
+seed_dir: fixtures/val_inventory_dashboard
+timeout_seconds: 600
+max_turns: 40
+prompt: |
+  Build a small shop inventory dashboard in index.html with realistic products,
+  categories, quantity, unit cost and reorder thresholds. Display total stock
+  value, low-stock count, category quantities and a searchable/filterable table.
+  Include adding products and adjusting existing quantities. Reject invalid
+  quantities/costs, update all derived views after changes, and persist safely
+  with localStorage when available. Keep CSS and JS inside the HTML.
+  Work only in the workspace without external assets, package installation,
+  servers, image rendering, browser tools or interactive shells. Read source or
+  run short bounded syntax/content checks; state what you actually verified.
+judge:
+  pass_score: 0.8
+  rubric: |
+    Assess source data and executable logic only. Verify product/category data,
+    quantity and cost validation, creation and adjustments, search/category/low-stock
+    filters, correct stock-value and category aggregates, and guarded persistence.
+    All CSS/JS must be self-contained. Do not require visual rendering.
+  artifacts:
+    - {path: index.html, mode: text}

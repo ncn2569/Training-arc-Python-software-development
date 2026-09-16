@@ -34,7 +34,7 @@ start line end line optional nếu trường hợp muốn đọc code của 1 fi
 
 
 Tạo benchmark: RL + LLM 
-task : wall time : success rate 
+task : wall time : success rate : ....
 
 """
 
@@ -47,6 +47,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from dotenv import load_dotenv
+
+# Load configuration before importing memory: its conservative context budget
+# and tokenizer fallback are configurable through .env.
+load_dotenv()
+
 from litellm import completion
 
 from agent_skills.loader import load_skill as _load_skill
@@ -70,7 +75,6 @@ from tools.read import read_file
 from tools.shell import run_shell
 from tools.write import write_file
 
-load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_BASE = os.getenv("API_BASE")
 MODEL = os.getenv("MODEL")
@@ -183,7 +187,7 @@ def run_agent(context: list[dict]):
     """
     loop_count = 0
     while True:
-        token_count = count_tokens(context)
+        token_count = count_tokens(context, model=MODEL, tools=TOOL_DECLARATION)
         if token_count > THRESHOLD:
             print(f"\n Context vượt ngưỡng ({token_count} > {THRESHOLD} tokens)")
             context = compact_context(
@@ -192,7 +196,7 @@ def run_agent(context: list[dict]):
                 API_BASE,
                 MODEL,
             )
-            new_count = count_tokens(context)
+            new_count = count_tokens(context, model=MODEL, tools=TOOL_DECLARATION)
             print(f"Compact xong: {new_count} tokens\n")
 
         response = completion(

@@ -1,0 +1,28 @@
+id: test_fullstack_bookmarks
+seed_dir: fixtures/test_fullstack_bookmarks
+timeout_seconds: 900
+max_turns: 80
+prompt: |
+  Create a complete full-stack bookmark manager using React/Vite, FastAPI,
+  SQLAlchemy and SQLite. Bookmarks have id, title, HTTP(S) URL, tag and favorite
+  flag. Provide validated REST list/create/update/delete endpoints and a client
+  connected to them for CRUD, favorite toggle, text search and tag/favorite filters.
+  Show loading/errors, reject invalid URLs and configure CORS for Vite development.
+  Include all dependencies, Dockerfiles, docker-compose.yml building both services,
+  usable ports and persistent SQLite storage. Supply README local/Docker instructions
+  and pytest API source for CRUD, favorite updates and invalid URLs with an isolated DB.
+  Work only in this workspace. Source-only: no package installation, servers,
+  containers, watchers, image rendering, browser tools or interactive shells.
+  Use source reads or short bounded non-server syntax/content checks and report them.
+judge:
+  pass_score: 0.8
+  rubric: |
+    Check coherent source across client/API/database/deployment. Verify REST CRUD,
+    URL validation, SQLAlchemy/SQLite storage, CORS, real API-connected React UI,
+    favorite/search/filter interactions, loading/error behavior and dependency
+    consistency. Compose must build services and persist SQLite; README commands
+    must match source. Tests cover CRUD/favorites/invalid URLs using an isolated DB.
+    Do not require any actual service, Docker, rendered page or test execution.
+  artifacts:
+    - {path: README.md, mode: text}
+    - {path: docker-compose.yml, mode: text}

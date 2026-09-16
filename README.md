@@ -6,35 +6,3 @@
 
 
 Nếu bạn đọc được dòng này thì bạn phải tự nhận bạn bị ngu đi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-token counter tăng lên /n

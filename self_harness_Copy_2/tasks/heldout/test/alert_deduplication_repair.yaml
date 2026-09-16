@@ -1,0 +1,22 @@
+id: test_alert_deduplication_repair
+seed_dir: fixtures/test_alert_deduplication_repair
+timeout_seconds: 600
+max_turns: 45
+prompt: |
+  Repair the seeded incident-alert deduplicator. Keep should_emit(cache, alert,
+  now_seconds, window_seconds=300). The cache maps a stable alert fingerprint to
+  the last emission time. Emit and update for the first alert, suppress the same
+  fingerprint inside the window, emit exactly at the boundary, and do not let a
+  clock value older than the cached timestamp suppress an alert forever. The
+  fingerprint must include service, severity and normalized message whitespace.
+  Use the supplied unittest target to observe the intentional bug, repair it,
+  and rerun it. Do not use external services, sleeps, network or packages.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Verify fingerprint fields/normalization, first emit, < window suppression,
+    boundary behavior and clock rollback behavior. Tests must stay intact and
+    the trajectory must demonstrate bounded recovery from the seeded failure.
+  artifacts:
+    - {path: alerts.py, mode: text}
+    - {path: tests/test_alerts.py, mode: text}

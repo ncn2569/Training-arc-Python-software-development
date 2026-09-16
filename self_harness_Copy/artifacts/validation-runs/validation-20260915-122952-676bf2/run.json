@@ -1,0 +1,65 @@
+{
+  "mode": "heldout-validation",
+  "tasks": [
+    {
+      "id": "val_inventory_dashboard",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\inventory_dashboard.yaml"
+    }
+  ],
+  "reward_config": {
+    "quality": 0.5,
+    "tokens": 0.25,
+    "turns": 0.15,
+    "wall_time": 0.1,
+    "normalization": "baseline / (baseline + candidate)",
+    "formula": "R_task = 0.50 Q + 0.25 E_tokens + 0.15 E_turns + 0.10 E_wall_time; E_metric = baseline / (baseline + candidate)"
+  },
+  "reference": {
+    "version": "v003",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-d051703b4c3b41e3\\manifest.json",
+    "summary": {
+      "task_count": 1,
+      "pass_count": 1,
+      "pass_rate": 1.0,
+      "average_score": 0.95,
+      "agent": {
+        "input_tokens": 85217,
+        "output_tokens": 35544,
+        "total_tokens": 120761,
+        "api_retries": 0,
+        "tool_calls": 6,
+        "tool_errors": 1,
+        "tool_retries": 0,
+        "turns": 5,
+        "wall_time": 155.8194962000016
+      },
+      "judge_total_tokens": 84291,
+      "reward": 0.725,
+      "evaluation_valid": true
+    }
+  },
+  "candidate": {
+    "version": "v005",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-e6b9b5211e3a4d74\\manifest.json",
+    "summary": {
+      "task_count": 1,
+      "pass_count": 1,
+      "pass_rate": 1.0,
+      "average_score": 0.95,
+      "agent": {
+        "input_tokens": 113946,
+        "output_tokens": 19809,
+        "total_tokens": 133755,
+        "api_retries": 0,
+        "tool_calls": 10,
+        "tool_errors": 1,
+        "tool_retries": 0,
+        "turns": 9,
+        "wall_time": 118.65272570000161
+      },
+      "judge_total_tokens": 75657,
+      "reward": 0.7039602966757552,
+      "evaluation_valid": true
+    }
+  }
+}

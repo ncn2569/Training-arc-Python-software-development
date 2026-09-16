@@ -1,0 +1,754 @@
+{
+  "suites": {
+    "baseline": {
+      "version": "v005",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-8ba6877ed5e54a29\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "telemetry_window_repair",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.95,
+            "reason": "telemetry.py uses floor-based windowing ((timestamp // window_seconds) * window_seconds), so exact boundaries start a new window and malformed readings (missing keys, bad types, empty device_id) are skipped via try/except. Averages are correctly computed and rounded to 2 decimals, and output is sorted by (device_id, window_start). Public signature and supplied tests are intact and pass independently. Only minor edge cases remain (device_id=None stringifies to 'None'; float('nan') values pass through), which the spec/tests don't cover.",
+            "evidence": [
+              {
+                "requirement": "floor-based window bucketing with exact boundaries starting new windows",
+                "observation": "timestamp 119 -> window_start 60; 120/121 -> window_start 120; negative ts -1 -> -60. Verified via direct execution.",
+                "reference": "telemetry.py:23 window_start line; python -c run",
+                "verified": true
+              },
+              {
+                "requirement": "malformed readings ignored",
+                "observation": "Records with bad timestamp string, empty device_id, missing keys are skipped; provided test passes.",
+                "reference": "tests/test_telemetry.py::test_malformed...; pytest -q output '2 passed'",
+                "verified": true
+              },
+              {
+                "requirement": "averages correct and rounded to 2 decimals",
+                "observation": "values 1,2,2 in one window -> average 1.67; test asserts 1.67 and passes.",
+                "reference": "telemetry.py round(...2); pytest output",
+                "verified": true
+              },
+              {
+                "requirement": "deterministic ordering by device_id then window_start",
+                "observation": "Output sorted by (device_id, window_start); mixed input returns ordered list.",
+                "reference": "telemetry.py sorted(buckets.items()); direct execution",
+                "verified": true
+              },
+              {
+                "requirement": "public API and supplied tests intact",
+                "observation": "Signature aggregate_readings(readings, *, window_seconds=60) unchanged; tests directory unmodified and both tests pass.",
+                "reference": "telemetry.py; tests/test_telemetry.py; pytest -q -> 2 passed",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "telemetry.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1217
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "telemetry.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "tests/test_telemetry.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -m pytest -q tests/test_telemetry.py 2>&1 | tail -n 5",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nfrom telemetry import aggregate_readings as a\n# boundary: exact boundary starts new window\nprint(a([{'device_id':'d','timestamp':119,'value':1},{'device_id':'d','times…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 10834,
+              "output_tokens": 1273,
+              "total_tokens": 12107,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        },
+        {
+          "task_id": "expense_dashboard",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 1.0,
+            "reason": "index.html is a self-contained dashboard with seeded September 2026 income/expense transactions, monthly balance card, income/spending totals, category breakdown bars, transactions table, and an add-expense form. Verified the add-expense handler recomputes totals and category data and that localStorage persistence is probed/guarded with try/catch. No external CDN/network references found. All rubric requirements are met.",
+            "evidence": [
+              {
+                "requirement": "Define balance, income, spending, category and transaction data plus add-expense control",
+                "observation": "Seed data (MONTHLY_INCOME, DEMO_EXPENSES, CATEGORIES), balance card, income/spending cards, breakdown container, transactions tbody, and a form with id=expenseForm and submit handler all present",
+                "reference": "index.html lines 233-260, body section ids, handleSubmit",
+                "verified": true
+              },
+              {
+                "requirement": "Adding an expense updates totals and category data in the browser",
+                "observation": "check_dom.js executes the inline script with a DOM shim; after submitting $60.51 Dining, expense went 2309.49→2370.00, balance→3680.00, Dining category→171.66, chip→15 transactions; all assertions pass (exit 0)",
+                "reference": "check_dom.js run output; index.html handleSubmit/computeMetrics/renderBreakdown",
+                "verified": true
+              },
+              {
+                "requirement": "localStorage used or guarded safely",
+                "observation": "storage() probes window.localStorage in try/catch and returns null on failure; persist() wraps setItem in try/catch; loadInitial falls back to demo data; reset removes key. Shim test confirmed 15 tx persisted and store cleared on reset",
+                "reference": "index.html storage()/persist()/loadInitial(); check_dom.js persistence assertions",
+                "verified": true
+              },
+              {
+                "requirement": "Self-contained static site, no CDN/build/network",
+                "observation": "grep for http://, cdn, src=, link rel, import/require/fetch returned no matches; CSS and JS are inline in index.html",
+                "reference": "index.html; grep command exit 1 (no matches)",
+                "verified": true
+              },
+              {
+                "requirement": "Realistic currency values and polished styling",
+                "observation": "Values like $3,740.51 balance, $6,050.00 income, $2,309.49 spending; dark gradient cards, color-coded category swatches/bars, responsive grid, hover states",
+                "reference": "index.html :root styles and render functions",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "index.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 23368
+              }
+            ],
+            "inspection_count": 6,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "index.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node check.js; echo \"exit=$?\"; node check_dom.js; echo \"exit=$?\"",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "grep -n \"localStorage\\|STORE_KEY\\|persist\\|normalize\\|addExpense\" index.html | head -40",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "check_dom.js",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "grep -niE \"https?://|cdn|src=|link rel|import |require\\(|fetch\\(\" index.html",
+                "success": false,
+                "exit_code": 1,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 56134,
+              "output_tokens": 2017,
+              "total_tokens": 58151,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        },
+        {
+          "task_id": "fullstack_todo",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.9,
+            "reason": "All declared artifacts exist and are coherent. FastAPI defines a SQLAlchemy SQLite Todo model, Pydantic-validated list/create/get/PATCH/PUT/toggle/delete/clear-completed routes with CORS for the Vite origin; the React/Vite client implements create, inline edit, toggle, delete, All/Active/Done filters and remaining count purely via the real /api/todos client (no mock list); compose builds both local Dockerfiles, exposes 8000/5173 and persists SQLite in named volume todo-data at /app/data; pytest source covers create/list/update-toggle/delete against a per-test temp SQLite DB with DATABASE_URL set before app import and get_db overridden. Verified by reading every file plus py_compile (7 files…",
+            "evidence": [
+              {
+                "requirement": "React/Vite Todo UI calls the backend API and implements create, edit, toggle, delete, All/Active/Done filter and remaining count",
+                "observation": "App.jsx wires api.listTodos/createTodo/updateTodo(PATCH with completed for toggle, with title for edit)/deleteTodo/clearCompleted; filters array ['All','Active','Done'], derived `remaining`, footer literal `{remaining} {remaining === 1 ? 'item' : 'items'} left`; no mock data array anywhere; api.js uses fetch against /api base",
+                "reference": "frontend/src/App.jsx, frontend/src/api.js, frontend/vite.config.js (/api proxy), frontend/index.html + src/main.jsx (createRoot)",
+                "verified": true
+              },
+              {
+                "requirement": "FastAPI + SQLAlchemy SQLite Todo model with validated list/create/update/delete REST endpoints and CORS for the client",
+                "observation": "Todo model (table 'todos': id/title/completed/created_at/updated_at); routes GET,POST /api/todos, GET/PATCH/PUT/DELETE /api/todos/{id}, POST /api/todos/{id}/toggle, DELETE /api/todos/completed, /api/health; TodoCreate/TodoUpdate use min_length, max_length, field_validator trimming blank titles, extra='forbid'; CORSMiddleware allow_origins includes http://localhost:5173 and 127.0.0.1:5173 (overridable via CORS_ORIGIN…",
+                "reference": "backend/app/main.py, backend/app/models.py, backend/app/schemas.py, backend/app/database.py",
+                "verified": true
+              },
+              {
+                "requirement": "docker-compose builds both local services, exposes usable ports, persists SQLite via named volume/bind mount",
+                "observation": "backend service build context ./backend, port 8000:8000, DATABASE_URL=sqlite:////app/data/todos.db, volume todo-data:/app/data with named volume todo-data declared; frontend build context ./frontend, port 5173:5173, VITE_API_PROXY_TARGET=http://backend:8000 matching vite.config.js; backend Dockerfile installs requirements.txt and runs uvicorn app.main:app on :8000, frontend Dockerfile npm install + npm run dev on 51…",
+                "reference": "docker-compose.yml, backend/Dockerfile, frontend/Dockerfile",
+                "verified": true
+              },
+              {
+                "requirement": "pytest tests cover create, list, update/toggle, delete using an isolated temporary SQLite database",
+                "observation": "22 test functions including test_create_todo, test_list_todos_*, test_update_todo_title, test_toggle_completed_via_patch, test_toggle_endpoint_flips_flag, test_delete_todo, clear-completed and 404 cases; conftest sets os.environ['DATABASE_URL'] to a tempfile dir path BEFORE importing app.main and overrides get_db with a per-test tmp_path SQLite file (StaticPool), plus an isolation test asserting the deployment DB pa…",
+                "reference": "backend/tests/conftest.py, backend/tests/test_todos.py, backend/pytest.ini (pythonpath=.)",
+                "verified": true
+              },
+              {
+                "requirement": "Dependency files, Dockerfiles and README commands are internally consistent; no fabricated verification claims",
+                "observation": "requirements.txt pins fastapi/uvicorn/SQLAlchemy/pydantic plus pytest and httpx (needed by TestClient); README documents exactly the implemented endpoints/paths, ports 8000/5173, uvicorn, npm run dev, pytest, docker compose up/down -v and the todo-data volume; agent correctly disclosed pytest was not executed rather than claiming it passed",
+                "reference": "backend/requirements.txt, README.md vs backend/app/main.py; final answer section 5; scripts/verify_content.py re-run in temp copy: 'ALL CONTENT CHECKS PASSED', py_compile OK for 7 files",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "backend/app/main.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 6247
+              },
+              {
+                "path": "backend/app/models.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1181
+              },
+              {
+                "path": "backend/app/schemas.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1913
+              },
+              {
+                "path": "backend/app/database.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1984
+              },
+              {
+                "path": "backend/requirements.txt",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 150
+              },
+              {
+                "path": "backend/Dockerfile",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 490
+              },
+              {
+                "path": "backend/tests/test_todos.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 7564
+              },
+              {
+                "path": "frontend/package.json",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 558
+              },
+              {
+                "path": "frontend/vite.config.js",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 837
+              },
+              {
+                "path": "frontend/src/main.jsx",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 246
+              },
+              {
+                "path": "frontend/src/App.jsx",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 8179
+              },
+              {
+                "path": "frontend/Dockerfile",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 511
+              },
+              {
+                "path": "docker-compose.yml",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1174
+              },
+              {
+                "path": "README.md",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 3861
+              }
+            ],
+            "inspection_count": 29,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/app/main.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/app/models.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/app/schemas.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/app/database.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/tests/conftest.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/tests/test_todos.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "backend/requirements.txt",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash",
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 213828,
+              "output_tokens": 9872,
+              "total_tokens": 223700,
+              "source": "provider"
+            },
+            "api_retries": 3
+          }
+        },
+        {
+          "task_id": "poster_render_image",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": false,
+            "score": 0.0,
+            "reason": "No deliverables were produced. The render-to-image script invocation failed immediately (WinError 10061: no Browserless service reachable at the script's default http://localhost:3000), so no PNG was ever written and no image read occurred. The agent then spent all remaining turns inspecting the environment (netstat, curl probes, harness/session files, prior judge artifacts) and hit max_turns without creating output/orbit-poster.png or render_report.json. Only the untouched source poster.html satisfies a rubric requirement, so there is no usable rendered result to credit.",
+            "evidence": [
+              {
+                "requirement": "poster.html remains present with original Orbit conference content intact",
+                "observation": "File exists at 2019 bytes and still contains the dark Orbit 2026 design (`.poster` 900x630, `ORBIT 2026` h1, `.orbit.one/.orbit.two` rings, gradient `.planet`, eyebrow/date/footer text); no modification appears in the trajectory.",
+                "reference": "poster.html (workspace read)",
+                "verified": true
+              },
+              {
+                "requirement": "output/orbit-poster.png exists as a non-empty rendered image artifact",
+                "observation": "The `output/` directory is empty; the only renderer run in the trajectory exited with `render-to-image failed: [WinError 10061] No connection could be made because the target machine actively refused it` and left `ls -la output` showing no files. No PNG exists.",
+                "reference": "list_workspace output/; turn 3 run_terminal result; filesystem check in temp copy (NO_PNG)",
+                "verified": true
+              },
+              {
+                "requirement": "render_report.json is valid JSON with exactly source, output, format, width, height and positive dimensions",
+                "observation": "The file was never created; the workspace contains only poster.html and an empty output/ directory.",
+                "reference": "filesystem check in temp copy (NO_REPORT); workspace listing",
+                "verified": true
+              },
+              {
+                "requirement": "Trajectory demonstrates a successful render-to-image skill workflow followed by an image read of the rendered PNG",
+                "observation": "load_skill(render-to-image) was called and the skill's render_to_image.py was invoked with --input/--output, but the call failed (connection refused) and the subsequent image read was of the skill's script path (blocked), not of a rendered PNG. No successful render or successful image read of output/orbit-poster.png is present.",
+                "reference": "observed tool events turns 1-3, 5, 16; deliverable status list (output/orbit-poster.png: missing)",
+                "verified": true
+              },
+              {
+                "requirement": "Judge visually confirms a legible dark Orbit 2026 poster rendering with headline and planet/orbit composition",
+                "observation": "Not possible — there is no image artifact to inspect.",
+                "reference": "output/ directory contents (empty)",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "poster.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 2019
+              },
+              {
+                "path": "output/orbit-poster.png",
+                "mode": "image",
+                "status": "missing"
+              },
+              {
+                "path": "render_report.json",
+                "mode": "text",
+                "status": "missing"
+              }
+            ],
+            "inspection_count": 6,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "list_workspace",
+                "target": "output",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "poster.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "find . -type f | head -50 && echo \"---sizes---\" && du -a . | head -20",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "list_workspace",
+                "target": "..",
+                "success": false,
+                "exit_code": null,
+                "error": "Path must stay inside the task workspace"
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "ls -la output; test -f render_report.json && echo REPORT_EXISTS || echo NO_REPORT; test -f output/orbit-poster.png && echo PNG_EXISTS || echo NO_PNG",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 95602,
+              "output_tokens": 2623,
+              "total_tokens": 98225,
+              "source": "provider"
+            },
+            "api_retries": 6
+          }
+        },
+        {
+          "task_id": "inventory_reservation_repair",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 1.0,
+            "reason": "All rubric requirements verified in the repaired artifact: signature and return shape preserved, inputs never mutated (including on error paths), bool/float/str/None quantities rejected as ValueError, non-positive quantities rejected, unknown SKU raises KeyError, available stock accounts for prior reservations, and a new mapping is returned. Supplied tests are byte- and timestamp-identical to the seeded originals (unweakened), and the transcript shows a bounded fail -> repair -> rerun trajectory with a clean workspace.",
+            "evidence": [
+              {
+                "requirement": "Public API preserved: reserve(stock, reserved, sku, quantity) returning mapping sku -> total reserved",
+                "observation": "inspect.signature yields (stock, reserved, sku, quantity); success returns {'widget': 10} for stock 10 / reserved 8 / qty 2, i.e. total including prior reservation",
+                "reference": "inventory.py reserve(); signature check + functional run in temp workspace",
+                "verified": true
+              },
+              {
+                "requirement": "Input mappings not mutated; new mapping returned",
+                "observation": "r is not reserved, deep-copied pre-state equals post-state after both error and success paths; mutating the returned dict leaves the caller's reserved mapping untouched; unrelated keys (e.g. 'b') are preserved in the copy",
+                "reference": "temp workspace probe: reserve({'a':10,'b':4},{'b':4},'a',3)",
+                "verified": true
+              },
+              {
+                "requirement": "Positive integer quantities only, booleans rejected",
+                "observation": "True, False, 1.5, 2.0, '2', None -> ValueError('quantity must be an integer'); 0, -3 -> ValueError('quantity must be positive'); type check precedes the <= 0 check and runs before any write",
+                "reference": "inventory.py lines after KeyError guard; executed rejection matrix",
+                "verified": true
+              },
+              {
+                "requirement": "Prior-reservation accounting plus unknown-SKU and insufficient-stock rejection",
+                "observation": "available = stock[sku] - reserved.get(sku, 0): reserve({'widget':10},{'widget':8},'widget',3) raises ValueError('insufficient stock'), qty 2 succeeds; cumulative state rejects the next unit; unknown sku raises KeyError",
+                "reference": "inventory.py available computation; probe output 'rejected 3 -> insufficient stock', 'unknown sku KeyError x'",
+                "verified": true
+              },
+              {
+                "requirement": "Meaningful retained tests and bounded failure-to-repair-to-rerun trajectory, no weakening",
+                "observation": "tests/test_inventory.py remains 932 bytes with original mtime (Sep 15 17:00) and intact assertRaises/deepcopy assertions; seeded run failed 2/2, post-repair same unittest target reports 'Ran 2 tests ... OK' (also 2 passed under pytest); only __pycache__ was removed, no extra source files",
+                "reference": "list_workspace + file read + unittest/pytest reruns; tool events turns 3, 5, 6",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "inventory.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 1388
+              },
+              {
+                "path": "tests/test_inventory.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 932
+              }
+            ],
+            "inspection_count": 10,
+            "inspection_samples": [
+              {
+                "tool": "read_workspace_file",
+                "target": "inventory.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "tests/test_inventory.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -m unittest discover -s tests -p \"test_*.py\" -v 2>&1 | tail -n 20",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nimport copy\nfrom inventory import reserve\nstock={'widget':10}; res={'widget':8}\nb=copy.deepcopy((stock,res))\ntry:\n    reserve(stock,res,'widget',3)\n    print('BUG: all…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nimport hashlib,os,subprocess\nprint(os.stat('tests/test_inventory.py').st_size, os.stat('inventory.py').st_size)\n\" && git -C . log --oneline 2>&1 | head -5",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nfrom inventory import reserve\n# preserve unrelated reserved keys; ensure totals accumulate across calls (caller-managed state)\ns={'a':10,'b':4}; r={'b':4}\no=reserve(s,…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -m pytest -q tests/test_inventory.py 2>&1 | tail -3",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 52042,
+              "output_tokens": 4821,
+              "total_tokens": 56863,
+              "source": "provider"
+            },
+            "api_retries": 9
+          }
+        },
+        {
+          "task_id": "audit_log_normalizer",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.95,
+            "reason": "All rubric requirements independently verified: stdlib-only CLI works end-to-end; 1-based line-numbered errors with exit 1; no partial output and existing output preserved on failure (mkstemp+fsync+os.replace); stable byte-identical JSONL with sorted keys; actor whitespace normalization and action lowercasing; deterministic severity mapping; unknown nested fields preserved; parsed inputs not mutated; 19 stdlib unittest tests covering both success and failure paths all pass on re-run, and my own independent fixtures reproduced every claimed behavior. Only blemish: the declared deliverable status misreported the test file path (tests/test_normalize_audit.py 'missing') even though the suite ex…",
+            "evidence": [
+              {
+                "requirement": "Usable stdlib-only CLI accepting input/output JSONL paths",
+                "observation": "normalize_audit.py imports only stdlib (argparse, datetime, json, os, re, sys, tempfile); CLI runs with exit 0 on valid input, 1 on invalid record, 2 on I/O/usage errors",
+                "reference": "normalize_audit.py (imports, main()); run_workspace_test fixture checks",
+                "verified": true
+              },
+              {
+                "requirement": "Line-numbered (1-based) validation errors and nonzero exit",
+                "observation": "stderr 'error: line 2: missing or empty event_id' and 'error: line 3: malformed JSON' on crafted fixtures; blank lines count in numbering; exit code 1",
+                "reference": "record.py RecordError; CLITest.test_invalid_record_reports_one_based_line; my malformed/invalid fixtures",
+                "verified": true
+              },
+              {
+                "requirement": "Atomic output, no partial file, existing output preserved on failure",
+                "observation": "validation completes before any write; on failure output file absent or byte-identical to pre-existing sentinel and no *.tmp leftovers; success replaces existing output atomically",
+                "reference": "write_jsonl_atomic (mkstemp+fsync+os.replace); CLITest.test_existing_output_preserved..., test_no_partial_output...; my ex.out sentinel check",
+                "verified": true
+              },
+              {
+                "requirement": "Stable JSONL output with sorted keys, actor/action normalization, deterministic severity, unknown nested field preservation, no input mutation",
+                "observation": "output keys == sorted(keys) per line; '  X   Y  ' -> 'X Y', 'Permission_Denied' -> 'permission_denied' with severity 'high'; nested meta {'k':{'a':1,'b':2}} preserved; re-run produced identical SHA-256; input file text unchanged",
+                "reference": "normalize_record/dump_record; NormalizationTest + CLITest; my independent good-input fixture",
+                "verified": true
+              },
+              {
+                "requirement": "Focused stdlib unittest coverage for both successful and failing paths, actually executed",
+                "observation": "19 tests (blank lines, nested unknowns, normalization, ISO-8601 acceptance/rejection, invalid records, malformed JSON, non-object lines, atomic success/failure, I/O errors, missing args) re-ran to 'Ran 19 tests ... OK'; tests exercise the real CLI via subprocess, so source/test coherence holds",
+                "reference": "test_normalize_audit.py; run_workspace_test 'python -m unittest -v test_normalize_audit.py' -> OK",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "normalize_audit.py",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 8482
+              },
+              {
+                "path": "tests/test_normalize_audit.py",
+                "mode": "text",
+                "status": "missing"
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "normalize_audit.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "test_normalize_audit.py",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "cd \"$(dirname .)\" 2>/dev/null; python -m unittest -v test_normalize_audit.py 2>&1 | tail -n 30",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "cd \"$PWD\" && python - <<'EOF'\nimport subprocess, sys, os, json, tempfile\n\nd = tempfile.mkdtemp()\ninp = os.path.join(d, \"in.jsonl\")\nout = os.path.join(d, \"out.jsonl\")\n\n# success ca…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/kCode",
+            "models": [
+              "openai/kCode"
+            ],
+            "model_usage": {
+              "input_tokens": 57276,
+              "output_tokens": 4002,
+              "total_tokens": 61278,
+              "source": "provider"
+            },
+            "api_retries": 10
+          }
+        }
+      ]
+    }
+  }
+}

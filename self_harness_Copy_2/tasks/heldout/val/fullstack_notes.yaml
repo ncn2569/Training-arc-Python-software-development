@@ -1,0 +1,30 @@
+id: val_fullstack_notes
+seed_dir: fixtures/val_fullstack_notes
+timeout_seconds: 900
+max_turns: 80
+prompt: |
+  Create the complete source tree for a personal notes application: React/Vite
+  frontend, FastAPI backend, SQLAlchemy and SQLite persistence. A note has id,
+  title, body and pinned flag. Implement validated REST list/create/update/delete
+  endpoints. The client must use this API to create, edit, pin/unpin and delete
+  notes, search title/body and show pinned notes first. Include loading and error
+  feedback and CORS for local Vite development.
+  Provide dependency files, local Dockerfiles, docker-compose.yml for both services
+  with persistent SQLite storage, and a README with coherent local/Docker commands.
+  Add pytest API source covering CRUD and pin changes using an isolated test DB.
+  Work only inside the workspace. This is source-only: do not install packages,
+  start services/containers/watchers, render images, use browser tools, or open
+  interactive shells. Verify using source reads or short bounded non-server
+  syntax/content checks and state actual verification.
+judge:
+  pass_score: 0.8
+  rubric: |
+    Inspect source/supporting files. Verify consistent API routes, validated note
+    payloads, SQLAlchemy SQLite persistence and CORS, a React client connected to
+    the real API with CRUD/pinning/search/sort behavior and loading/error states.
+    Check Docker build inputs, ports, client API addressing and SQLite persistence.
+    Tests must cover CRUD/pinning with an isolated DB; documentation/dependencies
+    must match source. Do not require services, Docker, rendering or tests to run.
+  artifacts:
+    - {path: README.md, mode: text}
+    - {path: docker-compose.yml, mode: text}

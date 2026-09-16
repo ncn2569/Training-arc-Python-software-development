@@ -10,3 +10,10 @@ node_modules/
 sessions/
 test.py
 workspace/
+self_harness/artifacts/*
+!self_harness/artifacts/.gitkeep
+self_harness/workspace/*
+!self_harness/workspace/.gitkeep
+workspace/*
+*.png
+manifest.json

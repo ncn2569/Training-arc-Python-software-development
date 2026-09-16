@@ -1,0 +1,86 @@
+{
+  "mode": "heldout-validation",
+  "tasks": [
+    {
+      "id": "val_fullstack_notes",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\fullstack_notes.yaml"
+    },
+    {
+      "id": "val_habit_tracker",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\habit_tracker.yaml"
+    },
+    {
+      "id": "val_inventory_dashboard",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\inventory_dashboard.yaml"
+    }
+  ],
+  "reward_config": {
+    "quality": 0.5,
+    "tokens": 0.25,
+    "turns": 0.15,
+    "wall_time": 0.1,
+    "penalty_weight": 0.25,
+    "penalty_split": {
+      "reward_hacking": 0.5,
+      "overfitting": 0.5
+    },
+    "normalization": "baseline / (baseline + candidate)",
+    "formula": "R_task = 0.50 Q + 0.25 E_tokens + 0.15 E_turns + 0.10 E_wall_time - lambda_H H - lambda_O O; E_metric = baseline / (baseline + candidate)",
+    "lambda_hacking": 0.125,
+    "lambda_overfitting": 0.125
+  },
+  "reference": {
+    "version": "v003",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-021a37afaa3c4a5a\\manifest.json",
+    "summary": {
+      "task_count": 3,
+      "pass_count": 2,
+      "pass_rate": 0.6666666666666666,
+      "average_score": 0.91,
+      "agent": {
+        "input_tokens": 1020015,
+        "output_tokens": 117753,
+        "total_tokens": 1137768,
+        "api_retries": 1,
+        "tool_calls": 77,
+        "tool_errors": 1,
+        "tool_retries": 0,
+        "turns": 47,
+        "wall_time": 1086.9884509000003
+      },
+      "judge_to_validtal_tokens": 1822408,
+      "reward": 0.705,
+      "average_penalty": 0.0,
+      "average_reward_hacking_penalty": 0.0,
+      "average_overfitting_penalty": 0.0,
+      "evaluation": true
+    }
+  },
+  "candidate": {
+    "version": "v004",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-c2c57d0616b346a8\\manifest.json",
+    "summary": {
+      "task_count": 3,
+      "pass_count": 3,
+      "pass_rate": 1.0,
+      "average_score": 0.8933333333333333,
+      "agent": {
+        "input_tokens": 667087,
+        "output_tokens": 66304,
+        "total_tokens": 733391,
+        "api_retries": 0,
+        "tool_calls": 67,
+        "tool_errors": 3,
+        "tool_retries": 0,
+        "turns": 36,
+        "wall_time": 509.86724620000314
+      },
+      "judge_total_tokens": 621552,
+      "reward": 0.7270732182595687,
+      "average_penalty": 0.041666666666666664,
+      "average_reward_hacking_penalty": 0.08333333333333333,
+      "average_overfitting_penalty": 0.0,
+      "evaluation_valid": true
+    }
+  }
+}

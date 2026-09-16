@@ -1,0 +1,27 @@
+id: audit_log_normalizer
+seed_dir: fixtures/audit_log_normalizer
+timeout_seconds: 600
+max_turns: 55
+prompt: |
+  Build a stdlib-only audit-log normalizer CLI named normalize_audit.py. It
+  accepts an input JSONL path and output JSONL path. For every nonblank object,
+  validate a nonempty event_id and ISO-8601-like timestamp string, normalize
+  actor whitespace, lowercase action, sort object keys in output, and add a
+  deterministic severity field: security actions (login_failed, permission_denied,
+  token_revoked) are high; all other actions are normal. Preserve unknown fields
+  and do not mutate parsed input objects. Malformed JSON or an invalid record
+  must report its 1-based source line, exit nonzero, and leave no partial output
+  file. Add focused stdlib unittest coverage for blank lines, nested unknown
+  fields, normalization, invalid input and atomic output. Run bounded tests and
+  report only checks actually executed. Do not install packages, use a network,
+  start services or open interactive shells.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Verify a usable stdlib CLI, line-numbered validation errors, atomic output,
+    stable JSONL output, actor/action normalization, deterministic severity and
+    preservation of unknown nested data. Tests must cover both successful and
+    failing paths; source/test coherence is required, not just stated behavior.
+  artifacts:
+    - {path: normalize_audit.py, mode: text}
+    - {path: tests/test_normalize_audit.py, mode: text}

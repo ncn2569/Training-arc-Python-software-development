@@ -1,0 +1,25 @@
+id: inventory_reservation_repair
+seed_dir: fixtures/inventory_reservation_repair
+timeout_seconds: 600
+max_turns: 45
+prompt: |
+  Repair the seeded inventory reservation module. Keep reserve(stock, reserved,
+  sku, quantity) and its documented return shape. It must not mutate either
+  input mapping, accept only positive integer quantities (not booleans), reject
+  unknown SKUs and insufficient available stock, and return a new reservation
+  mapping after a successful reservation. Available stock is stock[sku] minus
+  reserved.get(sku, 0), including prior reservations. First inspect the code and
+  run the supplied bounded unittest target to observe the defect. Repair the
+  real cause, rerun the same test, and report the actual result. No package
+  installation, network, service, interactive shell or test weakening.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Verify public API preservation, input immutability, positive integer
+    validation, prior-reservation accounting, unknown SKU/insufficient-stock
+    rejection, and meaningful retained tests. Require a bounded
+    failure-to-repair-to-rerun trajectory; do not award credit for deleting or
+    weakening assertions.
+  artifacts:
+    - {path: inventory.py, mode: text}
+    - {path: tests/test_inventory.py, mode: text}

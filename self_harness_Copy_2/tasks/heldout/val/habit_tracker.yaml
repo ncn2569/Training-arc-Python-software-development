@@ -1,0 +1,24 @@
+id: val_habit_tracker
+seed_dir: fixtures/val_habit_tracker
+timeout_seconds: 600
+max_turns: 40
+prompt: |
+  Create a self-contained habit tracker in index.html. Seed several realistic
+  daily habits. Let users add a habit, mark/unmark completion on each of the
+  last seven days, delete a habit, and filter completed-today or incomplete-today
+  habits. Show weekly completion counts and today's completion summary, updating
+  all views consistently after edits. Persist changes using guarded localStorage.
+  Put all CSS and JavaScript inside index.html without network dependencies.
+  Work only in the current workspace. Do not install packages, start servers,
+  render images, use browser automation, or open interactive shells. Verify by
+  reading source or short bounded non-server checks and report actual checks.
+judge:
+  pass_score: 0.8
+  rubric: |
+    Assess source only. Verify initial habit data, seven-day completion state,
+    add/delete/toggle interactions, live summaries and completion filters,
+    guarded persistence, and self-contained HTML/CSS/JS. Check date/day indexing
+    and consistent state updates, not merely labels or control existence.
+    Do not require rendered appearance, services, package installation or screenshots.
+  artifacts:
+    - {path: index.html, mode: text}

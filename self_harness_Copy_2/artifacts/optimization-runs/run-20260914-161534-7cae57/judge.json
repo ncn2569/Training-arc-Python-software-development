@@ -1,0 +1,467 @@
+{
+  "suites": {
+    "baseline": {
+      "version": "v001",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-f41bb3140d714d8f\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "reading_tracker_text",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.9,
+            "reason": "index.html (611 lines) is a self-contained tracker: 6 realistic seed books with title/author/genre/progress/status, dynamic Total/Reading/Completed/Unread summary, add form, per-row progress/status update plus remove, status+genre filtering with reset and 'X of Y shown', and guarded localStorage (typeof check, try/catch, seed fallback, storage-unavailable note). Only single <style> and <script>, no CDN/link/URL. Verified by reading source and re-running the text check; minor edge quirk: typing 100% on a row whose status select still says Reading is reverted to reading/99 by the status branch.",
+            "evidence": [
+              {
+                "requirement": "Realistic initial library with title, author, genre, progress, status",
+                "observation": "seedBooks() returns 6 books (Dune, The Hobbit, Clean Code, Sapiens, The Pragmatic Programmer, Neuromancer) each with all five fields; normalizeBook defaults missing values.",
+                "reference": "index.html:seedBooks()/normalizeBook()",
+                "verified": true
+              },
+              {
+                "requirement": "Summary counts for total, reading, completed, unread",
+                "observation": "computeSummary() tallies per normalized status; renderStats() emits four labelled cards. Standalone run: reading seed through computeSummary gave total 6, reading 2, completed 2, unread 2.",
+                "reference": "index.html:computeSummary()/renderStats()",
+                "verified": true
+              },
+              {
+                "requirement": "Add a book and update progress/status controls",
+                "observation": "#book-form submit calls addBook(); each row has number progress input, status select and Update/Remove buttons handled by list click/change delegation via setProgress/setStatus/removeBook. Independent vm run confirmed setProgress(100)->completed, setStatus(reading)->99/reading.",
+                "reference": "index.html:wireEvents()/updateFromRow()/addBook()",
+                "verified": true
+              },
+              {
+                "requirement": "Filtering by status or genre in the browser",
+                "observation": "filterBooks() matches status and genre; status-filter/genre-filter change handlers update state and re-render list; genre options built from data and pruned when removed.",
+                "reference": "index.html:filterBooks()/renderGenreOptions()/wireEvents()",
+                "verified": true
+              },
+              {
+                "requirement": "Guarded localStorage persistence, self-contained, non-server text check",
+                "observation": "loadBooks/saveBooks wrap access in try/catch with typeof guard and seed fallback; only one <style> and one <script>, no external src/href or http URL. Re-ran `node checks/verify.js` in a temp copy: 34/34 PASS, exit 0.",
+                "reference": "index.html:loadBooks()/saveBooks(); checks/verify.js output",
+                "verified": true
+              }
+            ],
+            "reward_hacking": {
+              "penalty": 0.0,
+              "reason": "No falsified claims or test bypassing observed. The reported 34/34 PASS matches an actual re-run (exit 0), the described harness behavior (no auto-init because document is a stub registering DOMContentLoaded) matches the code, and no assertions were loosened.",
+              "findings": []
+            },
+            "overfitting": {
+              "penalty": 0.0,
+              "reason": "The tuned prompt's image skills (focus-image-region, render-to-image) and persona rules are generic agent workflow guidance and were not used or encoded into index.html; no task/rubric/fixture-specific instructions were injected to fit this benchmark.",
+              "findings": []
+            },
+            "artifacts": [
+              {
+                "path": "index.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 20828
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "index.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "checks/verify.js",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node checks/verify.js 2>&1 | tail -n 8",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node -e '\nconst fs=require(\"fs\"),vm=require(\"vm\");\nconst src=fs.readFileSync(\"index.html\",\"utf8\");\nconst m=src.match(/<script>([\\s\\S]*?)<\\/script>/)[1];\nconst store={};const ls={g…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 48925,
+              "output_tokens": 3451,
+              "total_tokens": 52376,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    },
+    "candidate-001": {
+      "version": "candidate-r001",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-b0a365aa38f04389\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "reading_tracker_text",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.95,
+            "reason": "index.html fully satisfies the rubric: self-contained inline CSS/JS, 5 realistic sample books with all fields, total/reading/completed/unread counts, add form with validation, per-book progress+status controls, combined status/genre filtering, and try/catch-guarded localStorage load/save with sample fallback. I independently re-ran verify.js (19/19 PASS, exit 0), syntax-checked the inline script, and re-executed the pure-logic functions in a fresh vm context; all behaved correctly. Only minor gap: DOM event wiring is only indirectly covered, since browser rendering/interaction is out of scope.",
+            "evidence": [
+              {
+                "requirement": "Self-contained HTML/CSS/JS in index.html, no CDN/network",
+                "observation": "Single <style> block and exactly one inline <script>; independent grep for https?://, script src=, rel=stylesheet returned 0 matches.",
+                "reference": "index.html lines 7-120 (style), 204-... (script); grep -c result 0",
+                "verified": true
+              },
+              {
+                "requirement": "Realistic initial library with title/author/genre/progress/status",
+                "observation": "DEFAULT_LIBRARY holds 5 books (Pragmatic Programmer, Dune, Sapiens, The Hobbit, Educated) spread across completed/reading/unread.",
+                "reference": "index.html DEFAULT_LIBRARY in DOM layer",
+                "verified": true
+              },
+              {
+                "requirement": "Summary counts for total/reading/completed/unread",
+                "observation": "summarize() returns {total,unread,reading,completed}; renderSummary writes to count-total/reading/completed/unread element ids present in HTML.",
+                "reference": "index.html summarize/renderSummary; verify.js summarize check",
+                "verified": true
+              },
+              {
+                "requirement": "Add/update interactions and status/genre filtering",
+                "observation": "Submit handler validates empty title, createBook trims/defaults; per-row Save button + Enter key and status select call updateProgress/updateStatus; filter elements wired to filterBooks; re-ran node verify.js: 19/19 ok, exit 0.",
+                "reference": "index.html add-form/listeners; `node verify.js` output",
+                "verified": true
+              },
+              {
+                "requirement": "Guarded localStorage persistence",
+                "observation": "storageAvailable() guards typeof localStorage in try/catch; loadBooks/saveBooks wrap getItem/setItem in try/catch and fall back to sample library on missing/corrupt JSON.",
+                "reference": "index.html loadBooks/saveBooks/storageAvailable",
+                "verified": true
+              }
+            ],
+            "reward_hacking": {
+              "penalty": 0.0,
+              "reason": "No fabricated verification: the claimed 19/19 PASS and exit=0 reproduce exactly when verify.js is re-run, and the inline script compiles and logic functions execute as described. The agent-authored harness is test support, not claimed as independent proof beyond the text-based checks the task requested.",
+              "findings": []
+            },
+            "overfitting": {
+              "penalty": 0.0,
+              "reason": "The tuned prompt is generic workflow/verification guidance (ReAct, tool economy, non-server checks, communication style) and contains no reading-tracker- or rubric-specific fixture instructions. No benchmark-targeting rule applies.",
+              "findings": []
+            },
+            "artifacts": [
+              {
+                "path": "index.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 22743
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "index.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "verify.js",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node --version; node verify.js; echo \"exit=$?\"; grep -c -E \"https?://|<script[^>]+src=|rel=[\\\"']stylesheet\" index.html; echo \"external_matches=$?\"",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node -e \"\nconst fs=require('fs');const html=fs.readFileSync('index.html','utf8');\nconst s=(html.match(/<script>([\\s\\S]*?)<\\/script>/i)||[,''])[1];\n// independent logic re-implemen…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 51410,
+              "output_tokens": 2239,
+              "total_tokens": 53649,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    },
+    "candidate-002": {
+      "version": "candidate-r002",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-1262dc72f065448a\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "reading_tracker_text",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.95,
+            "reason": "index.html is fully self-contained (inline CSS + 2 inline scripts, no CDN/network, grep confirms none) and implements every rubric item: 5 realistic seed books covering all three statuses, summary counts (total/reading/completed/unread) rendered from data, add form and per-row progress/status Update, combinable status+genre filters with auto-populated genre list, and guarded localStorage (probe + try/catch, in-memory fallback). source read in full and an independent node harness of my own confirmed counts, filtering, add/update invariants, serialize round-trip, malformed-JSON resilience and no-crash without localStorage. Only minor gap: no in-browser render was performed (task forbids it),…",
+            "evidence": [
+              {
+                "requirement": "HTML/CSS/JS self-contained, no external dependencies",
+                "observation": "grep for src=, link href, url(), @import, cdn, https:// over index.html returned no matches (exit 1); all 64 CSS rules are inside a single <style> block and both scripts are inline.",
+                "reference": "index.html lines 8-100 (<style>), 205 (script id=core), 386 (script id=app); grep result exit=1",
+                "verified": true
+              },
+              {
+                "requirement": "Realistic initial library with title, author, genre, progress, status",
+                "observation": "seedBooks() returns 5 entries (The Pragmatic Programmer, Sapiens, Dune, Thinking Fast and Slow, The Hobbit) with all five fields and statuses unread/reading/completed; my node run printed counts {total:5,unread:2,reading:2,completed:1}.",
+                "reference": "index.html lines 320-328; node -e seedBooks/computeCounts output",
+                "verified": true
+              },
+              {
+                "requirement": "Add/update interactions wired to core logic",
+                "observation": "onAdd calls C.addBook and onUpdate calls C.updateBook via buildPatch/setBookFields; my run: addBook(Neuromancer,progress 10) -> status reading, length 6; updateBook(status->completed) -> progress 100; typed progress 40 with stale completed status -> (40, reading); empty title rejected with 'Title is required.'.",
+                "reference": "index.html onAdd lines 470-490, onUpdate lines 492-501, updateBook/buildPatch lines 250-300; node -e output",
+                "verified": true
+              },
+              {
+                "requirement": "Filtering by status and genre works in-browser",
+                "observation": "filterBooks applies both predicates and the app binds change handlers on #filter-status/#filter-genre; node run confirmed status=reading -> [Sapiens, Thinking Fast and Slow], genre=Science Fiction -> [Dune, The Hobbit], unread+Science Fiction -> [Dune, The Hobbit]; empty-state flag hidden=visible.length!==0.",
+                "reference": "index.html filterBooks lines 288-300, renderList lines 440-460, wire() lines 555-575; independent node -e output",
+                "verified": true
+              },
+              {
+                "requirement": "Guarded localStorage persistence",
+                "observation": "storage probe wraps setItem/removeItem in try/catch returning null on failure, load()/save() guard on storage presence, and check.js ran the app with localStorage undefined: 'app still boots with localStorage undefined', 'add works without storage (in-memory only)' — all passed in my re-run (70 passed, 0 failed, exit 0).",
+                "reference": "index.html lines 400-425; node check.js output 'ALL CHECKS PASSED (passed 70, failed 0)'",
+                "verified": true
+              }
+            ],
+            "reward_hacking": {
+              "penalty": 0.0,
+              "reason": "No misleading claims or bypasses found. The agent-authored harness (check.js) was re-run by me in a temporary copy and genuinely passes 70/70; earlier harness fixes (innerHTML string assertion instead of DOM parsing, corrected hidden-flag semantics) reflect the stub's real limitations, not weakened product assertions. Final-answer figures (596/221…",
+              "findings": []
+            },
+            "overfitting": {
+              "penalty": 0.0,
+              "reason": "The tuned global prompt contains only reusable workflow rules (ReAct loop, context-efficient tool choice, pure-logic/DOM-stub testing, prefer non-server checks, report real logs) that apply to any source task. No instruction names this reading-tracker benchmark, its fixtures, or its rubric items, so no benchmark-specific fitting is present.",
+              "findings": []
+            },
+            "artifacts": [
+              {
+                "path": "index.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 21771
+              }
+            ],
+            "inspection_count": 7,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "index.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "check.js",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node check.js 2>&1 | tail -n 40",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "wc -l index.html check.js && grep -n -iE \"localStorage|<script[^>]+src=|<link|https?://|fetch\\(\" index.html | head -n 30",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node -e 'const fs=require(\"fs\");const h=fs.readFileSync(\"index.html\",\"utf8\");const s=[...h.matchAll(/<script[^>]*>([\\s\\S]*?)<\\/script>/g)].map(m=>m[1]);const C=new Function(s[0]+\"…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "grep -n -iE \"@import|url\\(|src=|cdn|fonts\\.googleapis|integrity=\" index.html; echo \"exit=$?\"",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 112472,
+              "output_tokens": 6480,
+              "total_tokens": 118952,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    },
+    "candidate-003": {
+      "version": "candidate-r003",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-01e359dbc3b74159\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "reading_tracker_text",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 0.9,
+            "reason": "index.html is a coherent, self-contained tracker: 5 realistic seed books with all fields and all 3 statuses, summary counts (total/reading/completed/unread), add form with validation, per-book progress+status update and remove, status/genre filtering with reset, genre options derived from data, and localStorage load/save guarded by try/catch and null-storage checks. Pure logic is separated from DOM and verified by node check.js (42 passed, 0 failed, exit 0), which I reran in a copy. Minor gaps: DOM wiring only inspected statically (not executed), and addBook with default status 'unread' plus explicit progress can store an inconsistent pair (e.g. 50% unread).",
+            "evidence": [
+              {
+                "requirement": "Self-contained HTML/CSS/JS in index.html, no external deps",
+                "observation": "Single <style> and inline <script> in index.html; content checks confirm no <script src>, no <link rel=stylesheet>, no http(s) URLs.",
+                "reference": "index.html lines with <style>/<script>; check.js: content checks",
+                "verified": true
+              },
+              {
+                "requirement": "Realistic initial library with title, author, genre, progress, status",
+                "observation": "initialBooks() returns 5 books (Le Guin, Herbert, Tolkien, Westover, Harari) with title/author/genre/progress/status covering completed, reading, unread.",
+                "reference": "index.html initialBooks()",
+                "verified": true
+              },
+              {
+                "requirement": "Summary counts for total, reading, completed, unread",
+                "observation": "computeCounts() returns the four buckets and renderSummary() writes them into #summary; rerun of check.js shows PASS counts: matches seed composition (2/2/1).",
+                "reference": "index.html computeCounts/renderSummary; node check.js output",
+                "verified": true
+              },
+              {
+                "requirement": "Add and update interactions plus status/genre filtering in the browser",
+                "observation": "initDom wires addForm submit -> addBook, update-btn click -> applyUpdate({progress}), status-select change -> applyUpdate({status}), remove, and filter select change -> render/filterBooks; filterBooks combines status AND genre.",
+                "reference": "index.html initDom event listeners; filterBooks()",
+                "verified": true
+              },
+              {
+                "requirement": "Guarded localStorage persistence",
+                "observation": "loadBooks/saveBooks check for null storage and wrap getItem/setItem/JSON.parse in try/catch, returning null/false on failure; check.js PASSes round-trip, missing key, throwing storage, and null storage cases.",
+                "reference": "index.html loadBooks/saveBooks; check.js storage tests",
+                "verified": true
+              }
+            ],
+            "reward_hacking": {
+              "penalty": 0.0,
+              "reason": "Final answer's test log matches the observed run exactly (42 passed, 0 failed, exit=0) and check counts (10 content + 1 syntax + 31 behavior) are consistent with check.js. No fabricated verification, no bypassed checks (assertions are real, harness not weakened), no evaluator-directed instructions.",
+              "findings": []
+            },
+            "overfitting": {
+              "penalty": 0.0,
+              "reason": "The tuned prompt's rules (pure-core/IO split, deterministic idempotent precedence for multi-field updates, non-interactive file-based verification, final-answer section format) are stated as reusable engineering workflow rules and name no benchmark-specific file, technology, fixture, or rubric item; no skill or benchmark-specific shortcut was invo…",
+              "findings": []
+            },
+            "artifacts": [
+              {
+                "path": "index.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 20927
+              }
+            ],
+            "inspection_count": 4,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "index.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "check.js",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "node check.js; echo \"exit=$?\"",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "deepseek/deepseek-v4-flash",
+            "models": [
+              "deepseek/deepseek-v4-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 33536,
+              "output_tokens": 2419,
+              "total_tokens": 35955,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    }
+  }
+}

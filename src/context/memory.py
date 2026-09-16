@@ -1,14 +1,22 @@
 import json
+import os
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-from litellm import completion
+from litellm import completion, token_counter
 
-THRESHOLD = 100000000000# int(256000 * 0.75)  # nguồn :))) hỏi nó
+# Do not derive this from a provider's advertised context window: self-hosted
+# OpenAI-compatible models often do not expose one to LiteLLM reliably.
+DEFAULT_CONTEXT_TOKENS = int(os.getenv("DEFAULT_CONTEXT_TOKENS", "1000000"))
+CONTEXT_COMPACTION_RATIO = float(os.getenv("CONTEXT_COMPACTION_RATIO", "0.75"))
+THRESHOLD = int(DEFAULT_CONTEXT_TOKENS * CONTEXT_COMPACTION_RATIO)
 
-# max_token=get_max_token(model="openai/kCode")
-# THRESHOLD = int(maxtoken*0.75)
+# LiteLLM falls back to this known tokenizer if the configured self-hosted
+# model has no registered tokenizer. It is only a tokenizer choice; requests
+# still go to the configured MODEL.
+TOKENIZER_FALLBACK_MODEL = os.getenv("TOKENIZER_FALLBACK_MODEL", "gpt-4o")
+DEFAULT_TOKEN_COUNT = int(os.getenv("DEFAULT_TOKEN_COUNT", "256"))
 
 SESSIONS_DIR = (Path(__file__).parent.parent.parent / "sessions").resolve()
 SESSION_FILE = SESSIONS_DIR / "session.jsonl"  # session hiện tại
@@ -77,16 +85,46 @@ def load_context() -> list[dict]:
     return fixed_message
 
 
-def count_tokens(context: list[dict]) -> int:
-    """
-    Xấp xỉ: CTHUC= len(json_string.encode("utf-8")) // 3 tiếng việt
-    """
-    text = json.dumps(context, ensure_ascii=False)
-    return len(text.encode("utf-8")) // 3  # 3 bytes 1 token
-    # return token_counter(model="openai/kCode", message=context)
+def _get_tokenizer_model(model: str | None = None) -> str:
+    """Return the active model, with a safe fallback for standalone tools."""
+    return model or os.getenv("MODEL") or TOKENIZER_FALLBACK_MODEL
 
-def count_tokens_by_string(text: str) -> int:
-    return len(text.encode("utf-8")) // 3
+
+def _token_counter_with_fallback(model: str, **kwargs) -> int:
+    """Use the active tokenizer, then a known local tokenizer if it is unknown."""
+    kwargs["default_token_count"] = DEFAULT_TOKEN_COUNT
+    try:
+        return token_counter(model=model, **kwargs)
+    except Exception:
+        if model == TOKENIZER_FALLBACK_MODEL:
+            raise
+        return token_counter(model=TOKENIZER_FALLBACK_MODEL, **kwargs)
+
+
+def count_tokens(
+    context: list[dict],
+    model: str | None = None,
+    tools: list[dict] | None = None,
+) -> int:
+    """Count the complete request with LiteLLM's model-aware tokenizer.
+
+    LiteLLM accepts multimodal OpenAI content blocks here, including the
+    ``image_url`` data URLs produced by this agent. Tool schemas are counted
+    too because they are sent with every completion request.
+    """
+    return _token_counter_with_fallback(
+        model=_get_tokenizer_model(model),
+        messages=context,
+        tools=tools,
+    )
+
+
+def count_tokens_by_string(text: str, model: str | None = None) -> int:
+    """Count raw text with the tokenizer used by the active model."""
+    return _token_counter_with_fallback(
+        model=_get_tokenizer_model(model),
+        text=text,
+    )
 
 
 def rewrite_session(new_context: list[dict]) -> None:

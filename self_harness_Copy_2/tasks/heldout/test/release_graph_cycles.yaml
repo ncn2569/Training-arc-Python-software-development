@@ -1,0 +1,21 @@
+id: test_release_graph_cycles
+seed_dir: fixtures/test_release_graph_cycles
+timeout_seconds: 600
+max_turns: 50
+prompt: |
+  Repair the seeded release dependency planner. Keep release_order(graph), where
+  graph maps each package to its direct dependency names. Return a deterministic
+  order where dependencies precede dependents, accept dependencies that are not
+  explicit keys as leaf nodes, and raise ValueError with a useful cycle signal
+  for cycles. Do not mutate graph. Inspect the existing standard-library tests,
+  observe their failure, implement the smallest clear fix, and rerun the exact
+  bounded test target. No package install, network or long-running process.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Check valid topological ordering, stable tie handling, implicit leaf nodes,
+    cycle detection and non-mutation. Require evidence of failed observation,
+    repair and post-repair verification without deleting assertions.
+  artifacts:
+    - {path: planner.py, mode: text}
+    - {path: tests/test_planner.py, mode: text}

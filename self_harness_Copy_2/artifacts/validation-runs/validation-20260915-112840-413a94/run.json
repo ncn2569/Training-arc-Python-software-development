@@ -1,0 +1,69 @@
+{
+  "mode": "heldout-validation",
+  "tasks": [
+    {
+      "id": "val_inventory_dashboard",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\inventory_dashboard.yaml"
+    },
+    {
+      "id": "val_habit_tracker",
+      "source": "D:\\Inter-K\\self_harness\\tasks\\heldout\\val\\habit_tracker.yaml"
+    }
+  ],
+  "reward_config": {
+    "quality": 0.5,
+    "tokens": 0.25,
+    "turns": 0.15,
+    "wall_time": 0.1,
+    "normalization": "baseline / (baseline + candidate)",
+    "formula": "R_task = 0.50 Q + 0.25 E_tokens + 0.15 E_turns + 0.10 E_wall_time; E_metric = baseline / (baseline + candidate)"
+  },
+  "reference": {
+    "version": "v003",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-386e338eb23f4b02\\manifest.json",
+    "summary": {
+      "task_count": 2,
+      "pass_count": 2,
+      "pass_rate": 1.0,
+      "average_score": 0.9,
+      "agent": {
+        "input_tokens": 202107,
+        "output_tokens": 58281,
+        "total_tokens": 260388,
+        "api_retries": 0,
+        "tool_calls": 14,
+        "tool_errors": 0,
+        "tool_retries": 0,
+        "turns": 13,
+        "wall_time": 282.6547362000001
+      },
+      "judge_total_tokens": 128636,
+      "reward": 0.7,
+      "evaluation_valid": true
+    }
+  },
+  "candidate": {
+    "version": "v004",
+    "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-74bd4f1ec69f4c00\\manifest.json",
+    "summary": {
+      "task_count": 2,
+      "pass_count": 2,
+      "pass_rate": 1.0,
+      "average_score": 0.9,
+      "agent": {
+        "input_tokens": 147664,
+        "output_tokens": 32100,
+        "total_tokens": 179764,
+        "api_retries": 0,
+        "tool_calls": 18,
+        "tool_errors": 0,
+        "tool_retries": 0,
+        "turns": 12,
+        "wall_time": 178.73839650000082
+      },
+      "judge_total_tokens": 121738,
+      "reward": 0.7152058229420222,
+      "evaluation_valid": true
+    }
+  }
+}

@@ -1,0 +1,352 @@
+{
+  "suites": {
+    "baseline": {
+      "version": "v004",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-56dc8138d9534224\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "poster_render_image",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 1.0,
+            "reason": "Full render-to-image workflow achieved: skill loaded, skill renderer script produced output/orbit-poster.png (exit 0, valid PNG signature, 329KB), followed by an image read reporting 800x630. Visual inspection confirms a legible dark Orbit 2026 poster with headline, orbit rings, and gradient planet. poster.html is unmodified (2019 bytes, original timestamp) with original content intact. render_report.json is valid JSON with exactly the five required fields and accurate values.",
+            "evidence": [
+              {
+                "requirement": "poster.html present and unmodified with original Orbit content",
+                "observation": "poster.html 2019 bytes, timestamp Sep 11 14:33 unchanged across turns; contains eyebrow 'DESIGN CONFERENCE', h1 'ORBIT 2026', date and footer text",
+                "reference": "poster.html (full read) + turn 7 wc -c output",
+                "verified": true
+              },
+              {
+                "requirement": "Render via skill renderer, no local server/browser",
+                "observation": "load_skill render-to-image called, then scripts/render_to_image.py run with --input poster.html --output output/orbit-poster.png, exit:0, file written 329352 bytes",
+                "reference": "tool trajectory turns 1,4",
+                "verified": true
+              },
+              {
+                "requirement": "output/orbit-poster.png exists as non-empty image artifact",
+                "observation": "PNG signature b'\\x89PNG...' present, size 329352 bytes, read as image/png 800x630",
+                "reference": "output/orbit-poster.png; temp-copy check of header/size",
+                "verified": true
+              },
+              {
+                "requirement": "Image read after successful render with recorded dimensions",
+                "observation": "read_file on the PNG returned type image, mime image/png, image_width 800, image_height 630",
+                "reference": "tool trajectory turn 5",
+                "verified": true
+              },
+              {
+                "requirement": "render_report.json valid JSON with exactly source/output/format/width/height and correct values",
+                "observation": "keys ['format','height','output','source','width']; values poster.html, output/orbit-poster.png, PNG, 800, 630",
+                "reference": "render_report.json",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "poster.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 2019
+              },
+              {
+                "path": "output/orbit-poster.png",
+                "mode": "image",
+                "status": "included",
+                "size_bytes": 329352
+              },
+              {
+                "path": "render_report.json",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 128
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "render_report.json",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "poster.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "output/orbit-poster.png",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"import json;d=json.load(open('render_report.json'));print(sorted(d.keys()));print(d); import os; print(os.path.getsize('output/orbit-poster.png')); print(open('output/o…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 17591,
+              "output_tokens": 989,
+              "total_tokens": 18580,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    },
+    "candidate-001": {
+      "version": "candidate-r001",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-2c4b7d5d167e44cb\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "poster_render_image",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 1.0,
+            "reason": "All contract items verified: poster.html unmodified (2019 B, original Orbit 2026 markup), output/orbit-poster.png is a valid non-empty PNG (signature OK, IHDR 800x630, 329,352 B) that visually renders the dark poster with legible 'ORBIT 2026 / DESIGN CONFERENCE / 18–19 September · Bangkok' headline plus the orange planet and two orbit rings. render_report.json is valid JSON with exactly source/output/format/width/height matching the image read. Trajectory shows load_skill(render-to-image), the skill's render_to_image.py exiting 0, then a read_file image read; no server/browser/placeholder.",
+            "evidence": [
+              {
+                "requirement": "poster.html present with original Orbit content, unmodified",
+                "observation": "Read shows full source: .poster 900x630 dark gradient, .orbit one/two rings, .planet gradient, h1 'ORBIT 2026', eyebrow 'DESIGN CONFERENCE', date and footer lines; 2019 bytes, original mtime per trajectory",
+                "reference": "poster.html (full file, 2019 B)",
+                "verified": true
+              },
+              {
+                "requirement": "output/orbit-poster.png exists as non-empty declared image artifact",
+                "observation": "Workspace listing includes it; byte check confirms PNG signature and IHDR dimensions 800x630, length 329352",
+                "reference": "output/orbit-poster.png; verification script output 'sig True len 329352 / IHDR dims 800 630'",
+                "verified": true
+              },
+              {
+                "requirement": "render_report.json valid JSON with exactly source, output, format, width, height and correct values",
+                "observation": "json.load succeeded; keys == ['format','height','output','source','width']; values poster.html, output/orbit-poster.png, PNG, 800, 630 (positive numerics matching the image read)",
+                "reference": "render_report.json",
+                "verified": true
+              },
+              {
+                "requirement": "Trajectory demonstrates successful render-to-image skill workflow followed by image read",
+                "observation": "turn 1 load_skill('render-to-image'); turn 3 ran the skill's scripts/render_to_image.py with --input/--output, EXIT=0 and file created; turn 4 read_file returned type=image, 800x630, 329352 bytes; report written afterward (turn 5)",
+                "reference": "observed tool events turns 1, 3, 4, 5",
+                "verified": true
+              },
+              {
+                "requirement": "Judge visual confirmation of legible dark Orbit poster with headline and colored planet/orbit composition",
+                "observation": "Rendered image shows dark navy/purple poster, light-blue 'DESIGN CONFERENCE' eyebrow, large white 'ORBIT 2026' headline, '18–19 September · Bangkok', footer text, two thin circular orbit rings at right and an orange-to-pink planet disc bottom-right",
+                "reference": "output/orbit-poster.png (image read)",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "poster.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 2019
+              },
+              {
+                "path": "output/orbit-poster.png",
+                "mode": "image",
+                "status": "included",
+                "size_bytes": 329352
+              },
+              {
+                "path": "render_report.json",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 128
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "poster.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "render_report.json",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "output/orbit-poster.png",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nimport json,struct\nd=json.load(open('render_report.json'))\nprint('keys',sorted(d), d)\nb=open('output/orbit-poster.png','rb').read()\nprint('sig', b[:8]==b'\\x89PNG\\r\\n\\x…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 16720,
+              "output_tokens": 1273,
+              "total_tokens": 17993,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    },
+    "candidate-002": {
+      "version": "candidate-r002",
+      "manifest_path": "D:\\Inter-K\\self_harness\\artifacts\\suites\\suite-6c99bf5ee47a4dab\\manifest.json",
+      "tasks": [
+        {
+          "task_id": "poster_render_image",
+          "judge": {
+            "evaluation_status": "valid",
+            "passed": true,
+            "score": 1.0,
+            "reason": "Full render workflow verified: skill loaded, provided renderer script executed, PNG produced and read back, and report JSON matches actual dimensions. poster.html is unmodified (2019 B, original Orbit content). The image is a legible dark Orbit 2026 poster with headline, date/footer text, orbit rings, and the orange/pink planet visible.",
+            "evidence": [
+              {
+                "requirement": "poster.html present with original Orbit content intact",
+                "observation": "2019-byte file, unchanged timestamp; contains eyebrow 'DESIGN CONFERENCE', h1 'ORBIT 2026', date '18–19 September · Bangkok', footer, .orbit/.planet styles",
+                "reference": "poster.html (full read, not truncated)",
+                "verified": true
+              },
+              {
+                "requirement": "output/orbit-poster.png exists as non-empty declared image",
+                "observation": "valid PNG signature, 329,352 bytes, IHDR 800x630 RGBA",
+                "reference": "verification script on workspace copy; file listing",
+                "verified": true
+              },
+              {
+                "requirement": "render_report.json valid JSON with exactly source, output, format, width, height and correct values",
+                "observation": "keys ['format','height','output','source','width']; source 'poster.html', output 'output/orbit-poster.png', format 'PNG', width 800, height 630 (positive, match read-back dims)",
+                "reference": "render_report.json",
+                "verified": true
+              },
+              {
+                "requirement": "Trajectory shows successful render-to-image skill workflow followed by image read",
+                "observation": "turn 1 load_skill render-to-image; turn 3 ran skill's scripts/render_to_image.py --input poster.html --output output/orbit-poster.png (exit 0, no local server); turn 5 read_file returned image 800x630 / 329352 B",
+                "reference": "observed tool events turns 1, 3, 4, 5",
+                "verified": true
+              },
+              {
+                "requirement": "Visual confirmation of legible dark Orbit poster with headline and planet/orbit composition",
+                "observation": "Rendered image shows dark blue/purple gradient, 'DESIGN CONFERENCE', large 'ORBIT 2026', '18–19 September · Bangkok', footer line, two circular orbit rings and orange-to-pink planet at lower right",
+                "reference": "image read of output/orbit-poster.png (800x630)",
+                "verified": true
+              }
+            ],
+            "artifacts": [
+              {
+                "path": "poster.html",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 2019
+              },
+              {
+                "path": "output/orbit-poster.png",
+                "mode": "image",
+                "status": "included",
+                "size_bytes": 329352
+              },
+              {
+                "path": "render_report.json",
+                "mode": "text",
+                "status": "included",
+                "size_bytes": 128
+              }
+            ],
+            "inspection_count": 5,
+            "inspection_samples": [
+              {
+                "tool": "list_workspace",
+                "target": ".",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "poster.html",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "render_report.json",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "read_workspace_file",
+                "target": "output/orbit-poster.png",
+                "success": true,
+                "exit_code": null,
+                "error": ""
+              },
+              {
+                "tool": "run_workspace_test",
+                "target": "python -c \"\nimport json,struct\nd=json.load(open('render_report.json'))\nprint(sorted(d.keys()), d)\nb=open('output/orbit-poster.png','rb').read()\nprint('sig', b[:8]==b'\\x89PNG\\r\\n\\x…",
+                "success": true,
+                "exit_code": 0,
+                "error": ""
+              }
+            ],
+            "model": "openai/qwen/qwen3.8-flash",
+            "models": [
+              "openai/qwen/qwen3.8-flash"
+            ],
+            "model_usage": {
+              "input_tokens": 17943,
+              "output_tokens": 1102,
+              "total_tokens": 19045,
+              "source": "provider"
+            },
+            "api_retries": 0
+          }
+        }
+      ]
+    }
+  }
+}

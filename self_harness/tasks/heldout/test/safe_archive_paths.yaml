@@ -1,0 +1,22 @@
+id: test_safe_archive_paths
+seed_dir: fixtures/test_safe_archive_paths
+timeout_seconds: 600
+max_turns: 45
+prompt: |
+  Repair the seeded archive extraction path validator. Keep archive_target(root,
+  member) and return a path strictly inside root only for safe relative archive
+  member names. Reject absolute paths, parent traversal, empty names and paths
+  that escape after normalization. It must work with both slash styles without
+  using string-prefix checks. Use only pathlib/stdlib. First inspect and run the
+  bounded tests, then repair and rerun them. This is local source work only: no
+  archive extraction, package install, network, server or shell interaction.
+judge:
+  pass_score: 0.85
+  rubric: |
+    Verify rejection of ../ traversal, absolute paths and prefix-confusion
+    cases; verify valid nested relative paths stay rooted. The implementation
+    must use path-aware containment and retain meaningful tests plus an
+    observed recovery cycle.
+  artifacts:
+    - {path: archive_paths.py, mode: text}
+    - {path: tests/test_archive_paths.py, mode: text}

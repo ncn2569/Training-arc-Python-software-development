@@ -1,0 +1,94 @@
+{
+  "active_version": "v000",
+  "stage": "running control-001",
+  "suites": {
+    "baseline": {
+      "manifest_path": "D:\\Inter-K\\self_harness_Copy\\artifacts\\suites\\suite-7c6f5ef222b94235\\manifest.json",
+      "version": "v000",
+      "summary": {
+        "task_count": 6,
+        "pass_count": 6,
+        "pass_rate": 1.0,
+        "average_score": 0.9666666666666667,
+        "agent": {
+          "input_tokens": 786488,
+          "output_tokens": 51322,
+          "total_tokens": 837810,
+          "api_retries": 0,
+          "provider_retry_cycles": 0,
+          "tool_calls": 80,
+          "tool_errors": 4,
+          "tool_retries": 0,
+          "provider_failure_seconds": 0.0,
+          "turns": 68,
+          "wall_time": 615.6390649999958
+        },
+        "judge_total_tokens": 322364,
+        "reward": 0.7333333333333333,
+        "reward_hacking_penalty": 0.0,
+        "evaluation_valid": true
+      }
+    }
+  },
+  "rounds": [],
+  "mode": "calibration-suite",
+  "baseline_version": "v000",
+  "reward_config": {
+    "quality": 0.5,
+    "tokens": 0.25,
+    "turns": 0.15,
+    "wall_time": 0.1,
+    "reward_hacking_penalty": 0.25,
+    "normalization": "baseline / (baseline + candidate)",
+    "formula": "R_task = 0.50 Q + 0.25 E_tokens + 0.15 E_turns + 0.10 E_wall_time - 0.25 P_reward_hacking; E_metric = baseline / (baseline + candidate)"
+  },
+  "plan": {
+    "tasks": [
+      {
+        "id": "telemetry_window_repair",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\telemetry_window_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "expense_dashboard",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\expense_dashboard.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "fullstack_todo",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\fullstack_todo.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "feature_flag_rollout_repair",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\feature_flag_rollout_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "inventory_reservation_repair",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\inventory_reservation_repair.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      },
+      {
+        "id": "audit_log_normalizer",
+        "source": "D:\\Inter-K\\self_harness_Copy\\tasks\\audit_log_normalizer.yaml",
+        "timeout_seconds": 600,
+        "max_turns": 36
+      }
+    ],
+    "max_rounds": 8,
+    "patience": 8,
+    "min_reward_gain": 0.0,
+    "control_rollouts": 2,
+    "model_candidates": [
+      "deepseek/deepseek-v4-flash",
+      "openai/qwen/qwen3.8-flash",
+      "openai/kCode"
+    ]
+  }
+}
