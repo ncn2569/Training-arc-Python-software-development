@@ -8,9 +8,9 @@ from __future__ import annotations
 
 
 MODEL_FALLBACKS = [
+    "openai/kCode",
     "deepseek/deepseek-v4-flash",
     "openai/qwen/qwen3.8-flash",
-    "openai/kCode"
 ]
 
 
